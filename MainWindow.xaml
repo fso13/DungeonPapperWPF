@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         x:Class="DungeonPapperWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="888" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="888" Width="800" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid Margin="0,10,0,-6" Background="Black">
         <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="191" SelectionChanged="cbox_quest_SelectionChanged">
             <ComboBoxItem Content="Стартовая"/>
@@ -66,7 +66,7 @@
         <CheckBox Content="" HorizontalAlignment="Left" Margin="26,755,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="" HorizontalAlignment="Left" Margin="26,780,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="" HorizontalAlignment="Left" Margin="26,810,0,0" VerticalAlignment="Top"/>
-        <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="321,57,0,262" Background="#FFE4DCDC" Height="525"/>
+        <Grid x:Name="gridFields" HorizontalAlignment="Right" Width="450" Margin="0,69,29,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top"/>
         <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="54" Margin="128,709,0,0" VerticalAlignment="Top" Width="120" Click="TwoMoveButton_Click"/>
     </Grid>
 </Window>

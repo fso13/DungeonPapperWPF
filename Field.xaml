@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DungeonPapperWPF"
-             mc:Ignorable="d" Width="75" Height="75" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
+             mc:Ignorable="d" Width="75" Height="75" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" BorderThickness="0,0,0,0" UseLayoutRounding="False">
     <UserControl.Background>
         <ImageBrush ImageSource="/map.jpg" TileMode="None"/>
     </UserControl.Background>

@@ -37,6 +37,7 @@ namespace DungeonPapperWPF
         private static Field[,] fields = new Field[7, 6];
 
         public static int hp = 4;
+        public static int blood = 0;
         public static int levelWarrior = 1;
         public static int levelWizard = 1;
         public static int levelCleric = 1;

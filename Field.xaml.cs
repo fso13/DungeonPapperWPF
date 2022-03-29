@@ -23,9 +23,12 @@ namespace DungeonPapperWPF
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
         SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
+        SolidColorBrush borderBrush = new SolidColorBrush(Colors.Black);
+        Thickness thickness = new Thickness(5);
 
         public FieldDto dto { get; set; }
         public bool isPath { get; set; } = false;
+        public bool isCurrent { get; set; } = false;
         public Field()
         {
             InitializeComponent();
@@ -53,6 +56,13 @@ namespace DungeonPapperWPF
             {
                 this.grid.Background = null;
             }
+            if (!isCurrent)
+            {
+                this.BorderBrush = null;
+                this.BorderThickness = new Thickness(0);
+            }
+
+
         }
 
         public void blueColor()
@@ -63,36 +73,45 @@ namespace DungeonPapperWPF
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(this.grid.Opacity > 0 && (this.grid.Background == brushGreen || isPath))
+            if (this.grid.Opacity > 0 && (this.grid.Background == brushGreen || isPath))
             {
                 if (MainWindow.currentCountStep > 0)
                 {
                     blueColor();
                     if (dto.trap)
                     {
-                        MainWindow.hp--;
+                        MainWindow.blood++;
 
-                        MessageBox.Show("Ловушка, здоровье стало: " + MainWindow.hp);
+                        MessageBox.Show("Ловушка, здоровье стало: " + (MainWindow.hp - MainWindow.blood));
                     }
-                    if (dto.prey!=null)
+                    if (dto.prey != null)
                     {
                         switch (dto.prey)
                         {
-                            case Potion potion: MessageBox.Show("Найдено лечебное зелье, в количестве: "+potion.count); break;
+                            case Potion potion: MessageBox.Show("Найдено лечебное зелье, в количестве: " + potion.count); break;
                             case Diamond diamond: MessageBox.Show("Украден алмаз " + diamond.name); break;
                             case MagicThing magic: MessageBox.Show("Получена половина магического предмета"); break;
-                            case LevelUp level: MessageBox.Show("Повышение уровня");MainWindow.hp++; break;
+                            case LevelUp level: MessageBox.Show("Повышение уровня"); MainWindow.hp++; break;
                             default: break;
                         }
 
                     }
+
                     this.isPath = true;
+                    isCurrent = true;
+                    this.BorderBrush = borderBrush;
+                    this.BorderThickness = thickness;
+
+                    if (MainWindow.path.Count > 0)
+                    {
+                        MainWindow.path.Last().isCurrent = false;
+                    }
                     MainWindow.path.Add(this);
                     MainWindow.currentCountStep--;
 
                     MainWindow.highlightWhereToGo();
                 }
-                
+
             }
         }
     }
