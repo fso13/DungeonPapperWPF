@@ -4,11 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DungeonPapperWPF"
-             mc:Ignorable="d" Width="75" Height="75">
+             mc:Ignorable="d" Width="75" Height="75" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
     <UserControl.Background>
-        <ImageBrush ImageSource="/map.jpg"/>
+        <ImageBrush ImageSource="/map.jpg" TileMode="None"/>
     </UserControl.Background>
     <Grid x:Name="grid" Width="75" Height="75">
+        <Grid.Background>
+            <SolidColorBrush/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"/>
             <ColumnDefinition Width="2*"/>

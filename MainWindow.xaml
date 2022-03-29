@@ -67,5 +67,6 @@
         <CheckBox Content="" HorizontalAlignment="Left" Margin="26,780,0,0" VerticalAlignment="Top"/>
         <CheckBox Content="" HorizontalAlignment="Left" Margin="26,810,0,0" VerticalAlignment="Top"/>
         <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="321,57,0,262" Background="#FFE4DCDC" Height="525"/>
+        <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="54" Margin="128,709,0,0" VerticalAlignment="Top" Width="120" Click="TwoMoveButton_Click"/>
     </Grid>
 </Window>

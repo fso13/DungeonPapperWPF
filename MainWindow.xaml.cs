@@ -21,7 +21,10 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FieldDto[,] fieldDtos;
+        private static FieldDto[,] fieldDtos;
+
+        private int step = 0;
+        public static int currentCountStep = 0;
 
         public static ImageBrush riverBrushVertical = new ImageBrush();
         public static ImageBrush riverBrushHorizontal = new ImageBrush();
@@ -29,7 +32,16 @@ namespace DungeonPapperWPF
         public static ImageBrush woodyBrushHorizontal = new ImageBrush();
         public static ImageBrush trapBrush = new ImageBrush();
 
-        private List<Field> path = new List<Field>();
+        public static List<Field> path = new List<Field>();
+
+        private static Field[,] fields = new Field[7, 6];
+
+        public static int hp = 4;
+        public static int levelWarrior = 1;
+        public static int levelWizard = 1;
+        public static int levelCleric = 1;
+        public static int levelPlut = 1;
+
 
         public MainWindow()
         {
@@ -155,6 +167,9 @@ namespace DungeonPapperWPF
             f.Name = String.Format("field_{0}_{1}", i, j);
             Grid.SetRow(f, j);
             Grid.SetColumn(f, i);
+
+            f.dto = dto;
+            fields[j, i] = f;
             gridFields.Children.Add(f);
         }
 
@@ -169,6 +184,132 @@ namespace DungeonPapperWPF
 
             drawField();
             //gridFields.UpdateLayout();
+        }
+
+
+        public Field[] GetColumn(int columnNumber)
+        {
+            return Enumerable.Range(0, fields.GetLength(0))
+                    .Select(x => fields[x, columnNumber])
+                    .ToArray();
+        }
+
+        public Field[] GetRow(int rowNumber)
+        {
+            return Enumerable.Range(0, fields.GetLength(1))
+                    .Select(x => fields[rowNumber, x])
+                    .ToArray();
+        }
+
+
+        private void TwoMoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentCountStep = 2;
+
+            highlightWhereToGo();
+        }
+
+
+        public static void highlightWhereToGo()
+        {
+            if (currentCountStep > 0)
+            {
+                if (path.Count == 0)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        fields[6, i].greanColor();
+                    }
+                }
+                else
+                {
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        for (int j = 0; j < 7; j++)
+                        {
+                            fields[j, i].clearColor();
+                        }
+                    }
+
+
+                    Field last = path.Last();
+
+                    if (last.dto.leftBarrier == Barrier.None)
+                    {
+                        if (last.dto.x > 0)
+                        {
+                            Field left = fields[last.dto.y, last.dto.x - 1];
+                            if (left.dto.rightBarrier == Barrier.None)
+                            {
+                                left.greanColor();
+                            }
+                        }
+                        else if (last.dto.x == 0)
+                        {
+                            Field left = fields[last.dto.y, 5];
+                            left.greanColor();
+                        }
+                    }
+
+
+                    if (last.dto.rightBarrier == Barrier.None)
+                    {
+                        if (last.dto.x < 5)
+                        {
+                            Field right = fields[last.dto.y, last.dto.x + 1];
+                            if (right.dto.leftBarrier == Barrier.None)
+                            {
+                                right.greanColor();
+                            }
+                        }
+                        else if (last.dto.x == 5)
+                        {
+                            Field right = fields[last.dto.y, 0];
+                            right.greanColor();
+                        }
+                    }
+
+
+                    if (last.dto.topBarrier == Barrier.None)
+                    {
+                        if (last.dto.y > 0)
+                        {
+                            Field top = fields[last.dto.y - 1, last.dto.x];
+                            if (top.dto.downBarrier == Barrier.None)
+                            {
+                                top.greanColor();
+                            }
+                        }
+
+                    }
+
+                    if (last.dto.downBarrier == Barrier.None)
+                    {
+                        if (last.dto.y < 6)
+                        {
+                            Field down = fields[last.dto.y + 1, last.dto.x];
+                            if (down.dto.topBarrier == Barrier.None)
+                            {
+                                down.greanColor();
+                            }
+                        }
+
+                    }
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 7; j++)
+                    {
+                        fields[j, i].clearColor();
+                    }
+                }
+            }
+
         }
     }
 }
