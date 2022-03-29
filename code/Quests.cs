@@ -140,52 +140,52 @@ namespace DungeonPapperWPF.code
 
         //5
         {
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).WithPrey(new Diamond("D")).WithMonster(new Monster(MonsterType.Prizrak, new HeroClass(HeroClassType.Wizard,5))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).WithPrey(new Potion(1)).Build(),
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.River).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.River).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).Build()
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.River).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).WithPrey(new Diamond("E")).WithMonster(new Monster(MonsterType.Goblin, new HeroClass(HeroClassType.Plut,5))).Build()
             },
 
         //4
         {
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new MagicThing()).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.Wall).WithPrey(new Diamond("C")).WithMonster(new Monster(MonsterType.Goblin, new HeroClass(HeroClassType.Plut,4))).Build(),
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.Wall).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).Build()
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new Potion(1)).WithMonster(new Monster(MonsterType.Prizrak, new HeroClass(HeroClassType.Wizard,4))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).WithTrap(true).WithPrey(new LevelUp()).Build()
             },
 
         //3
         {
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).WithTrap(true).WithPrey(new LevelUp()).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.Wall).WithDownBarrier(Barrier.None).WithPrey(new Potion(1)).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).WithPrey(new LevelUp()).Build(),
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.Wall).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).Build()
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).WithPrey(new Diamond("B")).WithMonster(new Monster(MonsterType.Ork, new HeroClass(HeroClassType.Warrior,4))).Build()
             },
 
         //2
         {
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.River).WithPrey(new Diamond("A")).WithMonster(new Monster(MonsterType.Skelet, new HeroClass(HeroClassType.Cleric,4))).Build(),
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithTrap(true).Build(),
                 new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.Wall).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).Build()
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new LevelUp()).WithMonster(new Monster(MonsterType.Skelet, new HeroClass(HeroClassType.Cleric,3))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).WithTrap(true).WithPrey(new MagicThing()).Build()
             },
 
         //1
         {
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.Wall).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build(),
-                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).Build()
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.Wall).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.River).WithDownBarrier(Barrier.None).WithPrey(new Potion(2)).WithMonster(new Monster(MonsterType.Prizrak, new HeroClass(HeroClassType.Wizard,3))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new MagicThing()).WithMonster(new Monster(MonsterType.Ork, new HeroClass(HeroClassType.Warrior,3))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new Potion(1)).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.Wall).WithDownBarrier(Barrier.None).WithPrey(new Potion(1)).WithMonster(new Monster(MonsterType.Goblin, new HeroClass(HeroClassType.Plut,3))).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.None).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new MagicThing()).WithTrap(true).Build(),
+                new FieldDtoBuilder().WithLeftBarrier(Barrier.None).WithRightBarrier(Barrier.Wall).WithTopBarrier(Barrier.None).WithDownBarrier(Barrier.None).WithPrey(new Potion(1)).Build()
           }
       };
             return fieldDtos;
