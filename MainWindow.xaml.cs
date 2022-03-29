@@ -29,6 +29,7 @@ namespace DungeonPapperWPF
         public static ImageBrush woodyBrushHorizontal = new ImageBrush();
         public static ImageBrush trapBrush = new ImageBrush();
 
+        private List<Field> path = new List<Field>();
 
         public MainWindow()
         {

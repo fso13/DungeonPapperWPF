@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DungeonPapperWPF"
              mc:Ignorable="d" Width="75" Height="75">
     <UserControl.Background>
-        <ImageBrush ImageSource="/ButtonFields;component/map.jpg"/>
+        <ImageBrush ImageSource="/map.jpg"/>
     </UserControl.Background>
     <Grid x:Name="grid" Width="75" Height="75">
         <Grid.ColumnDefinitions>
