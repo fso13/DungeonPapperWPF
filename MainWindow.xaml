@@ -173,67 +173,7 @@
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorBlackWhite" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="16" Margin="-28,0,0,0" FontStretch="Normal" FontWeight="Normal" ClickMode="Hover" Grid.RowSpan="2" IsChecked="True" UseLayoutRounding="False" IsEnabled="False">
-                <CheckBox.Template>
-                    <ControlTemplate   
-                 TargetType="{x:Type CheckBox}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
-            BorderThickness="{TemplateBinding BorderThickness}" 
-            Background="{TemplateBinding Background}">
-                            <Grid>
-                                <!-- ContentPresenter displays content of CheckBox -->
-                                <ContentPresenter 
-                Content="{TemplateBinding Content}" 
-                ContentTemplate="{TemplateBinding ContentTemplate}" 
-                Margin="{TemplateBinding Padding}" 
-                HorizontalAlignment="{TemplateBinding  
-                                        HorizontalContentAlignment}" 
-                VerticalAlignment="{TemplateBinding 
-                                        VerticalContentAlignment}" />
-                                <!-- This Border displays a semi-transparent red X -->
-                                <Border>
-                                    <Border.Background>
-                                        <VisualBrush Opacity="0.5">
-                                            <VisualBrush.Visual>
-                                                <Path Name="path" 
-                                  Data="M 0 0 L 10 10 M 10 0 L 0 10" 
-                                  Stroke="Red"  
-                                  StrokeStartLineCap="Round" 
-                                  StrokeEndLineCap="Round" 
-                                  StrokeLineJoin="Round" />
-                                            </VisualBrush.Visual>
-                                        </VisualBrush>
-                                    </Border.Background>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="path" 
-                Property="Data" 
-                Value="M 0 5 L 3 10 10 0" />
-                                <Setter TargetName="path" 
-                Property="Stroke" 
-                Value="Green" />
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                <Setter TargetName="path" 
-                Property="Data" 
-                Value="M 0 2.5 A 5 2.5 0 1 1 5 5  
-                       L 5 8 M 5 10 L 5 10" />
-                                <Setter TargetName="path" 
-                Property="Stroke" 
-                Value="Blue" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground"  
-                Value="{DynamicResource 
-                   {x:Static SystemColors.GrayTextBrushKey}}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </CheckBox.Template>
-            </CheckBox>
+            <CheckBox x:Name="cbox_warriorBlackWhite" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="16" Margin="-28,0,0,0" FontStretch="Normal" FontWeight="Normal" ClickMode="Hover" Grid.RowSpan="2" UseLayoutRounding="False" IsEnabled="False"/>
             <CheckBox x:Name="cbox_wizardBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,14,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
             <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,37,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
             <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,62,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
