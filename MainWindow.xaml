@@ -7,8 +7,40 @@
         WindowStartupLocation="CenterScreen"
         x:Class="DungeonPapperWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="704" Width="1056" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
-    <Grid Margin="0,0,0,-6" Background="Black" HorizontalAlignment="Center" Width="1056">
+        Title="MainWindow" Height="701" Width="1056" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="14,0,0,0" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+    </Window.Resources>
+    <Grid Background="#FF8E744D" HorizontalAlignment="Center" Width="1056" Height="691" VerticalAlignment="Top">
         <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="747,22,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbox_quest_SelectionChanged">
             <ComboBoxItem Content="Стартовая"/>
             <ComboBoxItem Content="Квест 1"/>
@@ -16,133 +48,197 @@
             <ComboBoxItem Content="Квест 3"/>
             <ComboBoxItem Content="Квест 4"/>
         </ComboBox>
-        <Grid HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="170" Margin="62,20,0,0">
-            <CheckBox x:Name="cbox_warriorLevel1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="16" Height="16" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+        <Grid HorizontalAlignment="Left" Width="170" Margin="62,20,0,0" Height="92" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="cbox_warriorLevel1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="16" Height="16" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorLevel2" Content="" HorizontalAlignment="Right" Margin="0,0,125,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_warriorLevel2" Content="" HorizontalAlignment="Right" Margin="0,0,125,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorLevel3" Content="" HorizontalAlignment="Left" Margin="52,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_warriorLevel3" Content="" HorizontalAlignment="Left" Margin="52,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorLevel4" Content="" HorizontalAlignment="Left" Margin="77,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_warriorLevel4" Content="" HorizontalAlignment="Left" Margin="77,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorLevel5" Content="" HorizontalAlignment="Left" Margin="122,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_warriorLevel5" Content="" HorizontalAlignment="Left" Margin="122,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorLevel6" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_warriorLevel6" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel1" Content="" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel1" Content="" HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel2" Content="" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel2" Content="" HorizontalAlignment="Left" Margin="25,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel3" Content="" HorizontalAlignment="Left" Margin="52,30,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel3" Content="" HorizontalAlignment="Left" Margin="52,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel4" Content="" HorizontalAlignment="Left" Margin="77,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel4" Content="" HorizontalAlignment="Left" Margin="77,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel5" Content="" HorizontalAlignment="Left" Margin="122,30,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel5" Content="" HorizontalAlignment="Left" Margin="122,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_wizardLevel6" Content="" HorizontalAlignment="Left" Margin="150,30,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_wizardLevel6" Content="" HorizontalAlignment="Left" Margin="150,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel1" Content="" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel1" Content="" HorizontalAlignment="Left" Margin="0,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel2" Content="" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel2" Content="" HorizontalAlignment="Left" Margin="25,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel3" Content="" HorizontalAlignment="Left" Margin="52,55,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel3" Content="" HorizontalAlignment="Left" Margin="52,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel4" Content="" HorizontalAlignment="Left" Margin="77,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel4" Content="" HorizontalAlignment="Left" Margin="77,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel5" Content="" HorizontalAlignment="Left" Margin="122,55,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel5" Content="" HorizontalAlignment="Left" Margin="122,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_clericLevel6" Content="" HorizontalAlignment="Left" Margin="150,55,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_clericLevel6" Content="" HorizontalAlignment="Left" Margin="150,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel1" Content="" HorizontalAlignment="Left" Margin="0,85,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel1" Content="" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel2" Content="" HorizontalAlignment="Left" Margin="25,85,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel2" Content="" HorizontalAlignment="Left" Margin="25,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel3" Content="" HorizontalAlignment="Left" Margin="52,85,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel3" Content="" HorizontalAlignment="Left" Margin="52,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel4" Content="" HorizontalAlignment="Left" Margin="77,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel4" Content="" HorizontalAlignment="Left" Margin="77,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel5" Content="" HorizontalAlignment="Left" Margin="122,85,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel5" Content="" HorizontalAlignment="Left" Margin="122,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_plutLevel6" Content="" HorizontalAlignment="Left" Margin="150,85,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked">
+            <CheckBox x:Name="cbox_plutLevel6" Content="" HorizontalAlignment="Left" Margin="150,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
                 <CheckBox.Background>
                     <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
                 </CheckBox.Background>
             </CheckBox>
-            <CheckBox x:Name="cbox_warriorBlackWhite" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="16" Margin="-25,0,0,0" FontStretch="Normal" FontWeight="Normal" ClickMode="Hover" IsEnabled="False"/>
-            <CheckBox x:Name="cbox_wizardBlackWhite" Content="" HorizontalAlignment="Left" Margin="-25,30,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-25,55,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-25,85,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="cbox_warriorBlackWhite" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="16" Margin="-28,0,0,0" FontStretch="Normal" FontWeight="Normal" ClickMode="Hover" Grid.RowSpan="2" IsChecked="True" UseLayoutRounding="False" IsEnabled="False">
+                <CheckBox.Template>
+                    <ControlTemplate   
+                 TargetType="{x:Type CheckBox}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            Background="{TemplateBinding Background}">
+                            <Grid>
+                                <!-- ContentPresenter displays content of CheckBox -->
+                                <ContentPresenter 
+                Content="{TemplateBinding Content}" 
+                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                Margin="{TemplateBinding Padding}" 
+                HorizontalAlignment="{TemplateBinding  
+                                        HorizontalContentAlignment}" 
+                VerticalAlignment="{TemplateBinding 
+                                        VerticalContentAlignment}" />
+                                <!-- This Border displays a semi-transparent red X -->
+                                <Border>
+                                    <Border.Background>
+                                        <VisualBrush Opacity="0.5">
+                                            <VisualBrush.Visual>
+                                                <Path Name="path" 
+                                  Data="M 0 0 L 10 10 M 10 0 L 0 10" 
+                                  Stroke="Red"  
+                                  StrokeStartLineCap="Round" 
+                                  StrokeEndLineCap="Round" 
+                                  StrokeLineJoin="Round" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="path" 
+                Property="Data" 
+                Value="M 0 5 L 3 10 10 0" />
+                                <Setter TargetName="path" 
+                Property="Stroke" 
+                Value="Green" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="path" 
+                Property="Data" 
+                Value="M 0 2.5 A 5 2.5 0 1 1 5 5  
+                       L 5 8 M 5 10 L 5 10" />
+                                <Setter TargetName="path" 
+                Property="Stroke" 
+                Value="Blue" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground"  
+                Value="{DynamicResource 
+                   {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </CheckBox.Template>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,14,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
+            <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,37,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
+            <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,62,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="16,167,0,0">
+        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="21,150,0,0">
             <CheckBox x:Name="hp_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -170,23 +266,23 @@
         </Grid>
         <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="273,21,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top"/>
         <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="54" Margin="273,562,0,0" VerticalAlignment="Top" Width="120" Click="TwoMoveButton_Click" IsEnabled="False"/>
-        <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="94,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click"/>
-        <Rectangle HorizontalAlignment="Left" Height="25" Margin="11,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
+        <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="62,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click" Width="165"/>
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Warrior.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle HorizontalAlignment="Left" Height="25" Margin="11,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
+        <Rectangle HorizontalAlignment="Left" Height="26" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Wizard.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle HorizontalAlignment="Left" Height="25" Margin="11,70,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Cleric_3.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle HorizontalAlignment="Left" Height="25" Margin="11,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="10,83,0,0" Stroke="Black" VerticalAlignment="Top" Width="25">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Plut.png"/>
             </Rectangle.Fill>
@@ -199,9 +295,9 @@
         <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="897,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
         <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="947,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
         <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="997,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="46" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
-        <Label Content="Жизни" HorizontalAlignment="Left" Margin="5,141,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
-        <Label Content="Урон" HorizontalAlignment="Left" Margin="72,141,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
-        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="83,167,0,0">
+        <Label Content="Жизни" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Label Content="Урон" HorizontalAlignment="Left" Margin="72,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="83,150,0,0">
             <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
