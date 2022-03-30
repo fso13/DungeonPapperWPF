@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         x:Class="DungeonPapperWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="855" Width="1056" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+        Title="MainWindow" Height="704" Width="1056" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid Margin="0,0,0,-6" Background="Black" HorizontalAlignment="Center" Width="1056">
         <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="758,21,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbox_quest_SelectionChanged">
             <ComboBoxItem Content="Стартовая"/>
@@ -142,33 +142,35 @@
             <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-25,55,0,0" VerticalAlignment="Top" IsEnabled="False"/>
             <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-25,85,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         </Grid>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,161,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,191,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,216,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,246,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,268,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,298,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,324,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,354,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,376,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,406,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,430,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,460,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,484,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,514,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,538,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,568,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,594,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,624,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,650,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,680,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,702,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,732,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,758,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="14,788,0,0" VerticalAlignment="Top"/>
+        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="16,167,0,0">
+            <CheckBox x:Name="hp_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_21" Content="" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_20" Content="" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_19" Content="" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_18" Content="" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_17" Content="" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_16" Content="" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_15" Content="" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_14" Content="" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_13" Content="" HorizontalAlignment="Left" Margin="0,220,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_12" Content="" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_11" Content="" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_10" Content="" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_9" Content="" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_8" Content="" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_7" Content="" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_6" Content="" HorizontalAlignment="Left" Margin="0,360,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_5" Content="" HorizontalAlignment="Left" Margin="0,380,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_4" Content="" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_3" Content="" HorizontalAlignment="Left" Margin="0,420,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+        </Grid>
         <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="273,21,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top"/>
         <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="54" Margin="273,562,0,0" VerticalAlignment="Top" Width="120" Click="TwoMoveButton_Click" IsEnabled="False"/>
-        <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="94,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False"/>
+        <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="94,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click"/>
         <Rectangle HorizontalAlignment="Left" Height="25" Margin="11,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Warrior.png"/>
@@ -191,11 +193,39 @@
         </Rectangle>
         <Button x:Name="startButton" Content="Начать" HorizontalAlignment="Left" Margin="974,22,0,0" VerticalAlignment="Top" Width="65" Click="startButton_Click"/>
         <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" HorizontalAlignment="Left" Margin="758,60,0,0" VerticalAlignment="Top" Width="281" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
-        <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" Margin="747,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White"/>
-        <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="797,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White"/>
-        <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="847,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White"/>
-        <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="897,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White"/>
-        <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="947,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White"/>
-        <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="997,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="46" Fill="White"/>
+        <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" Margin="747,100,0,0" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="Black"/>
+        <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="797,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="847,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="897,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="947,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="997,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="46" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Label Content="Жизни" HorizontalAlignment="Left" Margin="5,141,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Label Content="Урон" HorizontalAlignment="Left" Margin="72,141,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="83,167,0,0">
+            <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_21" Content="" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_20" Content="" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_19" Content="" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_18" Content="" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_17" Content="" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_16" Content="" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_15" Content="" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_14" Content="" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_13" Content="" HorizontalAlignment="Left" Margin="0,220,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_12" Content="" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_11" Content="" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_10" Content="" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_9" Content="" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_8" Content="" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_7" Content="" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_6" Content="" HorizontalAlignment="Left" Margin="0,360,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_5" Content="" HorizontalAlignment="Left" Margin="0,380,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_4" Content="" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_3" Content="" HorizontalAlignment="Left" Margin="0,420,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+        </Grid>
     </Grid>
 </Window>

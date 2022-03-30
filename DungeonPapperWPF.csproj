@@ -96,6 +96,7 @@
       <IsBuilderFile>True</IsBuilderFile>
     </Compile>
     <Compile Include="code\HeroClass.cs" />
+    <Compile Include="code\Party.cs" />
     <Compile Include="code\Quests.cs" />
     <Compile Include="code\Monster.cs" />
     <Compile Include="code\Prey.cs" />

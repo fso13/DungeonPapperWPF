@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace DungeonPapperWPF.code
 {
@@ -44,6 +45,7 @@ namespace DungeonPapperWPF.code
         public int number { get; set; }
         public DiceColor color { get; set; }
         public DiceType type { get; set; }
+        public Rectangle rectangle { get; set; }
     }
 
     public enum DiceType

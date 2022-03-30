@@ -31,6 +31,44 @@ namespace DungeonPapperWPF.code
             return "cbox_" + type.ToString().ToLower() + "BlackWhite";
         }
 
+        public int getNumberDiceForLevel()
+        {
+            if (outlook == Outlook.White && type==HeroClassType.Warrior)
+            {
+                return 1;
+            }
+            if (outlook == Outlook.White && type == HeroClassType.Wizard)
+            {
+                return 2;
+            }
+            if (outlook == Outlook.White && type == HeroClassType.Cleric)
+            {
+                return 3;
+            }
+            if (outlook == Outlook.White && type == HeroClassType.Plut)
+            {
+                return 4;
+            }
+            if (outlook == Outlook.Black && type == HeroClassType.Warrior)
+            {
+                return 5;
+            }
+            if (outlook == Outlook.Black && type == HeroClassType.Wizard)
+            {
+                return 6;
+            }
+            if (outlook == Outlook.Black && type == HeroClassType.Cleric)
+            {
+                return 7;
+            }
+            if (outlook == Outlook.Black && type == HeroClassType.Plut)
+            {
+                return 8;
+            }
+
+            return 0;
+        }
+
         public HeroClassType type { get; set; }
         public int level { get; set; } = 1;
         public Outlook outlook { get; set; }

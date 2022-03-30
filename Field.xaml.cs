@@ -23,7 +23,7 @@ namespace DungeonPapperWPF
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
         SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
-        SolidColorBrush borderBrush = new SolidColorBrush(Colors.Black);
+        SolidColorBrush borderBrush = new SolidColorBrush(Colors.DarkBlue);
         Thickness thickness = new Thickness(5);
 
         public FieldDto dto { get; set; }
@@ -80,7 +80,7 @@ namespace DungeonPapperWPF
                     blueColor();
                     if (dto.trap)
                     {
-                        MainWindow.damage(1);
+                        ((MainWindow)Window.GetWindow(this)).damage(1);
 
                     }
                     if (dto.prey != null)
