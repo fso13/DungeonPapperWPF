@@ -227,5 +227,6 @@
             <CheckBox x:Name="blood_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
+        <Button x:Name="selectDiceButton" Content="Выбрать кубик" HorizontalAlignment="Left" Margin="758,154,0,0" VerticalAlignment="Top" Width="281" Click="selectDiceButton_Click"/>
     </Grid>
 </Window>

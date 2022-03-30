@@ -20,21 +20,27 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class Field : UserControl
     {
-        SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
-        SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
-        SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
-        SolidColorBrush borderBrush = new SolidColorBrush(Colors.DarkBlue);
-        Thickness thickness = new Thickness(5);
+        public static ImageBrush heroBrush = new ImageBrush();
+        public static SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
+        public static SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
+        public static SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
+        public static SolidColorBrush currentBrush = new SolidColorBrush(Colors.DarkBlue);
+     
 
         public FieldDto dto { get; set; }
         public bool isPath { get; set; } = false;
         public bool isCurrent { get; set; } = false;
+
         public Field()
         {
             InitializeComponent();
         }
 
-
+        static Field()
+        {
+            heroBrush.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\hero_pack.png", UriKind.Relative));
+        }
         public void greanColor()
         {
             if (!isPath)
@@ -56,10 +62,10 @@ namespace DungeonPapperWPF
             {
                 this.grid.Background = null;
             }
-            if (!isCurrent)
+           else if (!isCurrent)
             {
-                this.BorderBrush = null;
-                this.BorderThickness = new Thickness(0);
+                blueColor();
+                this.heroes.Fill = null;
             }
 
 
@@ -100,8 +106,9 @@ namespace DungeonPapperWPF
 
                     this.isPath = true;
                     isCurrent = true;
-                    this.BorderBrush = borderBrush;
-                    this.BorderThickness = thickness;
+                    currentBrush.Opacity = 0.40;
+                    this.grid.Background = currentBrush;
+                    this.heroes.Fill = heroBrush;
 
                     if (MainWindow.path.Count > 0)
                     {

@@ -21,7 +21,6 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        Thickness thickness = new Thickness(5);
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
         public Array valuesOutlook = Enum.GetValues(typeof(Outlook));
@@ -30,11 +29,12 @@ namespace DungeonPapperWPF
 
         public static Dice[] dices = new Dice[6];
         public static Dice currentDice;
+        public static List<Dice> selectDices = new List<Dice>();
 
         private static bool isStart = false;
         private static FieldDto[,] fieldDtos;
 
-        private int step = 0;
+        private int round = 0;
         public static int currentCountStep = 0;
         public static int currentCountLevel = 0;
         public static int currentCountDice = 0;
@@ -336,13 +336,13 @@ namespace DungeonPapperWPF
 
         private Outlook randomOutlook()
         {
-    
-            return(Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
+
+            return (Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            if(!isStart && cbox_quest.SelectedIndex > 0)
+            if (!isStart && cbox_quest.SelectedIndex > 0)
             {
                 party = new Party();
                 isStart = true;
@@ -367,6 +367,9 @@ namespace DungeonPapperWPF
                 drawLevel();
                 drawOutlook();
 
+                cbox_quest.IsEnabled = false;
+                startButton.IsEnabled = false;
+
             }
         }
 
@@ -376,9 +379,10 @@ namespace DungeonPapperWPF
             List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
 
-            heroes.ForEach(hero => {
+            heroes.ForEach(hero =>
+            {
 
-                if(hero.outlook == Outlook.Black)
+                if (hero.outlook == Outlook.Black)
                 {
                     ((CheckBox)this.FindName(hero.getControlOutlookName())).IsChecked = true;
                 }
@@ -392,14 +396,15 @@ namespace DungeonPapperWPF
             List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
 
-            heroes.ForEach(hero => {
+            heroes.ForEach(hero =>
+            {
 
-                    for (int i = 0; i < hero.level; i++)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
-                    }
-            }); 
-            
+                for (int i = 0; i < hero.level; i++)
+                {
+                    ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
+                }
+            });
+
         }
 
 
@@ -411,7 +416,7 @@ namespace DungeonPapperWPF
                 ((CheckBox)this.FindName("blood_" + i)).IsChecked = true;
             }
             //todo потом учитывать зелья
-            
+
             MessageBox.Show("здоровье стало: " + (hp - blood));
         }
 
@@ -420,7 +425,8 @@ namespace DungeonPapperWPF
             List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
 
-            heroes.ForEach(hero => {
+            heroes.ForEach(hero =>
+            {
                 ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
             });
             MessageBox.Show("Повышение уровня");
@@ -432,20 +438,21 @@ namespace DungeonPapperWPF
         {
             List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
-            heroes.ForEach(hero => {
+            heroes.ForEach(hero =>
+            {
 
-                if(hero.type == type)
+                if (hero.type == type)
                 {
                     for (int i = 0; i < hero.level; i++)
                     {
                         ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
                     }
                 }
-               
+
             });
 
             drawLevel();
-            hp ++;
+            hp++;
 
         }
 
@@ -458,9 +465,10 @@ namespace DungeonPapperWPF
                 List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
 
-                heroes.ForEach(hero => {
+                heroes.ForEach(hero =>
+                {
 
-                    if(hero.getNumberDiceForLevel() == currentDice.number)
+                    if (hero.getNumberDiceForLevel() == currentDice.number)
                     {
                         ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
                     }
@@ -470,14 +478,15 @@ namespace DungeonPapperWPF
 
         private void cbox_Level_Checked(object sender, RoutedEventArgs e)
         {
-            if(currentCountLevel > 0)
+            if (currentCountLevel > 0)
             {
                 CheckBox checkBox = (CheckBox)sender;
                 checkBox.IsChecked = true;
                 string name = checkBox.Name;
                 List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
 
-                heroes.ForEach(hero => {
+                heroes.ForEach(hero =>
+                {
 
                     if (name.Contains(hero.type.ToString().ToLower()))
                     {
@@ -488,7 +497,8 @@ namespace DungeonPapperWPF
                     }
 
                 });
-                heroes.ForEach(hero => {
+                heroes.ForEach(hero =>
+                {
 
                     for (int i = 0; i <= hero.level; i++)
                     {
@@ -505,6 +515,17 @@ namespace DungeonPapperWPF
         {
             if (currentDice != null)
             {
+                for (int i = 0; i < 6; i++)
+                {
+                    Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+
+                    if(!selectDices.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number<10)
+                    {
+                        rectangle.IsEnabled = true;
+                    }
+                    
+                }
+
                 currentDice.rectangle.Stroke = null;
                 currentDice.rectangle.Fill = null;
                 currentDice.rectangle.IsEnabled = false;
@@ -513,6 +534,8 @@ namespace DungeonPapperWPF
 
                 if (currentCountDice == 0)
                 {
+                    buttonDiceGenereted.IsEnabled = true;
+
                     for (int i = 0; i < 6; i++)
                     {
                         Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
@@ -522,30 +545,40 @@ namespace DungeonPapperWPF
                     }
                 }
             }
-            
+            selectDiceButton.IsEnabled = true;
+
             LevelUpButton.IsEnabled = false;
             TwoMoveButton.IsEnabled = false;
         }
 
         private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
         {
-            currentCountDice = 3;
-            for (int i = 0; i < 6; i++)
+            if (round < 8)
             {
-                Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-                rectangle.IsEnabled = true;
-                dices[i] = Dice.fromNumber(random.Next(12));
-                dices[i].rectangle = rectangle;
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = dices[i].getPath();
-                rectangle.Fill = brush;
-                rectangle.Tag = dices[i];
-                if (dices[i].number > 9)
+                if (currentCountDice == 0)
                 {
-                    damage(1);
-                    rectangle.IsEnabled = false;
-                    rectangle.Stroke = brushRed;
-                    rectangle.StrokeThickness = 4;
+                    selectDices.Clear();
+                    buttonDiceGenereted.IsEnabled = false;
+                    round++;
+                    currentCountDice = 3;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                        rectangle.IsEnabled = true;
+                        dices[i] = Dice.fromNumber(random.Next(12));
+                        dices[i].rectangle = rectangle;
+                        ImageBrush brush = new ImageBrush();
+                        brush.ImageSource = dices[i].getPath();
+                        rectangle.Fill = brush;
+                        rectangle.Tag = dices[i];
+                        if (dices[i].number > 9)
+                        {
+                            damage(1);
+                            rectangle.IsEnabled = false;
+                            rectangle.Stroke = brushRed;
+                            rectangle.StrokeThickness = 4;
+                        }
+                    }
                 }
             }
         }
@@ -553,23 +586,44 @@ namespace DungeonPapperWPF
         public void addHp()
         {
             hp++;
-            ((CheckBox)this.FindName("hp_" + hp)).IsChecked=true;
+            ((CheckBox)this.FindName("hp_" + hp)).IsChecked = true;
         }
 
         private void dice_pic_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (currentDice == null)
+            for (int i = 0; i < 6; i++)
             {
-                Rectangle rectangle = (Rectangle)sender;
+                Rectangle r = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                if (r.Stroke == brushGreen)
+                {
+                    r.Stroke = null;
+                }
+            }
 
+            Rectangle rectangle = (Rectangle)sender;
                 rectangle.Stroke = brushGreen;
                 rectangle.StrokeThickness = 4;
-
                 currentDice = rectangle.Tag as Dice;
+
+            
+
+        }
+
+        private void selectDiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentDice != null)
+            {
+                selectDiceButton.IsEnabled = false;
+                selectDices.Add(currentDice);
+
+                for (int i = 0; i < 6; i++)
+                {
+                    ((Rectangle)this.FindName("dice" + (i + 1) + "_pic")).IsEnabled=false;
+                }
 
                 TwoMoveButton.IsEnabled = true;
 
-                if(currentDice.number>0 && currentDice.number < 9)
+                if (currentDice.number > 0 && currentDice.number < 9)
                 {
                     if (cleric.level > 3)
                     {
@@ -610,12 +664,10 @@ namespace DungeonPapperWPF
                             LevelUpButton.IsEnabled = true;
                         }
                     }
-                    
+
                 }
 
             }
         }
-
-        
     }
 }
