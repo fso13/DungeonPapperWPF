@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="704" Width="1056" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid Margin="0,0,0,-6" Background="Black" HorizontalAlignment="Center" Width="1056">
-        <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="758,21,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbox_quest_SelectionChanged">
+        <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="747,22,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbox_quest_SelectionChanged">
             <ComboBoxItem Content="Стартовая"/>
             <ComboBoxItem Content="Квест 1"/>
             <ComboBoxItem Content="Квест 2"/>
@@ -191,8 +191,8 @@
                 <ImageBrush ImageSource="/Plut.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="startButton" Content="Начать" HorizontalAlignment="Left" Margin="974,22,0,0" VerticalAlignment="Top" Width="65" Click="startButton_Click"/>
-        <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" HorizontalAlignment="Left" Margin="758,60,0,0" VerticalAlignment="Top" Width="281" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
+        <Button x:Name="startButton" Content="Начать" HorizontalAlignment="Left" Margin="974,22,0,0" VerticalAlignment="Top" Width="69" Click="startButton_Click"/>
+        <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" HorizontalAlignment="Left" Margin="747,60,0,0" VerticalAlignment="Top" Width="296" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
         <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" Margin="747,100,0,0" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="Black"/>
         <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="797,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
         <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="847,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
@@ -227,6 +227,6 @@
             <CheckBox x:Name="blood_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
-        <Button x:Name="selectDiceButton" Content="Выбрать кубик" HorizontalAlignment="Left" Margin="758,154,0,0" VerticalAlignment="Top" Width="281" Click="selectDiceButton_Click"/>
+        <Button x:Name="selectDiceButton" Content="Выбрать кубик" HorizontalAlignment="Left" Margin="747,164,0,0" VerticalAlignment="Top" Width="296" Click="selectDiceButton_Click" IsEnabled="False"/>
     </Grid>
 </Window>

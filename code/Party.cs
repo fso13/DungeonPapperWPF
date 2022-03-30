@@ -13,10 +13,27 @@ namespace DungeonPapperWPF.code
         public HeroClass cleric;
         public HeroClass plut;
 
+        public int hp = 0;
+        public int blood = 0;
+        public int potion = 0;
 
-        private int hp = 4;
-        private int blood = 0;
-        private int potion = 0;
+        public List<Field> path = new List<Field>();
+
+
+        public List<HeroClass> GetHeroes()
+        {
+            return new List<HeroClass>() { warrior, wizard, cleric, plut };
+        }
+
+        public void damage(int damage)
+        {
+            blood += damage;
+        }
+
+        public void addHp()
+        {
+            hp++;
+        }
 
     }
 }

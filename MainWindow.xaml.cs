@@ -23,21 +23,9 @@ namespace DungeonPapperWPF
     {
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
+
         public Array valuesOutlook = Enum.GetValues(typeof(Outlook));
         public Random random = new Random(DateTime.Now.Millisecond);
-
-
-        public static Dice[] dices = new Dice[6];
-        public static Dice currentDice;
-        public static List<Dice> selectDices = new List<Dice>();
-
-        private static bool isStart = false;
-        private static FieldDto[,] fieldDtos;
-
-        private int round = 0;
-        public static int currentCountStep = 0;
-        public static int currentCountLevel = 0;
-        public static int currentCountDice = 0;
 
         public static ImageBrush riverBrushVertical = new ImageBrush();
         public static ImageBrush riverBrushHorizontal = new ImageBrush();
@@ -45,20 +33,21 @@ namespace DungeonPapperWPF
         public static ImageBrush woodyBrushHorizontal = new ImageBrush();
         public static ImageBrush trapBrush = new ImageBrush();
 
-        public static List<Field> path = new List<Field>();
 
-        private static Field[,] fields = new Field[7, 6];
+        private static bool isStart = false;
+        private static FieldDto[,] fieldDtos = new FieldDto[7, 6];//поля в виже дто
+        private static Field[,] fields = new Field[7, 6];//поля в окне приложения
 
-        private int hp = 0;
-        private int blood = 0;
+        private int round = 0;//раунд игры
+        public static int currentCountStep = 0;//сколько есть клеток передвижения
+        public static int currentCountLevel = 0;//сколько есть повышений уровня
+        public static int currentCountDice = 0;//сколько еще можно потратить дайсов на действия
 
+        public Party party;//пати, герои, сокровища и тд
 
-        public static HeroClass warrior;
-        public static HeroClass wizard;
-        public static HeroClass cleric;
-        public static HeroClass plut;
-
-        public Party party;
+        public static Dice[] generateDice = new Dice[6];//сгенерированный дайсы в раунде
+        public static Dice currentDice;//выбранный дайс для действия
+        public static List<Dice> selectDicesIsCurrentRound = new List<Dice>();//дайсы которые были выбраны в раунде
 
 
         public MainWindow()
@@ -87,10 +76,11 @@ namespace DungeonPapperWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             fieldDtos = Quests.getQuest(0);
-
             drawField();
         }
 
+
+        //отрисовка карты
         private void drawField()
         {
             for (int i = 0; i < 6; i++)
@@ -114,6 +104,7 @@ namespace DungeonPapperWPF
             }
         }
 
+        //отрисовка комнаты
         private void drawField(int i, int j)
         {
             FieldDto dto = fieldDtos[j, i];
@@ -191,6 +182,7 @@ namespace DungeonPapperWPF
             gridFields.Children.Add(f);
         }
 
+        //выбор сценария
         private void cbox_quest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -205,13 +197,6 @@ namespace DungeonPapperWPF
         }
 
 
-        public Field[] GetColumn(int columnNumber)
-        {
-            return Enumerable.Range(0, fields.GetLength(0))
-                    .Select(x => fields[x, columnNumber])
-                    .ToArray();
-        }
-
         public Field[] GetRow(int rowNumber)
         {
             return Enumerable.Range(0, fields.GetLength(1))
@@ -219,22 +204,20 @@ namespace DungeonPapperWPF
                     .ToArray();
         }
 
-
+        //кнопка действия движения
         private void TwoMoveButton_Click(object sender, RoutedEventArgs e)
         {
             currentCountStep = 2;
-
             highlightWhereToGo();
-
             deleteCurrentDic();
         }
 
-
-        public static void highlightWhereToGo()
+        //подстветка доступных передвижений
+        public void highlightWhereToGo()
         {
             if (currentCountStep > 0)
             {
-                if (path.Count == 0)
+                if (party.path.Count == 0)
                 {
                     for (int i = 0; i < 6; i++)
                     {
@@ -253,7 +236,7 @@ namespace DungeonPapperWPF
                     }
 
 
-                    Field last = path.Last();
+                    Field last = party.path.Last();
 
                     if (last.dto.leftBarrier == Barrier.None)
                     {
@@ -333,13 +316,13 @@ namespace DungeonPapperWPF
         }
 
 
-
+        //генерация мировозрения героев - временно
         private Outlook randomOutlook()
         {
-
             return (Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
         }
 
+        //старт квеста
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             if (!isStart && cbox_quest.SelectedIndex > 0)
@@ -354,15 +337,10 @@ namespace DungeonPapperWPF
                 //LevelUpButton.IsEnabled = true;
                 buttonDiceGenereted.IsEnabled = true;
 
-                warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook());
-                wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook());
-                cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook());
-                plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook());
-
-                party.warrior = warrior;
-                party.wizard = wizard;
-                party.cleric = cleric;
-                party.plut = plut;
+                party.warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook()); 
+                party.wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook()); 
+                party.cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook()); 
+                party.plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook()); 
 
                 drawLevel();
                 drawOutlook();
@@ -373,15 +351,11 @@ namespace DungeonPapperWPF
             }
         }
 
+        //отрисовка мировозрени я в окне
         public void drawOutlook()
         {
-
-            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-
-            heroes.ForEach(hero =>
+            party.GetHeroes().ForEach(hero =>
             {
-
                 if (hero.outlook == Outlook.Black)
                 {
                     ((CheckBox)this.FindName(hero.getControlOutlookName())).IsChecked = true;
@@ -390,15 +364,11 @@ namespace DungeonPapperWPF
 
         }
 
+        //отрисовка уровня героев
         public void drawLevel()
         {
-
-            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-
-            heroes.ForEach(hero =>
+            party.GetHeroes().ForEach(hero =>
             {
-
                 for (int i = 0; i < hero.level; i++)
                 {
                     ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
@@ -407,65 +377,38 @@ namespace DungeonPapperWPF
 
         }
 
-
+        //нанесение урона
         public void damage(int damage)
         {
-            blood += damage;
-            for (int i = 1; i <= blood; i++)
+            party.damage(damage);
+            for (int i = 1; i <= party.blood; i++)
             {
                 ((CheckBox)this.FindName("blood_" + i)).IsChecked = true;
             }
             //todo потом учитывать зелья
 
-            MessageBox.Show("здоровье стало: " + (hp - blood));
+            MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
 
+        //ролучение уровня за комнату
         public void levelUpFromMove()
         {
-            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-
-            heroes.ForEach(hero =>
+            party.GetHeroes().ForEach(hero =>
             {
                 ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
             });
             MessageBox.Show("Повышение уровня");
             currentCountLevel++;
-
         }
 
-        public void levelUp(HeroClassType type)
-        {
-            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-            heroes.ForEach(hero =>
-            {
-
-                if (hero.type == type)
-                {
-                    for (int i = 0; i < hero.level; i++)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
-                    }
-                }
-
-            });
-
-            drawLevel();
-            hp++;
-
-        }
-
+        //выбор действия поднятия уровня
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {
             if (currentDice != null)
             {
                 currentCountLevel++;
 
-                List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-
-                heroes.ForEach(hero =>
+                party.GetHeroes().ForEach(hero =>
                 {
 
                     if (hero.getNumberDiceForLevel() == currentDice.number)
@@ -476,6 +419,7 @@ namespace DungeonPapperWPF
             }
         }
 
+        //выбор нового уровня у персонажа
         private void cbox_Level_Checked(object sender, RoutedEventArgs e)
         {
             if (currentCountLevel > 0)
@@ -483,9 +427,7 @@ namespace DungeonPapperWPF
                 CheckBox checkBox = (CheckBox)sender;
                 checkBox.IsChecked = true;
                 string name = checkBox.Name;
-                List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
-
-                heroes.ForEach(hero =>
+                party.GetHeroes().ForEach(hero =>
                 {
 
                     if (name.Contains(hero.type.ToString().ToLower()))
@@ -497,7 +439,7 @@ namespace DungeonPapperWPF
                     }
 
                 });
-                heroes.ForEach(hero =>
+                party.GetHeroes().ForEach(hero =>
                 {
 
                     for (int i = 0; i <= hero.level; i++)
@@ -511,6 +453,7 @@ namespace DungeonPapperWPF
             }
         }
 
+        //удаление текущего кубика из пула
         private void deleteCurrentDic()
         {
             if (currentDice != null)
@@ -519,11 +462,11 @@ namespace DungeonPapperWPF
                 {
                     Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
 
-                    if(!selectDices.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number<10)
+                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number < 10)
                     {
                         rectangle.IsEnabled = true;
                     }
-                    
+
                 }
 
                 currentDice.rectangle.Stroke = null;
@@ -551,27 +494,29 @@ namespace DungeonPapperWPF
             TwoMoveButton.IsEnabled = false;
         }
 
+        //бросок кубиков
         private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
         {
             if (round < 8)
             {
                 if (currentCountDice == 0)
                 {
-                    selectDices.Clear();
+                    selectDicesIsCurrentRound.Clear();
                     buttonDiceGenereted.IsEnabled = false;
+                    selectDiceButton.IsEnabled = true;
                     round++;
                     currentCountDice = 3;
                     for (int i = 0; i < 6; i++)
                     {
                         Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
                         rectangle.IsEnabled = true;
-                        dices[i] = Dice.fromNumber(random.Next(12));
-                        dices[i].rectangle = rectangle;
+                        generateDice[i] = Dice.fromNumber(random.Next(12));
+                        generateDice[i].rectangle = rectangle;
                         ImageBrush brush = new ImageBrush();
-                        brush.ImageSource = dices[i].getPath();
+                        brush.ImageSource = generateDice[i].getPath();
                         rectangle.Fill = brush;
-                        rectangle.Tag = dices[i];
-                        if (dices[i].number > 9)
+                        rectangle.Tag = generateDice[i];
+                        if (generateDice[i].number > 9)
                         {
                             damage(1);
                             rectangle.IsEnabled = false;
@@ -583,12 +528,14 @@ namespace DungeonPapperWPF
             }
         }
 
+        //получение жизни
         public void addHp()
         {
-            hp++;
-            ((CheckBox)this.FindName("hp_" + hp)).IsChecked = true;
+            party.addHp();
+            ((CheckBox)this.FindName("hp_" + party.hp)).IsChecked = true;
         }
 
+        //наведение на кубик
         private void dice_pic_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             for (int i = 0; i < 6; i++)
@@ -601,65 +548,64 @@ namespace DungeonPapperWPF
             }
 
             Rectangle rectangle = (Rectangle)sender;
-                rectangle.Stroke = brushGreen;
-                rectangle.StrokeThickness = 4;
-                currentDice = rectangle.Tag as Dice;
-
-            
+            rectangle.Stroke = brushGreen;
+            rectangle.StrokeThickness = 4;
+            currentDice = rectangle.Tag as Dice;
 
         }
 
+        //выбор кубика
         private void selectDiceButton_Click(object sender, RoutedEventArgs e)
         {
             if (currentDice != null)
             {
                 selectDiceButton.IsEnabled = false;
-                selectDices.Add(currentDice);
+                selectDicesIsCurrentRound.Add(currentDice);
 
                 for (int i = 0; i < 6; i++)
                 {
-                    ((Rectangle)this.FindName("dice" + (i + 1) + "_pic")).IsEnabled=false;
+                    ((Rectangle)this.FindName("dice" + (i + 1) + "_pic")).IsEnabled = false;
                 }
 
                 TwoMoveButton.IsEnabled = true;
 
                 if (currentDice.number > 0 && currentDice.number < 9)
                 {
-                    if (cleric.level > 3)
+                    if (party.cleric.level > 3)
                     {
                         LevelUpButton.IsEnabled = true;
                     }
                     else
                     {
-                        if (warrior.outlook == Outlook.White && warrior.level < 6 && currentDice.number == 1)
+                        if (party.warrior.outlook == Outlook.White && party.warrior.level < 6 && currentDice.number == 1)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (wizard.outlook == Outlook.White && wizard.level < 6 && currentDice.number == 2)
+                        if (party.wizard.outlook == Outlook.White && party.wizard.level < 6 && currentDice.number == 2)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (cleric.outlook == Outlook.White && cleric.level < 6 && currentDice.number == 3)
+                        if (party.cleric.outlook == Outlook.White && party.cleric.level < 6 && currentDice.number == 3)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (plut.outlook == Outlook.White && plut.level < 6 && currentDice.number == 4)
+                        if (party.plut.outlook == Outlook.White && party.plut.level < 6 && currentDice.number == 4)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (warrior.outlook == Outlook.Black && warrior.level < 6 && currentDice.number == 5)
+                        if (party.warrior.outlook == Outlook.Black && party.warrior.level < 6 && currentDice.number == 5)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (wizard.outlook == Outlook.Black && wizard.level < 6 && currentDice.number == 6)
+                        if (party.wizard.outlook == Outlook.Black && party.wizard.level < 6 && currentDice.number == 6)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (cleric.outlook == Outlook.Black && cleric.level < 6 && currentDice.number == 7)
+                        if (party.cleric.outlook == Outlook.Black && party.cleric.level < 6 && currentDice.number == 7)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
-                        if (plut.outlook == Outlook.Black && plut.level < 6 && currentDice.number == 8)
+                        if (party.plut.outlook == Outlook.Black && party.plut.level < 6 && currentDice.number == 8)
                         {
                             LevelUpButton.IsEnabled = true;
                         }

@@ -25,7 +25,7 @@ namespace DungeonPapperWPF
         public static SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
         public static SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
         public static SolidColorBrush currentBrush = new SolidColorBrush(Colors.DarkBlue);
-     
+
 
         public FieldDto dto { get; set; }
         public bool isPath { get; set; } = false;
@@ -62,7 +62,7 @@ namespace DungeonPapperWPF
             {
                 this.grid.Background = null;
             }
-           else if (!isCurrent)
+            else if (!isCurrent)
             {
                 blueColor();
                 this.heroes.Fill = null;
@@ -96,7 +96,7 @@ namespace DungeonPapperWPF
                             case Potion potion: MessageBox.Show("Найдено лечебное зелье, в количестве: " + potion.count); break;
                             case Diamond diamond: MessageBox.Show("Украден алмаз " + diamond.name); break;
                             case MagicThing magic: MessageBox.Show("Получена половина магического предмета"); break;
-                            case LevelUp level: 
+                            case LevelUp level:
                                 ((MainWindow)Window.GetWindow(this)).levelUpFromMove();
                                 break;
                             default: break;
@@ -110,14 +110,14 @@ namespace DungeonPapperWPF
                     this.grid.Background = currentBrush;
                     this.heroes.Fill = heroBrush;
 
-                    if (MainWindow.path.Count > 0)
+                    if (((MainWindow)Window.GetWindow(this)).party.path.Count > 0)
                     {
-                        MainWindow.path.Last().isCurrent = false;
+                        ((MainWindow)Window.GetWindow(this)).party.path.Last().isCurrent = false;
                     }
-                    MainWindow.path.Add(this);
+                     ((MainWindow)Window.GetWindow(this)).party.path.Add(this);
                     MainWindow.currentCountStep--;
 
-                    MainWindow.highlightWhereToGo();
+                    ((MainWindow)Window.GetWindow(this)).highlightWhereToGo();
                 }
 
             }
