@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="code\Barrier.cs" />
     <Compile Include="code\Boss.cs" />
+    <Compile Include="code\Dice.cs" />
     <Compile Include="code\FieldDtoBuilder.cs">
       <IsBuilderFile>True</IsBuilderFile>
     </Compile>
@@ -248,9 +249,9 @@
     <EmbeddedResource Include="Resources\trap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Warrior.png">
+    <Resource Include="Resources\Warrior.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <EmbeddedResource Include="Resources\Warrior_3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -278,6 +279,56 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="map.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Warrior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Wizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cleric_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Plut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\dice_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\dice_9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

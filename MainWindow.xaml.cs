@@ -21,10 +21,19 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
+        public Array valuesOutlook = Enum.GetValues(typeof(Outlook));
+        public Random random = new Random(DateTime.Now.Millisecond);
+
+
+        public static Dice[] dices = new Dice[6];
+
+        private static bool isStart = false;
         private static FieldDto[,] fieldDtos;
 
         private int step = 0;
         public static int currentCountStep = 0;
+        public static int currentCountLevel = 0;
 
         public static ImageBrush riverBrushVertical = new ImageBrush();
         public static ImageBrush riverBrushHorizontal = new ImageBrush();
@@ -36,12 +45,18 @@ namespace DungeonPapperWPF
 
         private static Field[,] fields = new Field[7, 6];
 
-        public static int hp = 4;
-        public static int blood = 0;
+        private static int hp = 4;
+        private static int blood = 0;
         public static int levelWarrior = 1;
         public static int levelWizard = 1;
         public static int levelCleric = 1;
         public static int levelPlut = 1;
+
+
+        public static HeroClass warrior;
+        public static HeroClass wizard;
+        public static HeroClass cleric;
+        public static HeroClass plut;
 
 
         public MainWindow()
@@ -311,6 +326,154 @@ namespace DungeonPapperWPF
                 }
             }
 
+        }
+
+
+
+        private Outlook randomOutlook()
+        {
+    
+            return(Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(!isStart && cbox_quest.SelectedIndex > 0)
+            {
+                isStart = true;
+
+                TwoMoveButton.IsEnabled = true;
+                LevelUpButton.IsEnabled = true;
+                buttonDiceGenereted.IsEnabled = true;
+
+                warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook());
+                wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook());
+                cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook());
+                plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook());
+
+                drawLevel();
+                drawOutlook();
+
+            }
+        }
+
+        public void drawOutlook()
+        {
+
+            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
+
+
+            heroes.ForEach(hero => {
+
+                if(hero.outlook == Outlook.Black)
+                {
+                    ((CheckBox)this.FindName(hero.getControlOutlookName())).IsChecked = true;
+                }
+            });
+
+        }
+
+        public void drawLevel()
+        {
+
+            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
+
+
+            heroes.ForEach(hero => {
+
+                    for (int i = 0; i < hero.level; i++)
+                    {
+                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
+                    }
+            }); 
+            
+        }
+
+
+        public static void damage(int damage)
+        {
+            //todo потом учитывать зелья
+            blood += damage;
+
+            MessageBox.Show("здоровье стало: " + (hp - blood));
+        }
+
+        public void levelUpFromMove()
+        {
+            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
+
+
+            heroes.ForEach(hero => {
+                ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
+            });
+            MessageBox.Show("Повышение уровня");
+            currentCountLevel++;
+
+        }
+
+        public void levelUp(HeroClassType type)
+        {
+            List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
+
+            heroes.ForEach(hero => {
+
+                if(hero.type == type)
+                {
+                    for (int i = 0; i < hero.level; i++)
+                    {
+                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
+                    }
+                }
+               
+            });
+
+            drawLevel();
+            hp ++;
+
+        }
+
+        private void cbox_Level_Checked(object sender, RoutedEventArgs e)
+        {
+            if(currentCountLevel > 0)
+            {
+                CheckBox checkBox = (CheckBox)sender;
+                checkBox.IsChecked = true;
+                string name = checkBox.Name;
+                List<HeroClass> heroes = new List<HeroClass>() { warrior, wizard, cleric, plut };
+
+                heroes.ForEach(hero => {
+
+                    if (name.Contains(hero.type.ToString().ToLower()))
+                    {
+                        hero.level++;
+                        hp++;
+                        currentCountLevel--;
+                    }
+
+                });
+                heroes.ForEach(hero => {
+
+                    for (int i = 0; i <= hero.level; i++)
+                    {
+                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsEnabled = false;
+                    }
+
+                });
+
+
+            }
+        }
+
+        private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                dices[i] = Dice.fromNumber(random.Next(100 % 12));
+                Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i+1) + "_pic"));
+                ImageBrush brush = new ImageBrush();
+                brush.ImageSource = dices[i].getPath();
+                rectangle.Fill = brush;
+            }
         }
     }
 }

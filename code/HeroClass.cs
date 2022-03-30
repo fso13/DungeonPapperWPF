@@ -14,8 +14,26 @@ namespace DungeonPapperWPF.code
             this.level = level;
         }
 
+        public HeroClass(HeroClassType type, int level, Outlook outlook) : this(type, level)
+        {
+            this.outlook = outlook;
+        }
+
+        public string getPrefixControlLevelName()
+        {
+
+            return "cbox_" + type.ToString().ToLower() + "Level";
+        }
+
+
+        public string getControlOutlookName()
+        {
+            return "cbox_" + type.ToString().ToLower() + "BlackWhite";
+        }
+
         public HeroClassType type { get; set; }
         public int level { get; set; } = 1;
+        public Outlook outlook { get; set; }
 
         public Uri getPath()
         {
@@ -29,5 +47,11 @@ namespace DungeonPapperWPF.code
         Wizard,
         Plut,
         Cleric
+    }
+
+    public enum Outlook
+    {
+        Black,
+        White
     }
 }

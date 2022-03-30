@@ -80,9 +80,8 @@ namespace DungeonPapperWPF
                     blueColor();
                     if (dto.trap)
                     {
-                        MainWindow.blood++;
+                        MainWindow.damage(1);
 
-                        MessageBox.Show("Ловушка, здоровье стало: " + (MainWindow.hp - MainWindow.blood));
                     }
                     if (dto.prey != null)
                     {
@@ -91,7 +90,9 @@ namespace DungeonPapperWPF
                             case Potion potion: MessageBox.Show("Найдено лечебное зелье, в количестве: " + potion.count); break;
                             case Diamond diamond: MessageBox.Show("Украден алмаз " + diamond.name); break;
                             case MagicThing magic: MessageBox.Show("Получена половина магического предмета"); break;
-                            case LevelUp level: MessageBox.Show("Повышение уровня"); MainWindow.hp++; break;
+                            case LevelUp level: 
+                                ((MainWindow)Window.GetWindow(this)).levelUpFromMove();
+                                break;
                             default: break;
                         }
 
