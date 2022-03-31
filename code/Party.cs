@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DungeonPapperWPF.code
 {
@@ -15,7 +16,7 @@ namespace DungeonPapperWPF.code
 
         public int hp = 0;
         public int blood = 0;
-        public int potion = 0;
+        public List<PartyPotion> potions = new List<PartyPotion>();
 
         public List<Field> path = new List<Field>();
 
@@ -27,7 +28,22 @@ namespace DungeonPapperWPF.code
 
         public void damage(int damage)
         {
-            blood += damage;
+            if (damage > 0)
+            {
+                PartyPotion potion = getFirstPotionWithFreeCell();
+
+                if (potion == null)
+                {
+                    blood += damage;
+
+                }
+                else
+                {
+                    potion.freeCell++;
+                    damage--;
+                    this.damage(damage);
+                }
+            }
         }
 
         public void addHp()
@@ -35,5 +51,33 @@ namespace DungeonPapperWPF.code
             hp++;
         }
 
+        public void addPotion(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                potions.Add(new PartyPotion());
+            }
+
+            MessageBox.Show("Найдено лечебное зелье, в количестве: " + count);
+        }
+
+        private PartyPotion getFirstPotionWithFreeCell()
+        {
+            for (int i = 0; i < potions.Count; i++)
+            {
+                if (potions.ElementAt(i).freeCell > 0)
+                {
+                    return potions.ElementAt(i);
+                }
+            }
+
+            return null;
+        }
+
+    }
+
+    public class PartyPotion
+    {
+        public int freeCell = 2;
     }
 }

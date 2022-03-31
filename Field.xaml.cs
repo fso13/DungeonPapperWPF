@@ -26,6 +26,8 @@ namespace DungeonPapperWPF
         public static SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
         public static SolidColorBrush currentBrush = new SolidColorBrush(Colors.DarkBlue);
 
+        public static ImageBrush opacityMaskCircleBrush = new ImageBrush();
+
 
         public FieldDto dto { get; set; }
         public bool isPath { get; set; } = false;
@@ -40,6 +42,8 @@ namespace DungeonPapperWPF
         {
             heroBrush.ImageSource =
                     new BitmapImage(new Uri(@"Resources\hero_pack.png", UriKind.Relative));
+            opacityMaskCircleBrush.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\circle.png", UriKind.Relative));
         }
         public void greanColor()
         {
@@ -93,7 +97,8 @@ namespace DungeonPapperWPF
                     {
                         switch (dto.prey)
                         {
-                            case Potion potion: MessageBox.Show("Найдено лечебное зелье, в количестве: " + potion.count); break;
+                            case Potion potion:;
+                                ((MainWindow)Window.GetWindow(this)).addPotion(potion.count); break;
                             case Diamond diamond: MessageBox.Show("Украден алмаз " + diamond.name); break;
                             case MagicThing magic: MessageBox.Show("Получена половина магического предмета"); break;
                             case LevelUp level:
@@ -101,7 +106,9 @@ namespace DungeonPapperWPF
                                 break;
                             default: break;
                         }
-
+                        dto.prey = null;
+                        preyField.OpacityMask = opacityMaskCircleBrush;
+                        preyField.Opacity = 0.5;
                     }
 
                     this.isPath = true;

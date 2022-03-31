@@ -554,6 +554,19 @@ namespace DungeonPapperWPF
 
         }
 
+
+        public void addPotion(int count)
+        {
+            for(int i = 1;i <= count; i++)
+            {
+                if (i + party.potions.Count() < 13)
+                {
+                    ((CheckBox)this.FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
+                }
+            }
+            party.addPotion(count);
+        }
+
         //выбор кубика
         private void selectDiceButton_Click(object sender, RoutedEventArgs e)
         {
