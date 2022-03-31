@@ -411,7 +411,7 @@ namespace DungeonPapperWPF
                 party.GetHeroes().ForEach(hero =>
                 {
 
-                    if (hero.getNumberDiceForLevel() == currentDice.number)
+                    if (hero.getNumberDiceForLevel() == currentDice.number || currentDice.number==9) 
                     {
                         ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
                     }
@@ -567,50 +567,66 @@ namespace DungeonPapperWPF
                     ((Rectangle)this.FindName("dice" + (i + 1) + "_pic")).IsEnabled = false;
                 }
 
-                TwoMoveButton.IsEnabled = true;
-
-                if (currentDice.number > 0 && currentDice.number < 9)
+                //три сапога
+                if (currentDice.number == 0)
                 {
-                    if (party.cleric.level > 3)
+                    currentCountStep = 3;
+                    highlightWhereToGo();
+                    deleteCurrentDic();
+                }                
+                else
+                {
+                    TwoMoveButton.IsEnabled = true;
+
+                    //клевер
+                    if (currentDice.number == 9)
                     {
                         LevelUpButton.IsEnabled = true;
                     }
-                    else
-                    {
-                        if (party.warrior.outlook == Outlook.White && party.warrior.level < 6 && currentDice.number == 1)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.wizard.outlook == Outlook.White && party.wizard.level < 6 && currentDice.number == 2)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.cleric.outlook == Outlook.White && party.cleric.level < 6 && currentDice.number == 3)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.plut.outlook == Outlook.White && party.plut.level < 6 && currentDice.number == 4)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.warrior.outlook == Outlook.Black && party.warrior.level < 6 && currentDice.number == 5)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.wizard.outlook == Outlook.Black && party.wizard.level < 6 && currentDice.number == 6)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.cleric.outlook == Outlook.Black && party.cleric.level < 6 && currentDice.number == 7)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if (party.plut.outlook == Outlook.Black && party.plut.level < 6 && currentDice.number == 8)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                    }
 
+                    if (currentDice.number > 0 && currentDice.number < 9)
+                    {
+                        if (party.cleric.level > 3)
+                        {
+                            LevelUpButton.IsEnabled = true;
+                        }
+                        else
+                        {
+                            if (party.warrior.outlook == Outlook.White && party.warrior.level < 6 && currentDice.number == 1)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.wizard.outlook == Outlook.White && party.wizard.level < 6 && currentDice.number == 2)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.cleric.outlook == Outlook.White && party.cleric.level < 6 && currentDice.number == 3)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.plut.outlook == Outlook.White && party.plut.level < 6 && currentDice.number == 4)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.warrior.outlook == Outlook.Black && party.warrior.level < 6 && currentDice.number == 5)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.wizard.outlook == Outlook.Black && party.wizard.level < 6 && currentDice.number == 6)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.cleric.outlook == Outlook.Black && party.cleric.level < 6 && currentDice.number == 7)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                            if (party.plut.outlook == Outlook.Black && party.plut.level < 6 && currentDice.number == 8)
+                            {
+                                LevelUpButton.IsEnabled = true;
+                            }
+                        }
+
+                    }
                 }
 
             }
