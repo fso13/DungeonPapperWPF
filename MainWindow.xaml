@@ -390,5 +390,6 @@
             </Rectangle>
             <CheckBox x:Name="potion_12" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
+        <Button x:Name="ButtonCreatePotion" Content="Сварить зелье" HorizontalAlignment="Left" Height="20" Margin="115,472,0,0" VerticalAlignment="Top" Width="134" Click="ButtonCreatePotion_Click" IsEnabled="False"/>
     </Grid>
 </Window>

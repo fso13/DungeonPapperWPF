@@ -540,6 +540,7 @@ namespace DungeonPapperWPF
             diceGrid.IsEnabled = true;
             LevelUpButton.IsEnabled = false;
             TwoMoveButton.IsEnabled = false;
+            ButtonCreatePotion.IsEnabled = false;
         }
 
         private List<Dice> diceGenereted()
@@ -680,6 +681,11 @@ namespace DungeonPapperWPF
                 {
                     TwoMoveButton.IsEnabled = true;
 
+                    if (party.potions.Count < 12)
+                    {
+                        ButtonCreatePotion.IsEnabled = true;
+                    }
+
                     //клевер
                     if (selectDicesIsCurrentRound.Last().number == 9)
                     {
@@ -734,6 +740,13 @@ namespace DungeonPapperWPF
                 currentDice = null;
 
             }
+        }
+
+        private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
+        {
+            addPotion(1);
+
+            deleteCurrentDic();
         }
     }
 }
