@@ -39,7 +39,7 @@ namespace DungeonPapperWPF.code
                 }
                 else
                 {
-                    potion.freeCell++;
+                    potion.freeCell--;
                     damage--;
                     this.damage(damage);
                 }
@@ -61,7 +61,7 @@ namespace DungeonPapperWPF.code
             MessageBox.Show("Найдено лечебное зелье, в количестве: " + count);
         }
 
-        private PartyPotion getFirstPotionWithFreeCell()
+        public PartyPotion getFirstPotionWithFreeCell()
         {
             for (int i = 0; i < potions.Count; i++)
             {

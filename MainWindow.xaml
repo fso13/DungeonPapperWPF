@@ -305,9 +305,13 @@
             <CheckBox x:Name="potion_4" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="46" Margin="115,546,0,0" VerticalAlignment="Top" Width="32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <CheckBox x:Name="potion_5_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
-            <CheckBox x:Name="potion_5_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
-            <Rectangle Height="21" Stroke="Black" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+            <CheckBox x:Name="potion_5_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16" Grid.ColumnSpan="2"/>
+            <Rectangle Height="21" Stroke="Black" VerticalAlignment="Top" Margin="10,8,0,0" Width="22" Grid.ColumnSpan="2">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/potion.png"/>
                 </Rectangle.Fill>

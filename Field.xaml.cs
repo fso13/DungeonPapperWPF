@@ -107,8 +107,8 @@ namespace DungeonPapperWPF
                             default: break;
                         }
                         dto.prey = null;
-                        preyField.OpacityMask = opacityMaskCircleBrush;
-                        preyField.Opacity = 0.5;
+                        preyFieldAction.Fill = opacityMaskCircleBrush;
+                        preyField.Opacity = 1;
                     }
 
                     this.isPath = true;

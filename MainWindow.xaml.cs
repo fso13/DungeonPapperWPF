@@ -45,7 +45,7 @@ namespace DungeonPapperWPF
 
         public Party party;//пати, герои, сокровища и тд
 
-        public static Dice[] generateDice = new Dice[6];//сгенерированный дайсы в раунде
+        public static Dice[] generateDices = new Dice[6];//сгенерированный дайсы в раунде
         public static Dice currentDice;//выбранный дайс для действия
         public static List<Dice> selectDicesIsCurrentRound = new List<Dice>();//дайсы которые были выбраны в раунде
 
@@ -380,11 +380,23 @@ namespace DungeonPapperWPF
         //нанесение урона
         public void damage(int damage)
         {
-            party.damage(damage);
-            for (int i = 1; i <= party.blood; i++)
+
+            for (int i = 1; i <= damage; i++)
             {
-                ((CheckBox)this.FindName("blood_" + i)).IsChecked = true;
+                PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
+                if (partyPotion != null)
+                {
+                    ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
+                }
+                else
+                {
+                    ((CheckBox)this.FindName("blood_" + (i+party.blood))).IsChecked = true;
+                }
+
+                party.damage(1);
             }
+
+
             //todo потом учитывать зелья
 
             MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
@@ -397,6 +409,12 @@ namespace DungeonPapperWPF
             {
                 ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
             });
+
+            if (party.hp < 24)
+            {
+                selectDiceButton.IsEnabled = false;
+            }
+
             MessageBox.Show("Повышение уровня");
             currentCountLevel++;
         }
@@ -411,7 +429,7 @@ namespace DungeonPapperWPF
                 party.GetHeroes().ForEach(hero =>
                 {
 
-                    if (hero.getNumberDiceForLevel() == currentDice.number || currentDice.number==9) 
+                    if (hero.getNumberDiceForLevel() == currentDice.number || currentDice.number == 9 || (party.wizard.level>3 || currentDice.type.ToString() == hero.type.ToString())) 
                     {
                         ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
                     }
@@ -444,13 +462,17 @@ namespace DungeonPapperWPF
 
                     for (int i = 0; i <= hero.level; i++)
                     {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsEnabled = false;
+                        if((i + 1) < 7)
+                        {
+                            ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsEnabled = false;
+                        }
                     }
 
                 });
 
 
             }
+            selectDiceButton.IsEnabled = true;
         }
 
         //удаление текущего кубика из пула
@@ -494,8 +516,7 @@ namespace DungeonPapperWPF
             TwoMoveButton.IsEnabled = false;
         }
 
-        //бросок кубиков
-        private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
+        private void diceGenereted()
         {
             if (round < 8)
             {
@@ -504,28 +525,59 @@ namespace DungeonPapperWPF
                     selectDicesIsCurrentRound.Clear();
                     buttonDiceGenereted.IsEnabled = false;
                     selectDiceButton.IsEnabled = true;
-                    round++;
                     currentCountDice = 3;
+
+                    int diceScull = 0;
+                    int diceKlever = 0;
                     for (int i = 0; i < 6; i++)
                     {
+                        Dice genereteDice = Dice.fromNumber(random.Next(12));
+                        if(genereteDice.type == DiceType.Scull)
+                        {
+                            diceScull++;
+                        }
+
+                        if (genereteDice.type == DiceType.Klever)
+                        {
+                            diceKlever ++;
+                        }
+
+                        if(diceKlever>2 || diceScull > 2)
+                        {
+                            MessageBox.Show("Переброска кубиков");
+                            currentCountDice = 0;
+                            diceGenereted();
+                        }
                         Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
                         rectangle.IsEnabled = true;
-                        generateDice[i] = Dice.fromNumber(random.Next(12));
-                        generateDice[i].rectangle = rectangle;
+                        generateDices[i] = genereteDice;
+                        generateDices[i].rectangle = rectangle;
                         ImageBrush brush = new ImageBrush();
-                        brush.ImageSource = generateDice[i].getPath();
+                        brush.ImageSource = generateDices[i].getPath();
                         rectangle.Fill = brush;
-                        rectangle.Tag = generateDice[i];
-                        if (generateDice[i].number > 9)
+                        rectangle.Tag = generateDices[i];
+                    }
+
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (generateDices[i].number > 9)
                         {
                             damage(1);
-                            rectangle.IsEnabled = false;
-                            rectangle.Stroke = brushRed;
-                            rectangle.StrokeThickness = 4;
+                            generateDices[i].rectangle.IsEnabled = false;
+                            generateDices[i].rectangle.Stroke = brushRed;
+                            generateDices[i].rectangle.StrokeThickness = 4;
                         }
                     }
+                    round++;
+
                 }
             }
+        }
+        //бросок кубиков
+        private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
+        {
+            diceGenereted();
         }
 
         //получение жизни
@@ -599,7 +651,7 @@ namespace DungeonPapperWPF
 
                     if (currentDice.number > 0 && currentDice.number < 9)
                     {
-                        if (party.cleric.level > 3)
+                        if (party.wizard.level > 3)
                         {
                             LevelUpButton.IsEnabled = true;
                         }
