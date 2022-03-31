@@ -546,8 +546,7 @@ namespace DungeonPapperWPF
             List<Dice> dices = new List<Dice>();
             for (int i = 0; i < 6; i++)
             {
-                //Dice genereteDice = Dice.fromNumber(random.Next(12));
-                Dice genereteDice = Dice.fromNumber(0);
+                Dice genereteDice = Dice.fromNumber(random.Next(12));
                 if (genereteDice.type == DiceType.Scull)
                 {
                     diceScull++;
