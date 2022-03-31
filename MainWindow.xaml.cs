@@ -409,7 +409,10 @@ namespace DungeonPapperWPF
             buttonDiceGenereted.IsEnabled = false;
             party.GetHeroes().ForEach(hero =>
             {
-                ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
+                if(hero.level + 1 < 7)
+                {
+                    ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
+                }
             });
 
             if (party.hp < 24)
