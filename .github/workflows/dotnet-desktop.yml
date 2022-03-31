@@ -42,7 +42,7 @@ jobs:
       run: Install-Module 7Zip4PowerShell -Force -Verbose
     - name: Zip the artifacts
       shell: powershell
-      run: Compress-7Zip "DungeonPapperWPF/bin/Release" -ArchiveFileName "DungeonPapperWPF_$($env:newVersion).zip" -Format Zip
+      run: Compress-7Zip "bin/Release" -ArchiveFileName "DungeonPapperWPF_$($env:newVersion).zip" -Format Zip
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
