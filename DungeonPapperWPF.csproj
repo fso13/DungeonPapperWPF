@@ -49,6 +49,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hero_pack.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -362,6 +365,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hero_pack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hero_pack.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
