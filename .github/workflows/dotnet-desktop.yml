@@ -21,8 +21,8 @@ jobs:
       shell: powershell
       run: |
        $4= $env:GITHUB_RUN_NUMBER
-        (Get-Content -Path .\DotNetWatcher\Properties\AssemblyInfo.cs) -replace '\"([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\"' , """`$1.`$2.`$3.$4""" `
-        | Set-Content -Path .\DotNetWatcher\Properties\AssemblyInfo.cs
+        (Get-Content -Path .\DungeonPapperWPF\Properties\AssemblyInfo.cs) -replace '\"([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\"' , """`$1.`$2.`$3.$4""" `
+        | Set-Content -Path .\DungeonPapperWPF\Properties\AssemblyInfo.cs
     - name: Set New Version to Environment
       shell: powershell
       run: |
