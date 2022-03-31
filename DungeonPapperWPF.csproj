@@ -372,5 +372,68 @@
   <ItemGroup>
     <Resource Include="hero_pack.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2848%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2852%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2853%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2854%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2855%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2856%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2857%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2858%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2881%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2882%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2883%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2884%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2886%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2885%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2887%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2888%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2889%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diamond.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
