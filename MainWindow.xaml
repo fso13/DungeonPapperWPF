@@ -229,12 +229,14 @@
         </Rectangle>
         <Button x:Name="startButton" Content="Начать" HorizontalAlignment="Left" Margin="974,22,0,0" VerticalAlignment="Top" Width="69" Click="startButton_Click"/>
         <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" HorizontalAlignment="Left" Margin="747,60,0,0" VerticalAlignment="Top" Width="296" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
-        <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" Margin="747,100,0,0" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="Black"/>
-        <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="797,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
-        <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="847,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
-        <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="897,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
-        <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="947,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
-        <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="997,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="46" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        <Grid x:Name="diceGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="296" Margin="747,99,0,0" IsEnabled="False">
+            <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="Black"/>
+            <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="50,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="100,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="150,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="200,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="250,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="46" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        </Grid>
         <Label Content="Жизни" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
         <Label Content="Урон" HorizontalAlignment="Left" Margin="72,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
         <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="83,150,0,0">
