@@ -408,23 +408,26 @@ namespace DungeonPapperWPF
         //нанесение урона
         public void damage(int damage)
         {
-
-            for (int i = 1; i <= damage; i++)
+            if (party.cleric.level < 4)
             {
-                PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
-                if (partyPotion != null)
+
+                for (int i = 1; i <= damage; i++)
                 {
-                    ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
-                }
-                else
-                {
-                    ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
+                    PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
+                    if (partyPotion != null)
+                    {
+                        ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
+                    }
+                    else
+                    {
+                        ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
+                    }
+
+                    party.damage(1);
                 }
 
-                party.damage(1);
+                MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
             }
-
-            MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
 
         //ролучение уровня за комнату
@@ -458,7 +461,9 @@ namespace DungeonPapperWPF
             party.GetHeroes().ForEach(hero =>
             {
 
-                if (hero.getNumberDiceForLevel() == selectDicesIsCurrentRound.Last().number || selectDicesIsCurrentRound.Last().number == 9 || (party.wizard.level > 3 && selectDicesIsCurrentRound.Last().type.ToString() == hero.type.ToString()))
+                if (hero.getNumberDiceForLevel() == selectDicesIsCurrentRound.Last().number ||
+                    selectDicesIsCurrentRound.Last().number == 9 ||
+                    (party.wizard.level > 3 && selectDicesIsCurrentRound.Last().type.ToString() == hero.type.ToString()))
                 {
                     if (hero.level + 1 < 7)
                     {
@@ -484,6 +489,11 @@ namespace DungeonPapperWPF
                     if (name.Contains(hero.type.ToString().ToLower()))
                     {
                         hero.level++;
+                        if(hero.level == 4 && hero.type == HeroClassType.Plut)
+                        {
+                            MessageBox.Show("Ваш плут достиг 4 уровня, и где то раздобыл алмаз");
+                            party.addDiamond(new Diamond("За уровень плута"));
+                        }
                         addHp();
                         currentCountLevel--;
                     }
@@ -679,7 +689,22 @@ namespace DungeonPapperWPF
                     ((CheckBox)this.FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
                 }
             }
+
+            if (party.potions.Count() < 4)
+            {
+                levelUpFromMove();
+            }
+            else if (party.potions.Count() < 8)
+            {
+                highlightCreateMagic(null);
+            }
+            else if (party.potions.Count() < 12)
+            {
+                MessageBox.Show("Вы сварили 12 зелий, за это вы получаете алмаз");
+                party.addDiamond(new Diamond("За 12 зелий"));
+            }
             party.addPotion(count);
+
         }
 
         //выбор кубика

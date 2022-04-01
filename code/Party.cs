@@ -18,6 +18,7 @@ namespace DungeonPapperWPF.code
         public int blood = 0;
         public List<PartyPotion> potions = new List<PartyPotion>();
         public List<PartyMagic> magics = new List<PartyMagic>();
+        public List<Diamond> diamonds = new List<Diamond>();
 
         public List<Field> path = new List<Field>();
 
@@ -29,20 +30,22 @@ namespace DungeonPapperWPF.code
 
         public void damage(int damage)
         {
-            if (damage > 0)
+            if (cleric.level < 4)
             {
-                PartyPotion potion = getFirstPotionWithFreeCell();
-
-                if (potion == null)
+                if (damage > 0)
                 {
-                    blood += damage;
+                    PartyPotion potion = getFirstPotionWithFreeCell();
 
-                }
-                else
-                {
-                    potion.freeCell--;
-                    damage--;
-                    this.damage(damage);
+                    if (potion == null)
+                    {
+                        blood += damage;
+                    }
+                    else
+                    {
+                        potion.freeCell--;
+                        damage--;
+                        this.damage(damage);
+                    }
                 }
             }
         }
@@ -50,6 +53,10 @@ namespace DungeonPapperWPF.code
         public void addHp()
         {
             hp++;
+        }
+        public void addDiamond(Diamond diamond)
+        {
+            diamonds.Add(diamond);
         }
 
         public void addPotion(int count)
