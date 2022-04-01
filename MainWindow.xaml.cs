@@ -242,17 +242,17 @@ namespace DungeonPapperWPF
 
                     //влево
                     if (last.dto.leftBarrier == Barrier.None ||
-                        (last.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                        (last.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4))
-                        )
+                        (last.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                        (last.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                        (last.dto.leftBarrier == Barrier.River && party.isPresentMagic(3)))
                     {
                         if (last.dto.x > 0)
                         {
                             Field left = fields[last.dto.y, last.dto.x - 1];
                             if (left.dto.rightBarrier == Barrier.None ||
-                                (left.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                                (left.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4))
-                                )
+                                (left.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                                (left.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                                (left.dto.rightBarrier == Barrier.River && party.isPresentMagic(3)))
                             {
                                 left.greanColor();
                             }
@@ -265,18 +265,18 @@ namespace DungeonPapperWPF
                     }
 
                     //впрово
-                    if (last.dto.rightBarrier == Barrier.None || 
-                        (last.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                        (last.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4))
-                        )
+                    if (last.dto.rightBarrier == Barrier.None ||
+                        (last.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                        (last.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                        (last.dto.rightBarrier == Barrier.River && party.isPresentMagic(3)))
                     {
                         if (last.dto.x < 5)
                         {
                             Field right = fields[last.dto.y, last.dto.x + 1];
                             if (right.dto.leftBarrier == Barrier.None ||
-                                (right.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                                (right.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4))
-                                )
+                                (right.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                                (right.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                                (right.dto.leftBarrier == Barrier.River && party.isPresentMagic(3)))
                             {
                                 right.greanColor();
                             }
@@ -289,18 +289,18 @@ namespace DungeonPapperWPF
                     }
 
                     //вверх
-                    if (last.dto.topBarrier == Barrier.None || 
+                    if (last.dto.topBarrier == Barrier.None ||
                         (last.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                        (last.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) 
-                        )
+                        (last.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                        (last.dto.topBarrier == Barrier.River && party.isPresentMagic(3)))
                     {
                         if (last.dto.y > 0)
                         {
                             Field top = fields[last.dto.y - 1, last.dto.x];
                             if (top.dto.downBarrier == Barrier.None ||
                                 (top.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                                (top.dto.downBarrier == Barrier.Black && party.isPresentMagic(4))
-                                )
+                                (top.dto.downBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                                (top.dto.downBarrier == Barrier.River && party.isPresentMagic(3)))
                             {
                                 top.greanColor();
                             }
@@ -310,17 +310,17 @@ namespace DungeonPapperWPF
 
                     //вниз
                     if (last.dto.downBarrier == Barrier.None ||
-                        (last.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                        (last.dto.downBarrier == Barrier.Black && party.isPresentMagic(4))
-                        )
+                        (last.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                        (last.dto.downBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                        (last.dto.downBarrier == Barrier.River && party.isPresentMagic(3)))
                     {
                         if (last.dto.y < 6)
                         {
                             Field down = fields[last.dto.y + 1, last.dto.x];
-                            if (down.dto.topBarrier == Barrier.None || 
-                                (down.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4))||
-                                (down.dto.topBarrier == Barrier.Black && party.isPresentMagic(4))
-                                )
+                            if (down.dto.topBarrier == Barrier.None ||
+                                (down.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                                (down.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) ||
+                                (down.dto.topBarrier == Barrier.River && party.isPresentMagic(3)))
                             {
                                 down.greanColor();
                             }
