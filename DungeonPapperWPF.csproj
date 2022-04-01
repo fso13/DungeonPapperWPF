@@ -465,5 +465,8 @@
   <ItemGroup>
     <Resource Include="image.psd %2880%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2841%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

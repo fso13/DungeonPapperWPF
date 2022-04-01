@@ -21,6 +21,7 @@ namespace DungeonPapperWPF.code
         public List<Diamond> diamonds = new List<Diamond>();
 
         public List<Field> path = new List<Field>();
+        public List<Monster> deadMonsters = new List<Monster>();
 
 
         public List<HeroClass> GetHeroes()

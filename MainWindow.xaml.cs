@@ -421,8 +421,6 @@ namespace DungeonPapperWPF
         //нанесение урона
         public void damage(int damage)
         {
-            if (party.cleric.level < 4)
-            {
 
                 for (int i = 1; i <= damage; i++)
                 {
@@ -440,7 +438,6 @@ namespace DungeonPapperWPF
                 }
 
                 MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
-            }
         }
 
         //ролучение уровня за комнату
@@ -1054,6 +1051,44 @@ namespace DungeonPapperWPF
         }
 
         public bool magicFromDice = false;
+
+        private void deadMonsterFromArtifact()
+        {
+            //подсветить монстра с локаций
+        }
+
+        public void deadMonster(Monster monster)
+        {
+            int damage = 0;
+            int level = 0;
+            switch (monster.heroClass.type)
+            {
+                case HeroClassType.Warrior:
+                    level = party.warrior.level;
+                    break;
+                case HeroClassType.Wizard:
+                    level = party.wizard.level;
+                    break;
+                case HeroClassType.Cleric:
+                    level = party.cleric.level;
+                    break;
+                case HeroClassType.Plut:
+                    level = party.plut.level;
+                    break;
+
+            }
+
+            damage = level >= monster.heroClass.level ? 0 : monster.heroClass.level - level;
+            for (int i = 1; i <= damage; i++)
+            {
+                this.damage(1);
+            }
+
+
+            party.deadMonsters.Add(monster);
+            ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
+        }
+
         private void magic_Checked(object sender, RoutedEventArgs e)
         {
             if (currentCountMagicPart > 0)

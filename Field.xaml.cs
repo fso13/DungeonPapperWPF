@@ -27,6 +27,7 @@ namespace DungeonPapperWPF
         public static SolidColorBrush currentBrush = new SolidColorBrush(Colors.DarkBlue);
 
         public static ImageBrush opacityMaskCircleBrush = new ImageBrush();
+        public static ImageBrush opacityMaskKrestBrush = new ImageBrush();
 
 
         public FieldDto dto { get; set; }
@@ -44,6 +45,8 @@ namespace DungeonPapperWPF
                     new BitmapImage(new Uri(@"Resources\hero_pack.png", UriKind.Relative));
             opacityMaskCircleBrush.ImageSource =
                     new BitmapImage(new Uri(@"Resources\circle.png", UriKind.Relative));
+            opacityMaskKrestBrush.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\krest.png", UriKind.Relative));
         }
         public void greanColor()
         {
@@ -90,14 +93,22 @@ namespace DungeonPapperWPF
                     blueColor();
                     if (dto.trap)
                     {
-                        ((MainWindow)Window.GetWindow(this)).damage(1);
-
+                        if (((MainWindow)Window.GetWindow(this)).party.cleric.level < 4)
+                        {
+                            ((MainWindow)Window.GetWindow(this)).damage(1);
+                        }
+                    }
+                    if (dto.monster != null)
+                    {
+                        ((MainWindow)Window.GetWindow(this)).deadMonster(dto.monster);
+                        monsterFieldAction.Fill = opacityMaskKrestBrush;
+                        monsterField.Opacity = 1;
                     }
                     if (dto.prey != null)
                     {
                         switch (dto.prey)
                         {
-                            case Potion potion:;
+                            case Potion potion:
                                 ((MainWindow)Window.GetWindow(this)).addPotion(potion.count); break;
                             case Diamond diamond:
                                 ((MainWindow)Window.GetWindow(this)).addDiamond(diamond);
