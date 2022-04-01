@@ -83,7 +83,7 @@ namespace DungeonPapperWPF
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.grid.Opacity > 0 && (this.grid.Background == brushGreen || isPath))
+            if (this.grid.Opacity > 0 && (this.grid.Background == brushGreen || isPath) && !isCurrent)
             {
                 if (MainWindow.currentCountStep > 0)
                 {
@@ -128,6 +128,7 @@ namespace DungeonPapperWPF
                     }
                      ((MainWindow)Window.GetWindow(this)).party.path.Add(this);
                     MainWindow.currentCountStep--;
+                    
                     
 
                     ((MainWindow)Window.GetWindow(this)).highlightWhereToGo();
