@@ -97,5 +97,11 @@ namespace DungeonPapperWPF.code
             this.number = number;
             this.countPart = countPart;
         }
+
+
+        public void create()
+        {
+            countPart++;
+        }
     }
 }

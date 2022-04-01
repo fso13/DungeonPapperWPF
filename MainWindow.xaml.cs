@@ -915,7 +915,7 @@ namespace DungeonPapperWPF
 
                             foreach (PartyMagic magic in magics)
                             {
-                                if (magic.number == i && magic.countPart < 2)
+                                if (magic.number == i)
                                 {
                                     findMagic = magic;
                                     break;
@@ -926,7 +926,7 @@ namespace DungeonPapperWPF
                             {
                                 ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                             }
-                            else
+                            else if(findMagic.countPart < 2)
                             {
                                 ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
                             }
@@ -959,7 +959,17 @@ namespace DungeonPapperWPF
 
                         if (magic.number == int.Parse(name[0].ToString()))
                         {
-                            magic.countPart++;
+                            magic.create();
+
+                            if(magic.number == 6)
+                            {
+                                addPotion(3);
+                            }
+
+                            if(magic.number == 8)
+                            {
+                                levelUpFromMove();
+                            }
                             currentCountMagicPart--;
                         }
                     });
