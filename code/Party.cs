@@ -80,6 +80,13 @@ namespace DungeonPapperWPF.code
             return null;
         }
 
+
+        public bool isPresentMagic(int number)
+        {
+            PartyMagic pm = magics.FirstOrDefault(m => m.number == number && m.countPart == 2);
+            return pm != null;
+        }
+
     }
 
     public class PartyPotion

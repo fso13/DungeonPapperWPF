@@ -239,48 +239,68 @@ namespace DungeonPapperWPF
 
                     Field last = party.path.Last();
 
-                    if (last.dto.leftBarrier == Barrier.None)
+
+                    //влево
+                    if (last.dto.leftBarrier == Barrier.None ||
+                        (last.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                        (last.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4))
+                        )
                     {
                         if (last.dto.x > 0)
                         {
                             Field left = fields[last.dto.y, last.dto.x - 1];
-                            if (left.dto.rightBarrier == Barrier.None)
+                            if (left.dto.rightBarrier == Barrier.None ||
+                                (left.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                                (left.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4))
+                                )
                             {
                                 left.greanColor();
                             }
                         }
-                        else if (last.dto.x == 0)
+                        else if (last.dto.x == 0 && (last.dto.y == 3 || last.dto.y == 5))
                         {
                             Field left = fields[last.dto.y, 5];
                             left.greanColor();
                         }
                     }
 
-
-                    if (last.dto.rightBarrier == Barrier.None)
+                    //впрово
+                    if (last.dto.rightBarrier == Barrier.None || 
+                        (last.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                        (last.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4))
+                        )
                     {
                         if (last.dto.x < 5)
                         {
                             Field right = fields[last.dto.y, last.dto.x + 1];
-                            if (right.dto.leftBarrier == Barrier.None)
+                            if (right.dto.leftBarrier == Barrier.None ||
+                                (right.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                                (right.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4))
+                                )
                             {
                                 right.greanColor();
                             }
                         }
-                        else if (last.dto.x == 5)
+                        else if (last.dto.x == 5 || (last.dto.y == 3 || last.dto.y == 5))
                         {
                             Field right = fields[last.dto.y, 0];
                             right.greanColor();
                         }
                     }
 
-
-                    if (last.dto.topBarrier == Barrier.None)
+                    //вверх
+                    if (last.dto.topBarrier == Barrier.None || 
+                        (last.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                        (last.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) 
+                        )
                     {
                         if (last.dto.y > 0)
                         {
                             Field top = fields[last.dto.y - 1, last.dto.x];
-                            if (top.dto.downBarrier == Barrier.None)
+                            if (top.dto.downBarrier == Barrier.None ||
+                                (top.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
+                                (top.dto.downBarrier == Barrier.Black && party.isPresentMagic(4))
+                                )
                             {
                                 top.greanColor();
                             }
@@ -288,12 +308,19 @@ namespace DungeonPapperWPF
 
                     }
 
-                    if (last.dto.downBarrier == Barrier.None)
+                    //вниз
+                    if (last.dto.downBarrier == Barrier.None ||
+                        (last.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                        (last.dto.downBarrier == Barrier.Black && party.isPresentMagic(4))
+                        )
                     {
                         if (last.dto.y < 6)
                         {
                             Field down = fields[last.dto.y + 1, last.dto.x];
-                            if (down.dto.topBarrier == Barrier.None)
+                            if (down.dto.topBarrier == Barrier.None || 
+                                (down.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4))||
+                                (down.dto.topBarrier == Barrier.Black && party.isPresentMagic(4))
+                                )
                             {
                                 down.greanColor();
                             }
