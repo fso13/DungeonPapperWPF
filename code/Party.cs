@@ -17,6 +17,7 @@ namespace DungeonPapperWPF.code
         public int hp = 0;
         public int blood = 0;
         public List<PartyPotion> potions = new List<PartyPotion>();
+        public List<PartyMagic> magics = new List<PartyMagic>();
 
         public List<Field> path = new List<Field>();
 
@@ -61,6 +62,11 @@ namespace DungeonPapperWPF.code
             MessageBox.Show("Найдено лечебное зелье, в количестве: " + count);
         }
 
+        public void addMagic(PartyMagic magic)
+        {
+            magics.Add(magic);
+        }
+
         public PartyPotion getFirstPotionWithFreeCell()
         {
             for (int i = 0; i < potions.Count; i++)
@@ -79,5 +85,17 @@ namespace DungeonPapperWPF.code
     public class PartyPotion
     {
         public int freeCell = 2;
+    }
+
+    public class PartyMagic
+    {
+        public int number;
+        public int countPart;
+
+        public PartyMagic(int number, int countPart)
+        {
+            this.number = number;
+            this.countPart = countPart;
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace DungeonPapperWPF
         public static int currentCountStep = 0;//сколько есть клеток передвижения
         public static int currentCountLevel = 0;//сколько есть повышений уровня
         public static int currentCountDice = 0;//сколько еще можно потратить дайсов на действия
+        public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
 
         public Party party;//пати, герои, сокровища и тд
 
@@ -337,10 +338,10 @@ namespace DungeonPapperWPF
                 //LevelUpButton.IsEnabled = true;
                 buttonDiceGenereted.IsEnabled = true;
 
-                party.warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook()); 
-                party.wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook()); 
-                party.cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook()); 
-                party.plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook()); 
+                party.warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook());
+                party.wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook());
+                party.cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook());
+                party.plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook());
 
                 drawLevel();
                 drawOutlook();
@@ -390,14 +391,11 @@ namespace DungeonPapperWPF
                 }
                 else
                 {
-                    ((CheckBox)this.FindName("blood_" + (i+party.blood))).IsChecked = true;
+                    ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
                 }
 
                 party.damage(1);
             }
-
-
-            //todo потом учитывать зелья
 
             MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
@@ -409,7 +407,7 @@ namespace DungeonPapperWPF
             buttonDiceGenereted.IsEnabled = false;
             party.GetHeroes().ForEach(hero =>
             {
-                if(hero.level + 1 < 7)
+                if (hero.level + 1 < 7)
                 {
                     ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
                 }
@@ -422,7 +420,7 @@ namespace DungeonPapperWPF
             }
 
             MessageBox.Show("Повышение уровня");
-            
+
         }
 
         //выбор действия поднятия уровня
@@ -497,7 +495,7 @@ namespace DungeonPapperWPF
                 }
             }
 
-            
+
         }
 
         //удаление текущего кубика из пула
@@ -541,6 +539,7 @@ namespace DungeonPapperWPF
             LevelUpButton.IsEnabled = false;
             TwoMoveButton.IsEnabled = false;
             ButtonCreatePotion.IsEnabled = false;
+            ButtonCreateMagic.IsEnabled = false;
         }
 
         private List<Dice> diceGenereted()
@@ -592,7 +591,7 @@ namespace DungeonPapperWPF
                     for (int i = 0; i < 6; i++)
                     {
                         Dice genereteDice = dices.ElementAt(i);
-                        
+
                         Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
                         rectangle.IsEnabled = true;
                         generateDices[i] = genereteDice;
@@ -646,7 +645,7 @@ namespace DungeonPapperWPF
 
         public void addPotion(int count)
         {
-            for(int i = 1;i <= count; i++)
+            for (int i = 1; i <= count; i++)
             {
                 if (i + party.potions.Count() < 13)
                 {
@@ -676,7 +675,7 @@ namespace DungeonPapperWPF
                     currentCountStep = 3;
                     highlightWhereToGo();
                     deleteCurrentDic();
-                }                
+                }
                 else
                 {
                     TwoMoveButton.IsEnabled = true;
@@ -690,8 +689,10 @@ namespace DungeonPapperWPF
                     if (selectDicesIsCurrentRound.Last().number == 9)
                     {
                         LevelUpButton.IsEnabled = true;
+                        ButtonCreateMagic.IsEnabled = true;
                     }
 
+                    //проверка выбора кнопки поднять уровень
                     if (selectDicesIsCurrentRound.Last().number > 0 && selectDicesIsCurrentRound.Last().number < 9)
                     {
                         if (party.wizard.level > 3)
@@ -735,10 +736,71 @@ namespace DungeonPapperWPF
                         }
 
                     }
+
+                    //проверка выбора кнопки ковать предмет
+                    if (selectDicesIsCurrentRound.Last().number > 0 && selectDicesIsCurrentRound.Last().number < 9)
+                    {
+                        List<PartyMagic> magics = party.magics;
+
+                        if (magics.Count == 0)
+                        {
+                            ButtonCreateMagic.IsEnabled = true;
+                        }
+                        else
+                        {
+                            if (selectDicesIsCurrentRound.Last().type > DiceType.Move3 && selectDicesIsCurrentRound.Last().type < DiceType.Klever)
+                            {
+                                PartyMagic findMagic = null;
+
+                                foreach (PartyMagic magic in magics)
+                                {
+                                    if (magic.number == (int)selectDicesIsCurrentRound.Last().type)
+                                    {
+                                        findMagic = magic;
+                                        break;
+                                    }
+                                }
+
+                                if (findMagic == null)
+                                {
+                                    ButtonCreateMagic.IsEnabled = true;
+                                }
+                                else if (findMagic.countPart < 2)
+                                {
+                                    ButtonCreateMagic.IsEnabled = true;
+                                }
+                            }
+
+
+
+                            for (int i = 5; i < 9; i++)
+                            {
+                                PartyMagic findMagic = null;
+
+                                foreach (PartyMagic magic in magics)
+                                {
+                                    if (magic.number == i)
+                                    {
+                                        findMagic = magic;
+                                        break;
+                                    }
+                                }
+
+                                if (findMagic == null)
+                                {
+                                    ButtonCreateMagic.IsEnabled = true;
+                                }
+                                else if (findMagic.countPart < 2)
+                                {
+                                    ButtonCreateMagic.IsEnabled = true;
+                                }
+
+                            }
+                        }
+                    }
                 }
 
                 currentDice = null;
-
             }
         }
 
@@ -747,6 +809,186 @@ namespace DungeonPapperWPF
             addPotion(1);
 
             deleteCurrentDic();
+        }
+
+        private void ButtonCreateMagic_Click(object sender, RoutedEventArgs e)
+        {
+            Dice dice = selectDicesIsCurrentRound.Last();
+            currentCountMagicPart++;
+            highlightCreateMagic(dice);
+
+            deleteCurrentDic();
+        }
+
+        public void highlightCreateMagic(Dice dice)
+        {
+            if (currentCountMagicPart > 0)
+            {
+
+                selectDiceButton.IsEnabled = false;
+                diceGrid.IsEnabled = false;
+                LevelUpButton.IsEnabled = false;
+                TwoMoveButton.IsEnabled = false;
+                List<PartyMagic> magics = party.magics;
+
+                if (dice == null)
+                {
+                    //подсветить любой предмет
+                    for (int i = 1; i < 9; i++)
+                    {
+                        PartyMagic findMagic = null;
+
+                        foreach (PartyMagic magic in magics)
+                        {
+                            if (magic.number == i)
+                            {
+                                findMagic = magic;
+                                break;
+                            }
+                        }
+
+                        if (findMagic == null)
+                        {
+                            ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                        }
+                        else if (findMagic.countPart < 2)
+                        {
+                            ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
+                        }
+
+
+                    }
+                }
+                else
+                {
+                    if (magics.Count == 0)
+                    {
+                        if(dice.type == DiceType.Klever)
+                        {
+                            for (int i = 1; i < 9; i++)
+                            {
+                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                            }
+                        }
+                        else
+                        {
+                            ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+                            for (int i = 5; i < 9; i++)
+                            {
+                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                            }
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+
+                        if (dice.type > DiceType.Move3 && dice.type <= DiceType.Klever)
+                        {
+                            PartyMagic findMagic = null;
+
+                            foreach (PartyMagic magic in magics)
+                            {
+                                if (magic.number == (int)dice.type || dice.type == DiceType.Klever)
+                                {
+                                    findMagic = magic;
+
+                                    if (findMagic.countPart < 2)
+                                    {
+                                        ((CheckBox)this.FindName("magic_" + findMagic.number + "_" + (1 + findMagic.countPart))).IsEnabled = true;
+                                    }
+                                }
+                            }
+
+                            if (findMagic == null)
+                            {
+                                ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+                            }
+                        }
+
+
+
+                        for (int i = 5; i < 9; i++)
+                        {
+                            PartyMagic findMagic = null;
+
+                            foreach (PartyMagic magic in magics)
+                            {
+                                if (magic.number == i && magic.countPart < 2)
+                                {
+                                    findMagic = magic;
+                                    break;
+                                }
+                            }
+
+                            if (findMagic == null)
+                            {
+                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                            }
+                            else
+                            {
+                                ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
+                            }
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+        private void magic_Checked(object sender, RoutedEventArgs e)
+        {
+            if (currentCountMagicPart > 0)
+            {
+                CheckBox checkBox = (CheckBox)sender;
+                checkBox.IsChecked = true;
+
+                string name = checkBox.Name.Replace("magic_", "");
+
+                if (name.EndsWith("_1"))
+                {
+                    party.addMagic(new PartyMagic(int.Parse(name[0].ToString()), 1));
+                    currentCountMagicPart--;
+                }
+                else
+                {
+                    party.magics.ForEach(magic =>
+                    {
+
+                        if (magic.number == int.Parse(name[0].ToString()))
+                        {
+                            magic.countPart++;
+                            currentCountMagicPart--;
+                        }
+                    });
+                }
+
+
+                for (int i = 1; i <= 8; i++)
+                {
+                    ((CheckBox)this.FindName("magic_" + i + "_1")).IsEnabled = false;
+                    ((CheckBox)this.FindName("magic_" + i + "_2")).IsEnabled = false;
+                }
+
+                if (currentCountMagicPart > 0)
+                {
+                    highlightCreateMagic(null);
+                }
+                else
+                {
+
+                    if (selectDicesIsCurrentRound.Count() == 3)
+                    {
+                        buttonDiceGenereted.IsEnabled = true;
+                    }
+                    selectDiceButton.IsEnabled = true;
+                    diceGrid.IsEnabled = true;
+                }
+            }
+
+
         }
     }
 }
