@@ -209,7 +209,7 @@
             <CheckBox x:Name="hp_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
         <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="273,21,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top"/>
-        <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="54" Margin="273,562,0,0" VerticalAlignment="Top" Width="120" Click="TwoMoveButton_Click" IsEnabled="False"/>
+        <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="28" Margin="273,551,0,0" VerticalAlignment="Top" Width="89" Click="TwoMoveButton_Click" IsEnabled="False"/>
         <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="21,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click" Width="192"/>
         <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,10,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
             <Rectangle.Fill>

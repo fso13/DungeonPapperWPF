@@ -30,22 +30,19 @@ namespace DungeonPapperWPF.code
 
         public void damage(int damage)
         {
-            if (cleric.level < 4)
+            if (damage > 0)
             {
-                if (damage > 0)
-                {
-                    PartyPotion potion = getFirstPotionWithFreeCell();
+                PartyPotion potion = getFirstPotionWithFreeCell();
 
-                    if (potion == null)
-                    {
-                        blood += damage;
-                    }
-                    else
-                    {
-                        potion.freeCell--;
-                        damage--;
-                        this.damage(damage);
-                    }
+                if (potion == null)
+                {
+                    blood += damage;
+                }
+                else
+                {
+                    potion.freeCell--;
+                    damage--;
+                    this.damage(damage);
                 }
             }
         }

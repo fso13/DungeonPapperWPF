@@ -210,7 +210,9 @@ namespace DungeonPapperWPF
         {
             currentCountStep = 2;
             highlightWhereToGo();
-            deleteCurrentDic();
+            ButtonCreateMagic.IsEnabled = false;
+            ButtonCreatePotion.IsEnabled = false;
+            LevelUpButton.IsEnabled = false;
         }
 
         //подстветка доступных передвижений
@@ -332,6 +334,17 @@ namespace DungeonPapperWPF
             }
             else
             {
+
+                if (MainWindow.currentCountLevel > 0)
+                {
+                    diceGrid.IsEnabled = false;
+                    selectDiceButton.IsEnabled = false;
+                }
+                else
+                {
+                    deleteCurrentDic();
+                }
+
                 for (int i = 0; i < 6; i++)
                 {
                     for (int j = 0; j < 7; j++)
@@ -356,7 +369,6 @@ namespace DungeonPapperWPF
             if (!isStart && cbox_quest.SelectedIndex > 0)
             {
                 party = new Party();
-                isStart = true;
                 addHp();
                 addHp();
                 addHp();
@@ -375,6 +387,7 @@ namespace DungeonPapperWPF
 
                 cbox_quest.IsEnabled = false;
                 startButton.IsEnabled = false;
+                isStart = true;
 
             }
         }
@@ -434,6 +447,8 @@ namespace DungeonPapperWPF
         public void levelUpFromMove()
         {
             currentCountLevel++;
+            diceGrid.IsEnabled = false;
+            selectDiceButton.IsEnabled = false;
             buttonDiceGenereted.IsEnabled = false;
             party.GetHeroes().ForEach(hero =>
             {
@@ -453,14 +468,20 @@ namespace DungeonPapperWPF
 
         }
 
+        public bool levelFromDice = false;
         //выбор действия поднятия уровня
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {
+            levelFromDice = true;
             currentCountLevel++;
+            diceGrid.IsEnabled = false;
+            selectDiceButton.IsEnabled = false;
+            ButtonCreateMagic.IsEnabled = false;
+            ButtonCreatePotion.IsEnabled = false;
+            TwoMoveButton.IsEnabled = false;
 
             party.GetHeroes().ForEach(hero =>
             {
-
                 if (hero.getNumberDiceForLevel() == selectDicesIsCurrentRound.Last().number ||
                     selectDicesIsCurrentRound.Last().number == 9 ||
                     (party.wizard.level > 3 && selectDicesIsCurrentRound.Last().type.ToString() == hero.type.ToString()))
@@ -471,13 +492,13 @@ namespace DungeonPapperWPF
                     }
                 }
             });
-            deleteCurrentDic();
 
         }
 
         //выбор нового уровня у персонажа
         private void cbox_Level_Checked(object sender, RoutedEventArgs e)
         {
+            
             if (currentCountLevel > 0)
             {
                 CheckBox checkBox = (CheckBox)sender;
@@ -489,7 +510,7 @@ namespace DungeonPapperWPF
                     if (name.Contains(hero.type.ToString().ToLower()))
                     {
                         hero.level++;
-                        if(hero.level == 4 && hero.type == HeroClassType.Plut)
+                        if (hero.level == 4 && hero.type == HeroClassType.Plut)
                         {
                             MessageBox.Show("Ваш плут достиг 4 уровня, и где то раздобыл алмаз");
                             party.addDiamond(new Diamond("За уровень плута"));
@@ -520,7 +541,7 @@ namespace DungeonPapperWPF
                     });
                 }
 
-                if (currentCountLevel == 0)
+                if (currentCountLevel == 0 && currentCountMagicPart == 0)
                 {
 
                     if (selectDicesIsCurrentRound.Count() == 3)
@@ -532,51 +553,67 @@ namespace DungeonPapperWPF
                 }
             }
 
+            if (isStart)
+            {
+                if (levelFromDice)
+                {
+                    levelFromDice = false;
+                    deleteCurrentDic();
+                }
+               else if (currentCountMagicPart == 0)
+                {
+                    deleteCurrentDic();
+                }
+            }
+
 
         }
 
         //удаление текущего кубика из пула
         private void deleteCurrentDic()
         {
-
-            for (int i = 0; i < 6; i++)
+            if (isStart)
             {
-                Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-
-                if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number < 10)
-                {
-                    rectangle.IsEnabled = true;
-                }
-
-            }
-
-            selectDicesIsCurrentRound.Last().rectangle.Stroke = null;
-            selectDicesIsCurrentRound.Last().rectangle.Fill = null;
-            selectDicesIsCurrentRound.Last().rectangle.IsEnabled = false;
-
-            currentCountDice--;
-
-            if (currentCountDice == 0)
-            {
-                buttonDiceGenereted.IsEnabled = true;
 
                 for (int i = 0; i < 6; i++)
                 {
                     Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-                    rectangle.Stroke = null;
-                    rectangle.Fill = null;
-                    rectangle.IsEnabled = false;
 
+                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number < 10)
+                    {
+                        rectangle.IsEnabled = true;
+                    }
 
                 }
-            }
 
-            selectDiceButton.IsEnabled = true;
-            diceGrid.IsEnabled = true;
-            LevelUpButton.IsEnabled = false;
-            TwoMoveButton.IsEnabled = false;
-            ButtonCreatePotion.IsEnabled = false;
-            ButtonCreateMagic.IsEnabled = false;
+                selectDicesIsCurrentRound.Last().rectangle.Stroke = null;
+                selectDicesIsCurrentRound.Last().rectangle.Fill = null;
+                selectDicesIsCurrentRound.Last().rectangle.IsEnabled = false;
+
+                currentCountDice--;
+
+                if (currentCountDice == 0)
+                {
+                    buttonDiceGenereted.IsEnabled = true;
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                        rectangle.Stroke = null;
+                        rectangle.Fill = null;
+                        rectangle.IsEnabled = false;
+
+
+                    }
+                }
+
+                selectDiceButton.IsEnabled = true;
+                diceGrid.IsEnabled = true;
+                LevelUpButton.IsEnabled = false;
+                TwoMoveButton.IsEnabled = false;
+                ButtonCreatePotion.IsEnabled = false;
+                ButtonCreateMagic.IsEnabled = false;
+            }
         }
 
         private List<Dice> diceGenereted()
@@ -615,6 +652,8 @@ namespace DungeonPapperWPF
         {
             if (round < 8)
             {
+
+                this.Title = "Dungeon Paper Раудн: " + round;
                 if (currentCountDice == 0)
                 {
                     selectDicesIsCurrentRound.Clear();
@@ -690,15 +729,15 @@ namespace DungeonPapperWPF
                 }
             }
 
-            if (party.potions.Count() < 4)
+            if (party.potions.Count() < 4 && party.potions.Count() + count >= 4)
             {
                 levelUpFromMove();
             }
-            else if (party.potions.Count() < 8)
+            else if (party.potions.Count() < 8 && party.potions.Count() + count >= 8)
             {
                 highlightCreateMagic(null);
             }
-            else if (party.potions.Count() < 12)
+            else if (party.potions.Count() < 12 && party.potions.Count() + count >= 12)
             {
                 MessageBox.Show("Вы сварили 12 зелий, за это вы получаете алмаз");
                 party.addDiamond(new Diamond("За 12 зелий"));
@@ -712,9 +751,12 @@ namespace DungeonPapperWPF
         {
             if (currentDice != null)
             {
+
                 diceGrid.IsEnabled = false;
                 selectDiceButton.IsEnabled = false;
                 selectDicesIsCurrentRound.Add(currentDice);
+
+                this.Title = "Dungeon Paper Раудн: " + round + "Кубик номер: " + selectDicesIsCurrentRound.Count();
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -726,7 +768,6 @@ namespace DungeonPapperWPF
                 {
                     currentCountStep = 3;
                     highlightWhereToGo();
-                    deleteCurrentDic();
                 }
                 else
                 {
@@ -868,8 +909,11 @@ namespace DungeonPapperWPF
             Dice dice = selectDicesIsCurrentRound.Last();
             currentCountMagicPart++;
             highlightCreateMagic(dice);
-
-            deleteCurrentDic();
+            ButtonCreateMagic.IsEnabled = false;
+            ButtonCreatePotion.IsEnabled = false;
+            TwoMoveButton.IsEnabled = false;
+            LevelUpButton.IsEnabled = false;
+            magicFromDice = true;
         }
 
         public void highlightCreateMagic(Dice dice)
@@ -915,7 +959,7 @@ namespace DungeonPapperWPF
                 {
                     if (magics.Count == 0)
                     {
-                        if(dice.type == DiceType.Klever)
+                        if (dice.type == DiceType.Klever)
                         {
                             for (int i = 1; i < 9; i++)
                             {
@@ -930,8 +974,8 @@ namespace DungeonPapperWPF
                                 ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                             }
                         }
-                        
-                        
+
+
                     }
                     else
                     {
@@ -978,7 +1022,7 @@ namespace DungeonPapperWPF
                             {
                                 ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                             }
-                            else if(findMagic.countPart < 2)
+                            else if (findMagic.countPart < 2)
                             {
                                 ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
                             }
@@ -990,6 +1034,7 @@ namespace DungeonPapperWPF
             }
         }
 
+        public bool magicFromDice = false;
         private void magic_Checked(object sender, RoutedEventArgs e)
         {
             if (currentCountMagicPart > 0)
@@ -1013,12 +1058,12 @@ namespace DungeonPapperWPF
                         {
                             magic.create();
 
-                            if(magic.number == 6)
+                            if (magic.number == 6)
                             {
                                 addPotion(3);
                             }
 
-                            if(magic.number == 8)
+                            if (magic.number == 8)
                             {
                                 levelUpFromMove();
                             }
@@ -1045,12 +1090,20 @@ namespace DungeonPapperWPF
                     {
                         buttonDiceGenereted.IsEnabled = true;
                     }
-                    selectDiceButton.IsEnabled = true;
-                    diceGrid.IsEnabled = true;
+                    if ((currentCountLevel == 0 && !magicFromDice) || (magicFromDice))
+                    {
+                        selectDiceButton.IsEnabled = true;
+                        diceGrid.IsEnabled = true;
+                        deleteCurrentDic();
+
+                        if (magicFromDice)
+                        {
+                            magicFromDice = false;
+                        }
+
+                    }
                 }
             }
-
-
         }
     }
 }

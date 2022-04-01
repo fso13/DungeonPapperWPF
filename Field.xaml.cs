@@ -128,6 +128,7 @@ namespace DungeonPapperWPF
                     }
                      ((MainWindow)Window.GetWindow(this)).party.path.Add(this);
                     MainWindow.currentCountStep--;
+                    
 
                     ((MainWindow)Window.GetWindow(this)).highlightWhereToGo();
                 }
