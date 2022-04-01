@@ -100,7 +100,7 @@ namespace DungeonPapperWPF
                             case Potion potion:;
                                 ((MainWindow)Window.GetWindow(this)).addPotion(potion.count); break;
                             case Diamond diamond:
-                                ((MainWindow)Window.GetWindow(this)).party.addDiamond(diamond);
+                                ((MainWindow)Window.GetWindow(this)).addDiamond(diamond);
                                 MessageBox.Show("Украден алмаз " + diamond.name); break;
                             case MagicThing magic:
                                 MainWindow.currentCountMagicPart++;

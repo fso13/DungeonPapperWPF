@@ -513,7 +513,7 @@ namespace DungeonPapperWPF
                         if (hero.level == 4 && hero.type == HeroClassType.Plut)
                         {
                             MessageBox.Show("Ваш плут достиг 4 уровня, и где то раздобыл алмаз");
-                            party.addDiamond(new Diamond("За уровень плута"));
+                            addDiamond(new Diamond("За уровень плута"));
                         }
                         addHp();
                         currentCountLevel--;
@@ -541,7 +541,7 @@ namespace DungeonPapperWPF
                     });
                 }
 
-                if (currentCountLevel == 0 && currentCountMagicPart == 0)
+                if (currentCountLevel == 0 && currentCountMagicPart == 0 && currentCountStep==0)
                 {
 
                     if (selectDicesIsCurrentRound.Count() == 3)
@@ -560,7 +560,7 @@ namespace DungeonPapperWPF
                     levelFromDice = false;
                     deleteCurrentDic();
                 }
-               else if (currentCountMagicPart == 0)
+               else if (currentCountMagicPart == 0 && currentCountStep==0)
                 {
                     deleteCurrentDic();
                 }
@@ -652,10 +652,9 @@ namespace DungeonPapperWPF
         {
             if (round < 8)
             {
+                round++;
 
                 this.Title = "Dungeon Paper Раудн: " + round;
-                if (currentCountDice == 0)
-                {
                     selectDicesIsCurrentRound.Clear();
                     buttonDiceGenereted.IsEnabled = false;
                     selectDiceButton.IsEnabled = true;
@@ -684,9 +683,7 @@ namespace DungeonPapperWPF
                             rectangle.Stroke = brushRed;
                             rectangle.StrokeThickness = 4;
                         }
-                    }
 
-                    round++;
 
                 }
             }
@@ -740,9 +737,32 @@ namespace DungeonPapperWPF
             else if (party.potions.Count() < 12 && party.potions.Count() + count >= 12)
             {
                 MessageBox.Show("Вы сварили 12 зелий, за это вы получаете алмаз");
-                party.addDiamond(new Diamond("За 12 зелий"));
+                addDiamond(new Diamond("За 12 зелий"));
             }
+            
             party.addPotion(count);
+
+        }
+
+        public void addDiamond(Diamond diamond)
+        {
+            ((Rectangle)this.FindName("Diamond_" + (party.diamonds.Count() + 1))).Fill.Opacity = 1;
+
+            party.addDiamond(diamond);
+
+            if (party.diamonds.Count() == 2 || party.diamonds.Count() == 10)
+            {
+                currentCountMagicPart++;
+                highlightCreateMagic(null);
+            }
+            if (party.diamonds.Count() == 4 || party.diamonds.Count() == 8)
+            {
+                addPotion(1);
+            }
+            if (party.diamonds.Count() == 6)
+            {
+                levelUpFromMove();
+            }
 
         }
 
@@ -900,7 +920,6 @@ namespace DungeonPapperWPF
         private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
         {
             addPotion(1);
-
             deleteCurrentDic();
         }
 

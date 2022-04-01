@@ -435,5 +435,35 @@
   <ItemGroup>
     <Resource Include="Diamond.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2871%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2872%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2873%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2874%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2875%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2876%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2877%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2878%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2879%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image.psd %2880%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -588,5 +588,55 @@
             <CheckBox x:Name="magic_8_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
         </Grid>
         <Button x:Name="ButtonCreateMagic" Content="Ковать предмет" HorizontalAlignment="Left" Margin="92,434,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.382" Width="114" IsEnabled="False" Click="ButtonCreateMagic_Click"/>
+        <Rectangle x:Name="Diamond_1" HorizontalAlignment="Left" Height="28" Margin="273,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (71).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_2" HorizontalAlignment="Left" Height="28" Margin="306,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (72).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_3" HorizontalAlignment="Left" Height="28" Margin="339,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (73).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_4" HorizontalAlignment="Left" Height="28" Margin="372,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (74).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_5" HorizontalAlignment="Left" Height="28" Margin="405,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (75).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_6" HorizontalAlignment="Left" Height="28" Margin="438,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (76).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_7" HorizontalAlignment="Left" Height="28" Margin="471,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (77).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_8" HorizontalAlignment="Left" Height="28" Margin="504,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (78).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_9" HorizontalAlignment="Left" Height="28" Margin="537,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (79).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="Diamond_10" HorizontalAlignment="Left" Height="28" Margin="570,590,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/image.psd (80).png" Opacity="0.33"/>
+            </Rectangle.Fill>
+        </Rectangle>
     </Grid>
 </Window>
