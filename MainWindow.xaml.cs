@@ -916,7 +916,7 @@ namespace DungeonPapperWPF
 
         private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
         {
-            addPotion(1);
+            addPotion(2);
             deleteCurrentDic();
         }
 
