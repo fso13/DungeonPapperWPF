@@ -470,6 +470,7 @@ namespace DungeonPapperWPF
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {
             levelFromDice = true;
+            LevelUpButton.IsEnabled = false;
             currentCountLevel++;
             diceGrid.IsEnabled = false;
             selectDiceButton.IsEnabled = false;
