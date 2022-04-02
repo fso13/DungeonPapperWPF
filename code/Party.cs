@@ -22,7 +22,8 @@ namespace DungeonPapperWPF.code
 
         public List<Field> path = new List<Field>();
         public List<Monster> deadMonsters = new List<Monster>();
-
+        public int addDamageWithMonsters = 0;
+        public int addDamageWithBosses = 0;
 
         public List<HeroClass> GetHeroes()
         {

@@ -43,6 +43,7 @@ namespace DungeonPapperWPF
         public static int currentCountLevel = 0;//сколько есть повышений уровня
         public static int currentCountDice = 0;//сколько еще можно потратить дайсов на действия
         public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
+        public static int currentCountDeadMonstersFotArtifact = 0;//сколько можно убить монстров за артифакт
 
         public Party party;//пати, герои, сокровища и тд
 
@@ -512,6 +513,11 @@ namespace DungeonPapperWPF
                         {
                             MessageBox.Show("Ваш плут достиг 4 уровня, и где то раздобыл алмаз");
                             addDiamond(new Diamond("За уровень плута"));
+                        }
+
+                        if (hero.level == 4 && hero.type == HeroClassType.Warrior)
+                        {
+                            party.addDamageWithBosses += 1;
                         }
                         addHp();
                         currentCountLevel--;
@@ -1056,6 +1062,15 @@ namespace DungeonPapperWPF
         private void deadMonsterFromArtifact()
         {
             //подсветить монстра с локаций
+
+            foreach (Field field in gridFields.Children)
+            {
+                if(field.dto.monster != null && !field.dto.monster.isDead)
+                {
+                    field.monsterField.IsEnabled = true;
+                    field.monsterField.Fill = Brushes.Black;
+                }
+            }
         }
 
         public void deadMonster(Monster monster)
@@ -1078,14 +1093,14 @@ namespace DungeonPapperWPF
                     break;
 
             }
-
-            damage = level >= monster.heroClass.level ? 0 : monster.heroClass.level - level;
+            //урон от монстра
+            damage = level + party.addDamageWithMonsters >= monster.heroClass.level ? 0 : monster.heroClass.level - (level + party.addDamageWithMonsters);
             for (int i = 1; i <= damage; i++)
             {
                 this.damage(1);
             }
 
-
+            monster.isDead = true;
             party.deadMonsters.Add(monster);
             ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
         }
@@ -1122,6 +1137,23 @@ namespace DungeonPapperWPF
                             {
                                 levelUpFromMove();
                             }
+
+                            if (magic.number == 2)
+                            {
+                                currentCountDeadMonstersFotArtifact = 2;
+                                deadMonsterFromArtifact();
+                            }
+
+                            if (magic.number == 1)
+                            {
+                                party.addDamageWithBosses += 3;
+                            }
+
+                            if (magic.number == 7)
+                            {
+                                party.addDamageWithMonsters += 1;
+                            }
+
                             currentCountMagicPart--;
                         }
                     });
@@ -1145,7 +1177,7 @@ namespace DungeonPapperWPF
                     {
                         buttonDiceGenereted.IsEnabled = true;
                     }
-                    if ((currentCountLevel == 0 && !magicFromDice) || (magicFromDice))
+                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep==0) || (magicFromDice))
                     {
                         selectDiceButton.IsEnabled = true;
                         diceGrid.IsEnabled = true;

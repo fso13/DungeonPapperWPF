@@ -147,5 +147,10 @@ namespace DungeonPapperWPF
 
             }
         }
+
+        private void monsterFieldAction_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(this.dto.monster.monsterType.ToString());
+        }
     }
 }
