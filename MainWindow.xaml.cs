@@ -335,7 +335,7 @@ namespace DungeonPapperWPF
             else
             {
 
-                if (MainWindow.currentCountLevel > 0)
+                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart>0)
                 {
                     diceGrid.IsEnabled = false;
                     selectDiceButton.IsEnabled = false;
