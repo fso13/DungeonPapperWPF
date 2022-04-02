@@ -336,7 +336,7 @@ namespace DungeonPapperWPF
             else
             {
 
-                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart>0 || MainWindow.currentCountDeadMonstersFotArtifact > 0)
+                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart > 0 || MainWindow.currentCountDeadMonstersFotArtifact > 0)
                 {
                     diceGrid.IsEnabled = false;
                     selectDiceButton.IsEnabled = false;
@@ -423,22 +423,22 @@ namespace DungeonPapperWPF
         public void damage(int damage)
         {
 
-                for (int i = 1; i <= damage; i++)
+            for (int i = 1; i <= damage; i++)
+            {
+                PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
+                if (partyPotion != null)
                 {
-                    PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
-                    if (partyPotion != null)
-                    {
-                        ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
-                    }
-                    else
-                    {
-                        ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
-                    }
-
-                    party.damage(1);
+                    ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
+                }
+                else
+                {
+                    ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
                 }
 
-                MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
+                party.damage(1);
+            }
+
+            MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
 
         //ролучение уровня за комнату
@@ -497,7 +497,7 @@ namespace DungeonPapperWPF
         //выбор нового уровня у персонажа
         private void cbox_Level_Checked(object sender, RoutedEventArgs e)
         {
-            
+
             if (currentCountLevel > 0)
             {
                 CheckBox checkBox = (CheckBox)sender;
@@ -545,7 +545,7 @@ namespace DungeonPapperWPF
                     });
                 }
 
-                if (currentCountLevel == 0 && currentCountMagicPart == 0 && currentCountStep==0)
+                if (currentCountLevel == 0 && currentCountMagicPart == 0 && currentCountStep == 0)
                 {
 
                     if (selectDicesIsCurrentRound.Count() == 3)
@@ -564,7 +564,7 @@ namespace DungeonPapperWPF
                     levelFromDice = false;
                     deleteCurrentDic();
                 }
-               else if (currentCountMagicPart == 0 && currentCountStep==0)
+                else if (currentCountMagicPart == 0 && currentCountStep == 0)
                 {
                     deleteCurrentDic();
                 }
@@ -627,8 +627,7 @@ namespace DungeonPapperWPF
             List<Dice> dices = new List<Dice>();
             for (int i = 0; i < 6; i++)
             {
-                Dice genereteDice = Dice.fromNumber(2);
-                //Dice genereteDice = Dice.fromNumber(random.Next(12));
+                Dice genereteDice = Dice.fromNumber(random.Next(12));
                 if (genereteDice.type == DiceType.Scull)
                 {
                     diceScull++;
@@ -660,34 +659,34 @@ namespace DungeonPapperWPF
                 round++;
 
                 this.Title = "Dungeon Paper Раудн: " + round;
-                    selectDicesIsCurrentRound.Clear();
-                    buttonDiceGenereted.IsEnabled = false;
-                    selectDiceButton.IsEnabled = true;
-                    diceGrid.IsEnabled = true;
-                    currentCountDice = 3;
+                selectDicesIsCurrentRound.Clear();
+                buttonDiceGenereted.IsEnabled = false;
+                selectDiceButton.IsEnabled = true;
+                diceGrid.IsEnabled = true;
+                currentCountDice = 3;
 
-                    List<Dice> dices = diceGenereted();
+                List<Dice> dices = diceGenereted();
 
-                    for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 6; i++)
+                {
+                    Dice genereteDice = dices.ElementAt(i);
+
+                    Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                    rectangle.IsEnabled = true;
+                    generateDices[i] = genereteDice;
+                    generateDices[i].rectangle = rectangle;
+                    ImageBrush brush = new ImageBrush();
+                    brush.ImageSource = generateDices[i].getPath();
+                    rectangle.Fill = brush;
+                    rectangle.Tag = generateDices[i];
+
+                    if (generateDices[i].number > 9)
                     {
-                        Dice genereteDice = dices.ElementAt(i);
-
-                        Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-                        rectangle.IsEnabled = true;
-                        generateDices[i] = genereteDice;
-                        generateDices[i].rectangle = rectangle;
-                        ImageBrush brush = new ImageBrush();
-                        brush.ImageSource = generateDices[i].getPath();
-                        rectangle.Fill = brush;
-                        rectangle.Tag = generateDices[i];
-
-                        if (generateDices[i].number > 9)
-                        {
-                            damage(1);
-                            rectangle.IsEnabled = false;
-                            rectangle.Stroke = brushRed;
-                            rectangle.StrokeThickness = 4;
-                        }
+                        damage(1);
+                        rectangle.IsEnabled = false;
+                        rectangle.Stroke = brushRed;
+                        rectangle.StrokeThickness = 4;
+                    }
 
 
                 }
@@ -744,7 +743,7 @@ namespace DungeonPapperWPF
                 MessageBox.Show("Вы сварили 12 зелий, за это вы получаете алмаз");
                 addDiamond(new Diamond("За 12 зелий"));
             }
-            
+
             party.addPotion(count);
 
         }
@@ -1205,7 +1204,8 @@ namespace DungeonPapperWPF
                     {
                         buttonDiceGenereted.IsEnabled = true;
                     }
-                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep==0 && currentCountDeadMonstersFotArtifact==0) || (magicFromDice && currentCountDeadMonstersFotArtifact == 0))
+                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep == 0 && currentCountDeadMonstersFotArtifact == 0) ||
+                        (magicFromDice && currentCountDeadMonstersFotArtifact == 0))
                     {
                         selectDiceButton.IsEnabled = true;
                         diceGrid.IsEnabled = true;
