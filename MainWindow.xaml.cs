@@ -336,7 +336,7 @@ namespace DungeonPapperWPF
             else
             {
 
-                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart>0)
+                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart>0 || MainWindow.currentCountDeadMonstersFotArtifact > 0)
                 {
                     diceGrid.IsEnabled = false;
                     selectDiceButton.IsEnabled = false;
@@ -627,7 +627,8 @@ namespace DungeonPapperWPF
             List<Dice> dices = new List<Dice>();
             for (int i = 0; i < 6; i++)
             {
-                Dice genereteDice = Dice.fromNumber(random.Next(12));
+                Dice genereteDice = Dice.fromNumber(2);
+                //Dice genereteDice = Dice.fromNumber(random.Next(12));
                 if (genereteDice.type == DiceType.Scull)
                 {
                     diceScull++;
@@ -1059,19 +1060,46 @@ namespace DungeonPapperWPF
 
         public bool magicFromDice = false;
 
-        private void deadMonsterFromArtifact()
+        private void hieghtingdeadMonsterFromArtifact()
         {
-            //подсветить монстра с локаций
-
-            foreach (Field field in gridFields.Children)
+            for (int i = 0; i < 6; i++)
             {
-                if(field.dto.monster != null && !field.dto.monster.isDead)
+                for (int j = 0; j < 7; j++)
                 {
-                    field.monsterField.IsEnabled = true;
-                    field.monsterField.Fill = Brushes.Black;
+                    fields[j, i].clearColor();
+                }
+            }
+
+            //подсветить монстра с локаций
+            if (currentCountDeadMonstersFotArtifact > 0)
+            {
+
+                foreach (Field field in gridFields.Children)
+                {
+                    if (field.dto.monster != null && !field.dto.monster.isDead)
+                    {
+                        field.redColor();
+                    }
                 }
             }
         }
+
+        public void deadMonsterFromArtifact(Monster monster)
+        {
+            currentCountDeadMonstersFotArtifact--;
+            monster.isDead = true;
+            party.deadMonsters.Add(monster);
+
+            ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
+
+            if (currentCountDeadMonstersFotArtifact == 0)
+            {
+                {
+                    highlightWhereToGo();
+                }
+            }
+        }
+
 
         public void deadMonster(Monster monster)
         {
@@ -1141,7 +1169,7 @@ namespace DungeonPapperWPF
                             if (magic.number == 2)
                             {
                                 currentCountDeadMonstersFotArtifact = 2;
-                                deadMonsterFromArtifact();
+                                hieghtingdeadMonsterFromArtifact();
                             }
 
                             if (magic.number == 1)
@@ -1177,7 +1205,7 @@ namespace DungeonPapperWPF
                     {
                         buttonDiceGenereted.IsEnabled = true;
                     }
-                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep==0) || (magicFromDice))
+                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep==0 && currentCountDeadMonstersFotArtifact==0) || (magicFromDice && currentCountDeadMonstersFotArtifact == 0))
                     {
                         selectDiceButton.IsEnabled = true;
                         diceGrid.IsEnabled = true;
