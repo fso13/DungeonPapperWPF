@@ -187,7 +187,6 @@ namespace DungeonPapperWPF
         //выбор сценария
         private void cbox_quest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             fieldDtos = Quests.getQuest(cbox_quest.SelectedIndex);
 
             gridFields.Children.Clear();
