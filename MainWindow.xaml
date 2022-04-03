@@ -644,16 +644,16 @@
             </Rectangle.Fill>
         </Rectangle>
         <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="410,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="450,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="430,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="450,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="430,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="468,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="508,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="488,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="508,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="488,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="526,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="564,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="544,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="564,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="544,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="584,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="622,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="602,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="622,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="602,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
     </Grid>
 </Window>
