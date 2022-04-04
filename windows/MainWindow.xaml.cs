@@ -581,18 +581,20 @@ namespace DungeonPapperWPF
 
             if (isStart)
             {
-                if (levelFromDice)
+                if (currentCountLevel == 0)
                 {
-                    levelFromDice = false;
-                    deleteCurrentDic();
-                }
-                else if (currentCountMagicPart == 0 && currentCountStep == 0)
-                {
-                    deleteCurrentDic();
+
+                    if (levelFromDice)
+                    {
+                        levelFromDice = false;
+                        deleteCurrentDic();
+                    }
+                    else if (currentCountMagicPart == 0 && currentCountStep == 0)
+                    {
+                        deleteCurrentDic();
+                    }
                 }
             }
-
-
         }
 
         //удаление текущего кубика из пула
