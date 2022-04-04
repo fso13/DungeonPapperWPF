@@ -6,6 +6,7 @@ namespace DungeonPapperWPF
 
     public partial class Boss
     {
+        public int number { get; set; }
         public string Name { get; set; }
         public int level { get; set; } = 1;
         public HeroClassType heroClassType { get; set; }

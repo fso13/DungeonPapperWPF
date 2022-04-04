@@ -8,7 +8,25 @@ namespace DungeonPapperWPF.code
 {
     public class Quests
     {
+        public class Quest
+        {
+            public Quest(int questNumber, string text, List<Boss> bosses)
+            {
+                this.questNumber = questNumber;
+                this.text = text;
+                this.bosses = bosses;
+            }
+
+            public int questNumber { get; set; }
+            public string text { get; set; }
+            public int selectAbility { get; set; }
+            public int selectMission { get; set; }
+            public List<int> missions { get; set; }
+            public List<Boss> bosses { get; set; }
+        }
+
         public static Boss STRAG = new BossBuilder().WithName("Страж")
+            .WithNumber(12)
           .WithLevel(3)
           .WithHeroClassType(HeroClassType.Wizard)
             .WithPrey(new LevelUp(2))
@@ -31,6 +49,7 @@ namespace DungeonPapperWPF.code
           .Build();
 
         public static Boss VAMP = new BossBuilder().WithName("Вампирша")
+            .WithNumber(5)
           .WithLevel(2)
           .WithHeroClassType(HeroClassType.Cleric)
             .WithPrey(new Xp(2))
@@ -54,6 +73,7 @@ namespace DungeonPapperWPF.code
           .Build();
 
         public static Boss MINOTAVR = new BossBuilder().WithName("Минотавр")
+            .WithNumber(2)
           .WithLevel(2)
           .WithHeroClassType(HeroClassType.Warrior)
             .WithPrey(new LevelUp())

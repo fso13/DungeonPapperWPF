@@ -13,6 +13,7 @@ namespace DungeonPapperWPF
 	/// <summary>
 	public class BossBuilder
 	{
+		private int number;
 		private string name;
 		private int level;
 		private HeroClassType heroClassType;
@@ -37,6 +38,7 @@ namespace DungeonPapperWPF
 		/// <returns>Returns the <see cref="BossBuilder">BossBuilder</see> with the properties reseted</returns>
 		public BossBuilder Reset()
 		{
+			number = default;
 			name = default;
 			level = default;
 			heroClassType = default;
@@ -47,6 +49,17 @@ namespace DungeonPapperWPF
 			minusXp = default;
 			hideDiamonds = new List<Diamond>();
 
+			return this;
+		}
+
+		/// <summary>
+		/// Set a value of type <typeparamref name="int"/> for the property <paramref name="number">number</paramref>
+		/// <summary>
+		/// <param name="number">A value of type <typeparamref name="int"/> will the defined for the property</param>
+		/// <returns>Returns the <see cref="BossBuilder">BossBuilder</see> with the property <paramref name="number">number</paramref> defined</returns>
+		public BossBuilder WithNumber(int number)
+		{
+			this.number = number;
 			return this;
 		}
 
@@ -168,6 +181,7 @@ namespace DungeonPapperWPF
 		{
 			return new Boss
 			{
+				number = number,
 				Name = name,
 				level = level,
 				heroClassType = heroClassType,

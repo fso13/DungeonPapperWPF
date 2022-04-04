@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DungeonPapperWPF.code.Quests;
 
 namespace DungeonPapperWPF
 {
@@ -54,6 +55,7 @@ namespace DungeonPapperWPF
         public static Dice currentDice;//выбранный дайс для действия
         public static List<Dice> selectDicesIsCurrentRound = new List<Dice>();//дайсы которые были выбраны в раунде
 
+        public static Quest quest = null;
 
         public MainWindow()
         {
@@ -206,20 +208,6 @@ namespace DungeonPapperWPF
             fields[j, i] = f;
             gridFields.Children.Add(f);
         }
-
-        //выбор сценария
-        private void cbox_quest_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            fieldDtos = Quests.getQuest(cbox_quest.SelectedIndex);
-
-            gridFields.Children.Clear();
-            gridFields.RowDefinitions.Clear();
-            gridFields.ColumnDefinitions.Clear();
-
-            drawField();
-            //gridFields.UpdateLayout();
-        }
-
 
         public Field[] GetRow(int rowNumber)
         {
@@ -384,35 +372,6 @@ namespace DungeonPapperWPF
         private Outlook randomOutlook()
         {
             return (Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
-        }
-
-        //старт квеста
-        private void startButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!isStart && cbox_quest.SelectedIndex > 0)
-            {
-                party = new Party();
-                addHp();
-                addHp();
-                addHp();
-                addHp();
-                //TwoMoveButton.IsEnabled = true;
-                //LevelUpButton.IsEnabled = true;
-                buttonDiceGenereted.IsEnabled = true;
-
-                party.warrior = new HeroClass(HeroClassType.Warrior, 1, randomOutlook());
-                party.wizard = new HeroClass(HeroClassType.Wizard, 1, randomOutlook());
-                party.cleric = new HeroClass(HeroClassType.Cleric, 1, randomOutlook());
-                party.plut = new HeroClass(HeroClassType.Plut, 1, randomOutlook());
-
-                drawLevel();
-                drawOutlook();
-
-                cbox_quest.IsEnabled = false;
-                startButton.IsEnabled = false;
-                isStart = true;
-
-            }
         }
 
         //отрисовка мировозрени я в окне
@@ -1243,6 +1202,158 @@ namespace DungeonPapperWPF
                     }
                 }
             }
+        }
+
+        private void newGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            new WindowsStart().ShowDialog();
+
+            fieldDtos = Quests.getQuest(quest.questNumber);
+
+            ImageBrush imageBrushm1 = new ImageBrush();
+            imageBrushm1.ImageSource =
+                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[0].number + ".jpg", UriKind.Relative));
+            boss_1_rec.Fill = imageBrushm1;
+
+            ImageBrush imageBrushm2 = new ImageBrush();
+            imageBrushm2.ImageSource =
+                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[1].number + ".jpg", UriKind.Relative));
+            boss_2_rec.Fill = imageBrushm2;
+
+            ImageBrush imageBrushm3 = new ImageBrush();
+            imageBrushm3.ImageSource =
+                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[2].number + ".jpg", UriKind.Relative));
+            boss_3_rec.Fill = imageBrushm3;
+
+            ImageBrush imageBrush1 = new ImageBrush();
+            imageBrush1.ImageSource =
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
+            mission_1_rec.Fill = imageBrush1;
+
+            ImageBrush imageBrush2 = new ImageBrush();
+            imageBrush2.ImageSource =
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
+            mission_2_rec.Fill = imageBrush2;
+
+            ImageBrush imageBrush3 = new ImageBrush();
+            imageBrush3.ImageSource =
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
+            mission_3_rec.Fill = imageBrush3;
+
+
+            ImageBrush imageBrush4 = new ImageBrush();
+            imageBrush4.ImageSource =
+                new BitmapImage(new Uri(@"Resources\user_mission_" + quest.selectMission + ".png", UriKind.Relative));
+            userMission_rec.Fill = imageBrush4;
+
+            ImageBrush imageBrush6 = new ImageBrush();
+            imageBrush6.ImageSource =
+                new BitmapImage(new Uri(@"Resources\ability_" + quest.selectAbility + ".png", UriKind.Relative));
+            abbility_rec.Fill = imageBrush6;
+
+
+            gridFields.Children.Clear();
+            gridFields.RowDefinitions.Clear();
+            gridFields.ColumnDefinitions.Clear();
+
+            drawField();
+
+            if (!isStart)
+            {
+                party = new Party();
+                addHp();
+                addHp();
+                addHp();
+                addHp();
+                //TwoMoveButton.IsEnabled = true;
+                //LevelUpButton.IsEnabled = true;
+                buttonDiceGenereted.IsEnabled = true;
+
+                if( quest.selectMission == 1 || 
+                    quest.selectMission == 5 || 
+                    quest.selectMission == 8 ||
+                    quest.selectMission == 9 ||
+                    quest.selectMission == 11 ||
+                    quest.selectMission == 12 ||
+                    quest.selectMission == 13|| 
+                    quest.selectMission == 15)
+                {
+                    party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.Black);
+                }
+                else
+                {
+                    party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.White);
+                }
+
+                if (quest.selectMission == 3 ||
+                    quest.selectMission == 4 ||
+                    quest.selectMission == 5 ||
+                    quest.selectMission == 7 ||
+                    quest.selectMission == 10 ||
+                    quest.selectMission == 12 ||
+                    quest.selectMission == 16)
+                {
+                    party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.Black);
+                }
+                else
+                {
+                    party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.White);
+                }
+
+                if (quest.selectMission == 1 ||
+                   quest.selectMission == 2 ||
+                   quest.selectMission == 3 ||
+                   quest.selectMission == 6 ||
+                   quest.selectMission == 7 ||
+                   quest.selectMission == 11 ||
+                   quest.selectMission == 14 ||
+                   quest.selectMission == 15 ||
+                   quest.selectMission == 16)
+                {
+                    party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.Black);
+                }
+                else
+                {
+                    party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.White);
+                }
+
+                if (quest.selectMission == 2 ||
+                   quest.selectMission == 4 ||
+                   quest.selectMission == 6 ||
+                   quest.selectMission == 8 ||
+                   quest.selectMission == 9 ||
+                   quest.selectMission == 10 ||
+                   quest.selectMission == 13 ||
+                   quest.selectMission == 14)
+                {
+                    party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.Black);
+                }
+                else
+                {
+                    party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.White);
+                }
+
+                drawLevel();
+                drawOutlook();
+
+               newGameButton.IsEnabled = false;
+               isStart = true;
+
+            }
+        }
+
+        private void rec_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            zoomRec.Opacity = 1;
+            zoomRec.Fill = ((Rectangle)sender).Fill;
+            Canvas.SetZIndex(zoomRec, 1);
+        }
+
+        private void zoomRec_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            zoomRec.Opacity = 1;
+            zoomRec.Fill = null;
+            Canvas.SetZIndex(zoomRec, 1000);
         }
     }
 }

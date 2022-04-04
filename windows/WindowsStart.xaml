@@ -5,16 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
-        Title="WindowsStart" Height="450" Width="800">
-    <Grid>
-        <ComboBox x:Name="cbox_quest" HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Width="190">
-            <ComboBoxItem Content="Стартовая"/>
-            <ComboBoxItem Content="Квест 1"/>
-            <ComboBoxItem Content="Квест 2"/>
-            <ComboBoxItem Content="Квест 3"/>
-            <ComboBoxItem Content="Квест 4"/>
-        </ComboBox>
-        <Button x:Name="startButton" Content="Начать" Margin="716,404,23,0" VerticalAlignment="Top" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center"/>
+        Title="Новая игра" Height="633" Width="784" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF8E744D">
+
+        <Rectangle x:Name="zoom" HorizontalAlignment="Center" Height="474" VerticalAlignment="Center" Width="324" MouseRightButtonUp="zoom_MouseRightButtonUp"/>
+
+        <Button x:Name="startButton" Content="Начать" Margin="438,535,95,0" VerticalAlignment="Top" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center" IsEnabled="False" RenderTransformOrigin="-0.082,-0.749" Height="31" Click="startButton_Click"/>
+        <Grid Height="567" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="408">
+            <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Width="250" SelectionChanged="cbox_quest_SelectionChanged" Margin="10,10,0,0" Height="22" VerticalAlignment="Top">
+                <ComboBoxItem Content="Квест 1"/>
+                <ComboBoxItem Content="Квест 2"/>
+                <ComboBoxItem Content="Квест 3"/>
+                <ComboBoxItem Content="Квест 4"/>
+            </ComboBox>
+            <Rectangle x:Name="monster_1" Margin="271,35,18,362" RenderTransformOrigin="1.134,-0.078" RadiusX="4" RadiusY="4" MouseRightButtonDown="monster_MouseRightButtonDown">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr1_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock x:Name="tbox_legenda" Margin="10,37,148,0" TextWrapping="Wrap" Height="470" VerticalAlignment="Top"/>
+            <Rectangle x:Name="monster_2"  MouseRightButtonDown="monster_MouseRightButtonDown" Height="170" Margin="271,210,18,0" VerticalAlignment="Top" RenderTransformOrigin="1.134,-0.078" RadiusX="4.5" RadiusY="4.5">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr2_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="monster_3"  MouseRightButtonDown="monster_MouseRightButtonDown" Margin="271,387,18,10" RenderTransformOrigin="1.134,-0.078" RadiusX="5" RadiusY="5">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr3_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button x:Name="slectedQuestButton" Content="Выбрать квест" Margin="10,0,148,10" Height="35" VerticalAlignment="Bottom" Click="slectedQuestButton_Click"/>
+
+        </Grid>
+        <Grid Height="368" VerticalAlignment="Top" Margin="438,46,76,0">
+            <Rectangle x:Name="mission_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="mission_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" Margin="85,0,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="mission_3"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="172,0,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="user_mission_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="0,127,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonUp="user_mission_1_MouseLeftButtonUp">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="user_mission_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="85,127,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="user_mission_2_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="abbility_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="0,251,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_1_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="abbility_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="85,251,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_2_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+        </Grid>
+        <Button x:Name="selectUserMission" Content="Выбрать цель" HorizontalAlignment="Left" Margin="617,215,0,0" VerticalAlignment="Top" Width="88" IsEnabled="False" Click="selectUserMission_Click"/>
+        <Button x:Name="selectAbblity" Content="Выбрать&#xD;&#xA;способность" HorizontalAlignment="Left" Margin="617,333,0,0" VerticalAlignment="Top" Width="87" Height="39" FontStyle="Normal" IsEnabled="False" Click="selectAbblity_Click"/>
 
     </Grid>
 </Window>
