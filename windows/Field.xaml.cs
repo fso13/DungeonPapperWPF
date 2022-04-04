@@ -93,10 +93,7 @@ namespace DungeonPapperWPF
                     blueColor();
                     if (dto.trap)
                     {
-                        if (((MainWindow)Window.GetWindow(this)).party.cleric.level < 4)
-                        {
-                            ((MainWindow)Window.GetWindow(this)).damage(1);
-                        }
+                        ((MainWindow)Window.GetWindow(this)).damage(1);
                     }
                     if (dto.monster != null && !dto.monster.isDead)
                     {

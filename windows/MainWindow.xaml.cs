@@ -665,13 +665,14 @@ namespace DungeonPapperWPF
 
                     if (generateDices[i].number > 9)
                     {
-                        damage(1);
+                        if (party.cleric.level < 4)
+                        {
+                            damage(1);
+                        }
                         rectangle.IsEnabled = false;
                         rectangle.Stroke = brushRed;
                         rectangle.StrokeThickness = 4;
                     }
-
-
                 }
             }
         }
