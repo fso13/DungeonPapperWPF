@@ -19,7 +19,7 @@ namespace DungeonPapperWPF.code
 
         public BitmapImage getPath()
         {
-            return new BitmapImage(new Uri(@"Resources\dice_"+number+".png", UriKind.Relative));
+            return new BitmapImage(new Uri(@"Resources\dice_" + number+".png", UriKind.Relative));
         }
 
         public static Dice fromNumber(int number)

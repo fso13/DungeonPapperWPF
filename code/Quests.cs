@@ -8,9 +8,80 @@ namespace DungeonPapperWPF.code
 {
     public class Quests
     {
+        public static Boss STRAG = new BossBuilder().WithName("Страж")
+          .WithLevel(3)
+          .WithHeroClassType(HeroClassType.Wizard)
+            .WithPrey(new LevelUp(2))
+            .WithMinusXp(5)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(4)
+                .WithDamage(5)
+                .WithHeroLevel(18)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(6)
+                .WithDamage(4)
+                .WithHeroLevel(23)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(8)
+                .WithDamage(3)
+                .WithHeroLevel(28)
+                .Build())
+          .Build();
+
+        public static Boss VAMP = new BossBuilder().WithName("Вампирша")
+          .WithLevel(2)
+          .WithHeroClassType(HeroClassType.Cleric)
+            .WithPrey(new Xp(2))
+            .WithMinusXp(4)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(3)
+                .WithDamage(4)
+                .WithHeroLevel(14)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(5)
+                .WithDamage(3)
+                .WithHeroLevel(18)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(7)
+                .WithDamage(2)
+                .WithHeroLevel(22)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("F"), new Diamond("G") })
+          .Build();
+
+        public static Boss MINOTAVR = new BossBuilder().WithName("Минотавр")
+          .WithLevel(2)
+          .WithHeroClassType(HeroClassType.Warrior)
+            .WithPrey(new LevelUp())
+            .WithMinusXp(3)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(2)
+                .WithDamage(3)
+                .WithHeroLevel(9)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(4)
+                .WithDamage(2)
+                .WithHeroLevel(13)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(6)
+                .WithDamage(1)
+                .WithHeroLevel(17)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("A"), new Diamond("D") })
+          .Build();
+
         //минотавр, вампирша, страж
         static List<FieldDto> quest1 = new List<FieldDto>() {
-            new FieldDtoBuilder().Withx(4).Withy(2).WithDownBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(0).Withy(1).WithThree(STRAG).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(5).WithOne(MINOTAVR).Build(),
+
+            new FieldDtoBuilder().Withx(4).Withy(2).WithDownBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).WithTwo(VAMP).Build(),
             new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
 
             new FieldDtoBuilder().Withx(1).Withy(2).WithRightBarrier(Barrier.Black).Build(),
@@ -103,6 +174,19 @@ namespace DungeonPapperWPF.code
                 if (f.downBarrier != null)
                 {
                     dto.downBarrier = f.downBarrier;
+                }
+
+                if (f.one != null)
+                {
+                    dto.one = f.one;
+                }
+                if (f.two != null)
+                {
+                    dto.two = f.two;
+                }
+                if (f.three != null)
+                {
+                    dto.three = f.three;
                 }
 
             });

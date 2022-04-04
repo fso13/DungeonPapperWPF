@@ -21,6 +21,9 @@ namespace DungeonPapperWPF
 		private bool trap;
 		private Monster monster;
 		private Prey prey;
+		private Boss one;
+		private Boss two;
+		private Boss three;
 
 		/// <summary>
 		/// Create a new instance for the <see cref="FieldDtoBuilder">FieldDtoBuilder</see>
@@ -45,6 +48,9 @@ namespace DungeonPapperWPF
 			trap = default;
 			monster = default;
 			prey = default;
+			one = default;
+			two = default;
+			three = default;
 
 			return this;
 		}
@@ -149,6 +155,39 @@ namespace DungeonPapperWPF
 		}
 
 		/// <summary>
+		/// Set a value of type <typeparamref name="Boss"/> for the property <paramref name="one">one</paramref>
+		/// <summary>
+		/// <param name="one">A value of type <typeparamref name="Boss"/> will the defined for the property</param>
+		/// <returns>Returns the <see cref="FieldDtoBuilder">FieldDtoBuilder</see> with the property <paramref name="one">one</paramref> defined</returns>
+		public FieldDtoBuilder WithOne(Boss one)
+		{
+			this.one = one;
+			return this;
+		}
+
+		/// <summary>
+		/// Set a value of type <typeparamref name="Boss"/> for the property <paramref name="two">two</paramref>
+		/// <summary>
+		/// <param name="two">A value of type <typeparamref name="Boss"/> will the defined for the property</param>
+		/// <returns>Returns the <see cref="FieldDtoBuilder">FieldDtoBuilder</see> with the property <paramref name="two">two</paramref> defined</returns>
+		public FieldDtoBuilder WithTwo(Boss two)
+		{
+			this.two = two;
+			return this;
+		}
+
+		/// <summary>
+		/// Set a value of type <typeparamref name="Boss"/> for the property <paramref name="three">three</paramref>
+		/// <summary>
+		/// <param name="three">A value of type <typeparamref name="Boss"/> will the defined for the property</param>
+		/// <returns>Returns the <see cref="FieldDtoBuilder">FieldDtoBuilder</see> with the property <paramref name="three">three</paramref> defined</returns>
+		public FieldDtoBuilder WithThree(Boss three)
+		{
+			this.three = three;
+			return this;
+		}
+
+		/// <summary>
 		/// Build a class of type <see cref="FieldDto">FieldDto</see> with all the defined values
 		/// <summary>
 		/// <returns>Returns a <see cref="FieldDto">FieldDto</see> class</returns>
@@ -165,6 +204,9 @@ namespace DungeonPapperWPF
 				trap = trap,
 				monster = monster,
 				prey = prey,
+				one = one,
+				two = two,
+				three = three,
 			};
 		}
 	}
