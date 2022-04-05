@@ -24,6 +24,15 @@ namespace DungeonPapperWPF.code
         public List<Monster> deadMonsters = new List<Monster>();
         public int addDamageWithMonsters = 0;
         public int addDamageWithBosses = 0;
+        public bool isIgnoreTrap;//игнорировать урон от ловушек
+        public bool isIgnoreOneSkull;//игнорировать один череп на кубах
+        public bool isAddMoveFromRiver;//+1 к шагу за переход через реки
+        public bool isAddPotionFromDiamand;//получать зелья за алмазы
+        public bool isIgnoreDamageFromBoss;//игнор урона от боссов
+        public bool isAddMagicFrom5Level;//получать часть предмета за 5 уровень героя
+        public bool isAddPotionFromDeadn3Monster;//получать зелье за каждого третьего убитого монстра
+        public bool isAddMagicFromDeadn3Monster;//получать xfcnm ghtlvtnf за каждого третьего убитого монстра
+        public bool isAddPotionFromCreatePOtionByDice;//получать зелье за варку зелья по кубику
 
         public List<HeroClass> GetHeroes()
         {
@@ -55,6 +64,7 @@ namespace DungeonPapperWPF.code
         }
         public void addDiamond(Diamond diamond)
         {
+
             diamonds.Add(diamond);
         }
 

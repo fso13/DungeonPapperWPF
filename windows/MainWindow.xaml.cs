@@ -2,16 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static DungeonPapperWPF.code.Quests;
 
@@ -355,7 +350,10 @@ namespace DungeonPapperWPF
                 }
                 else
                 {
-                    deleteCurrentDic();
+                    if (!deadMonsterFromAbbility)
+                    {
+                        deleteCurrentDic();
+                    }
                 }
 
                 for (int i = 0; i < 6; i++)
@@ -367,13 +365,6 @@ namespace DungeonPapperWPF
                 }
             }
 
-        }
-
-
-        //генерация мировозрения героев - временно
-        private Outlook randomOutlook()
-        {
-            return (Outlook)valuesOutlook.GetValue(random.Next(10000) % valuesOutlook.Length);
         }
 
         //отрисовка мировозрени я в окне
@@ -502,6 +493,13 @@ namespace DungeonPapperWPF
                         {
                             party.addDamageWithBosses += 1;
                         }
+
+                        if(hero.level == 5 && party.isAddMagicFrom5Level)
+                        {
+                            MessageBox.Show("Ваш герой достиг 5 уровня, получите часть предмета");
+                            currentCountMagicPart++;
+                            highlightCreateMagic(null);
+                        }
                         addHp();
                         currentCountLevel--;
                     }
@@ -568,7 +566,7 @@ namespace DungeonPapperWPF
                 {
                     Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
 
-                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag).number < 10)
+                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag)!=null && ((Dice)rectangle.Tag).number < 10)
                     {
                         rectangle.IsEnabled = true;
                     }
@@ -652,6 +650,7 @@ namespace DungeonPapperWPF
 
                 List<Dice> dices = diceGenereted();
 
+                int damage = 0;
                 for (int i = 0; i < 6; i++)
                 {
                     Dice genereteDice = dices.ElementAt(i);
@@ -669,11 +668,26 @@ namespace DungeonPapperWPF
                     {
                         if (party.cleric.level < 4)
                         {
-                            damage(1);
+                            damage++;
                         }
                         rectangle.IsEnabled = false;
                         rectangle.Stroke = brushRed;
                         rectangle.StrokeThickness = 4;
+                    }
+                }
+
+                if (party.cleric.level < 4)
+                {
+                    if (party.isIgnoreOneSkull)
+                    {
+                        damage--;
+                    }
+                    if (damage > 0)
+                    {
+                        for (int i = 0; i < damage; i++)
+                        {
+                            this.damage(1);
+                        }
                     }
                 }
             }
@@ -749,6 +763,10 @@ namespace DungeonPapperWPF
 
             party.addDiamond(diamond);
 
+            if (party.isAddPotionFromDiamand)
+            {
+                addPotion(1);
+            }
             if (party.diamonds.Count() == 2 || party.diamonds.Count() == 10)
             {
                 currentCountMagicPart++;
@@ -918,8 +936,9 @@ namespace DungeonPapperWPF
 
         private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
         {
-            bool isNotDeleteDice = addPotion(2);
-            if(!isNotDeleteDice)
+            int count = party.isAddPotionFromCreatePOtionByDice ? 3 : 2;
+            bool isNotDeleteDice = addPotion(count);
+            if (!isNotDeleteDice)
             {
                 deleteCurrentDic();
             }
@@ -1027,7 +1046,7 @@ namespace DungeonPapperWPF
                                     }
                                 }
                             }
-                                
+
                         }
 
 
@@ -1092,6 +1111,11 @@ namespace DungeonPapperWPF
             monster.isDead = true;
             party.deadMonsters.Add(monster);
 
+            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster)
+            {
+                addPotion(1);
+            }
+
             ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
 
             if (currentCountDeadMonstersFotArtifact == 0)
@@ -1099,6 +1123,11 @@ namespace DungeonPapperWPF
                 {
                     highlightWhereToGo();
                 }
+            }
+
+            if(currentCountDeadMonstersFotArtifact == 0 && deadMonsterFromAbbility)
+            {
+                deadMonsterFromAbbility = false;
             }
         }
 
@@ -1132,7 +1161,13 @@ namespace DungeonPapperWPF
 
             monster.isDead = true;
             party.deadMonsters.Add(monster);
+
             ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
+
+            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster)
+            {
+                addPotion(1);
+            }
         }
 
         private void magic_Checked(object sender, RoutedEventArgs e)
@@ -1289,13 +1324,13 @@ namespace DungeonPapperWPF
                 //LevelUpButton.IsEnabled = true;
                 buttonDiceGenereted.IsEnabled = true;
 
-                if( quest.selectMission == 1 || 
-                    quest.selectMission == 5 || 
+                if (quest.selectMission == 1 ||
+                    quest.selectMission == 5 ||
                     quest.selectMission == 8 ||
                     quest.selectMission == 9 ||
                     quest.selectMission == 11 ||
                     quest.selectMission == 12 ||
-                    quest.selectMission == 13|| 
+                    quest.selectMission == 13 ||
                     quest.selectMission == 15)
                 {
                     party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.Black);
@@ -1356,9 +1391,79 @@ namespace DungeonPapperWPF
                 drawLevel();
                 drawOutlook();
 
-               newGameButton.IsEnabled = false;
-               isStart = true;
+               
 
+                addAbbilityActionAfterNewGame();
+
+                newGameButton.IsEnabled = false;
+                isStart = true;
+            }
+        }
+        public bool deadMonsterFromAbbility = false;
+        private void addAbbilityActionAfterNewGame()
+        {
+            if (quest.selectAbility == 1)
+            {
+                //закрасить две разных части разных предметов
+            }
+            else if (quest.selectAbility == 3)
+            {
+                addPotion(2);
+            }
+            else if (quest.selectAbility == 4)
+            {
+                party.isIgnoreTrap = true;
+            }
+            else if (quest.selectAbility == 5)
+            {
+                party.isIgnoreOneSkull = true;
+            }
+            else if (quest.selectAbility == 6)
+            {
+                //поднять уровень двум разным героям на 1
+            }
+            else if (quest.selectAbility == 7)
+            {
+                party.isAddMoveFromRiver = true;//todo
+            }
+            else if (quest.selectAbility == 8)
+            {
+                party.isAddPotionFromDiamand = true;//todo
+            }
+            else if (quest.selectAbility == 9)
+            {
+                deadMonsterFromAbbility = true;
+                currentCountDeadMonstersFotArtifact = 2;
+                hieghtingdeadMonsterFromArtifact();
+            }
+            else if (quest.selectAbility == 10)
+            {
+                party.isIgnoreDamageFromBoss = true;//todo
+            }
+            else if (quest.selectAbility == 11)
+            {
+                party.isAddMagicFrom5Level = true;
+            }
+            else if (quest.selectAbility == 12)
+            {
+                party.isAddPotionFromDeadn3Monster = true;
+            }
+            else if (quest.selectAbility == 13)
+            {
+                //украсть любой алмаз
+            }
+            else if (quest.selectAbility == 14)
+            {
+                party.isAddPotionFromCreatePOtionByDice = true;
+
+            }
+            else if (quest.selectAbility == 15)
+            {
+                party.addDamageWithBosses += 2;
+            }
+            else if (quest.selectAbility == 16)
+            {
+                party.isAddMagicFromDeadn3Monster = true;
             }
         }
 

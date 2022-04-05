@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="code\AbbilityUtil.cs" />
     <Compile Include="code\BossBuilder.cs">
       <IsBuilderFile>True</IsBuilderFile>
     </Compile>
@@ -93,6 +94,8 @@
     <Compile Include="code\FieldDtoBuilder.cs">
       <IsBuilderFile>True</IsBuilderFile>
     </Compile>
+    <Compile Include="code\Mission.cs" />
+    <Compile Include="code\UserMission.cs" />
     <Compile Include="windows\WindowsStart.xaml.cs">
       <DependentUpon>WindowsStart.xaml</DependentUpon>
     </Compile>

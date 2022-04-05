@@ -91,7 +91,9 @@ namespace DungeonPapperWPF
                 if (MainWindow.currentCountStep > 0)
                 {
                     blueColor();
-                    if (dto.trap)
+
+                    //todo как то определить откуда пришел, если через реку, то добавить +1 к движению
+                    if (dto.trap && !((MainWindow)Window.GetWindow(this)).party.isIgnoreTrap)
                     {
                         ((MainWindow)Window.GetWindow(this)).damage(1);
                     }
