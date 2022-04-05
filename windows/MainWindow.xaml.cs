@@ -1019,7 +1019,6 @@ namespace DungeonPapperWPF
                         }
 
 
-
                         for (int i = 5; i < 9; i++)
                         {
                             PartyMagic findMagic = null;

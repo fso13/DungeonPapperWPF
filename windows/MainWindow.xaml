@@ -44,7 +44,7 @@
         <Grid.RenderTransform>
             <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
         </Grid.RenderTransform>
-            
+
         <Rectangle x:Name="zoomRec" HorizontalAlignment="Left" Height="435" Margin="709,199,0,0" VerticalAlignment="Top" Width="310" RadiusX="8" RadiusY="8" MouseLeftButtonDown="zoomRec_MouseLeftButtonDown"/>
         <Grid HorizontalAlignment="Left" Width="144" Margin="73,20,0,0" Height="92" VerticalAlignment="Top">
             <Grid.RowDefinitions>
@@ -691,5 +691,20 @@
                 </Rectangle.Fill>
             </Rectangle>
         </Grid>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="226,478,0,0" VerticalAlignment="Top" Width="15" RenderTransformOrigin="0.511,0.479">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/LevelUp.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="226,524,0,0" VerticalAlignment="Top" Width="15">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/MagicThing.png" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="226,570,0,0" VerticalAlignment="Top" Width="15">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Diamond.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
     </Grid>
 </Window>
