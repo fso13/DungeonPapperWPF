@@ -646,7 +646,7 @@ namespace DungeonPapperWPF
                 buttonDiceGenereted.IsEnabled = false;
                 selectDiceButton.IsEnabled = true;
                 diceGrid.IsEnabled = true;
-                currentCountDice = 3;
+                currentCountDice = round == 3 ? 2 : 3;
 
                 List<Dice> dices = diceGenereted();
 
@@ -794,6 +794,11 @@ namespace DungeonPapperWPF
                 selectDicesIsCurrentRound.Add(currentDice);
 
                 this.Title = "Dungeon Paper Раудн: " + round + "Кубик номер: " + selectDicesIsCurrentRound.Count();
+
+                ImageBrush brush = new ImageBrush();
+                brush.ImageSource = currentDice.getPath();
+
+                ((Rectangle)this.FindName("dice_" + round + "_" + selectDicesIsCurrentRound.Count())).Fill = brush;
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -1047,7 +1052,11 @@ namespace DungeonPapperWPF
                                 }
                                 else
                                 {
-                                    ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+                                    if (findMagic == null)
+                                    {
+                                        ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+
+                                    }
                                 }
                             }
 

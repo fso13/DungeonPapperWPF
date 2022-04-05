@@ -202,8 +202,8 @@
             <CheckBox x:Name="hp_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
-        <Grid x:Name="gridFields" Margin="242,22,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450"/>
-        <Button x:Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="65" Margin="242,553,0,0" VerticalAlignment="Top" Width="88" Click="TwoMoveButton_Click" IsEnabled="False"/>
+        <Grid x:Name="gridFields" Margin="242,46,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450"/>
+        <Button x:Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="65" Margin="242,579,0,0" VerticalAlignment="Top" Width="88" Click="TwoMoveButton_Click" IsEnabled="False"/>
         <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="21,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click" Width="192"/>
         <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,10,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
             <Rectangle.Fill>
@@ -581,73 +581,73 @@
             <CheckBox x:Name="magic_8_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
         </Grid>
         <Button x:Name="ButtonCreateMagic" Content="Ковать предмет" HorizontalAlignment="Left" Margin="92,434,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.382" Width="114" IsEnabled="False" Click="ButtonCreateMagic_Click"/>
-        <Rectangle x:Name="Diamond_1" HorizontalAlignment="Left" Height="28" Margin="367,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_1" HorizontalAlignment="Left" Height="28" Margin="367,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (71).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_2" HorizontalAlignment="Left" Height="28" Margin="400,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_2" HorizontalAlignment="Left" Height="28" Margin="400,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (72).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_3" HorizontalAlignment="Left" Height="28" Margin="433,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_3" HorizontalAlignment="Left" Height="28" Margin="433,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (73).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_4" HorizontalAlignment="Left" Height="28" Margin="466,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_4" HorizontalAlignment="Left" Height="28" Margin="466,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (74).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_5" HorizontalAlignment="Left" Height="28" Margin="499,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_5" HorizontalAlignment="Left" Height="28" Margin="499,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (75).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_6" HorizontalAlignment="Left" Height="28" Margin="532,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_6" HorizontalAlignment="Left" Height="28" Margin="532,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (76).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_7" HorizontalAlignment="Left" Height="28" Margin="565,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_7" HorizontalAlignment="Left" Height="28" Margin="565,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (77).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_8" HorizontalAlignment="Left" Height="28" Margin="598,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_8" HorizontalAlignment="Left" Height="28" Margin="598,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (78).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_9" HorizontalAlignment="Left" Height="28" Margin="631,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_9" HorizontalAlignment="Left" Height="28" Margin="631,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (79).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Diamond_10" HorizontalAlignment="Left" Height="28" Margin="664,598,0,0" VerticalAlignment="Top" Width="28">
+        <Rectangle x:Name="Diamond_10" HorizontalAlignment="Left" Height="28" Margin="664,616,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (80).png" Opacity="0.33"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" Margin="362,553,0,0" VerticalAlignment="Top" Width="44">
+        <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" Margin="362,571,0,0" VerticalAlignment="Top" Width="44">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/image.psd (41).png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="410,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="450,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="430,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="468,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="508,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="488,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="526,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="564,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="544,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="584,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="622,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="602,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="410,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="450,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="430,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="468,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="508,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="488,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="526,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="564,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="544,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="584,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="622,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="602,587,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <Button x:Name="newGameButton" Content="Новая игра" Margin="709,22,0,0" VerticalAlignment="Top" Height="26" Click="newGameButton_Click" HorizontalAlignment="Left" Width="312"/>
         <Grid Margin="710,199,11,24">
             <Rectangle x:Name="boss_1_rec" HorizontalAlignment="Left" Height="140" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="8.5" RadiusY="8.5" MouseRightButtonDown="rec_MouseRightButtonDown">
@@ -704,6 +704,29 @@
         <Rectangle HorizontalAlignment="Left" Height="14" Margin="226,570,0,0" VerticalAlignment="Top" Width="15">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/Diamond.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="dice_1_1" HorizontalAlignment="Left" Height="28" Margin="245,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_1_2" HorizontalAlignment="Left" Height="28" Margin="278,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_1_3" HorizontalAlignment="Left" Height="28" Margin="311,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_1_1_Copy2" HorizontalAlignment="Left" Height="28" Margin="353,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_1.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="dice_2_1" HorizontalAlignment="Left" Height="28" Margin="419,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_2_2" HorizontalAlignment="Left" Height="28" Margin="452,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_2_3" HorizontalAlignment="Left" Height="28" Margin="485,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_1_1_Copy6" HorizontalAlignment="Left" Height="28" Margin="525,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_2.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="dice_3_1" HorizontalAlignment="Left" Height="28" Margin="584,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_3_2" HorizontalAlignment="Left" Height="28" Margin="617,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        <Rectangle x:Name="dice_1_1_Copy10" HorizontalAlignment="Left" Height="28" Margin="664,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_3.png"/>
             </Rectangle.Fill>
         </Rectangle>
     </Grid>
