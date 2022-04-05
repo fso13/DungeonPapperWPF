@@ -162,6 +162,7 @@ namespace DungeonPapperWPF
 
             quest.missions = new List<int> {m1,m2,m3 };
             selectUserMission.IsEnabled = true;
+            slectedQuestButton.IsEnabled = false;
         }
 
         public int randomInt(List<int> indexes)
@@ -171,18 +172,25 @@ namespace DungeonPapperWPF
 
         private void selectUserMission_Click(object sender, RoutedEventArgs e)
         {
-            user_mission_1.IsEnabled = false;
-            user_mission_2.IsEnabled = false;
-            selectUserMission.IsEnabled = false;
-            selectAbblity.IsEnabled = true;
+            if(quest.selectMission != 0)
+            {
+                user_mission_1.IsEnabled = false;
+                user_mission_2.IsEnabled = false;
+                selectUserMission.IsEnabled = false;
+                selectAbblity.IsEnabled = true;
+            }
+            
         }
 
         private void selectAbblity_Click(object sender, RoutedEventArgs e)
         {
-            abbility_1.IsEnabled = false;
-            abbility_1.IsEnabled = false;
-            selectAbblity.IsEnabled = false;
-            startButton.IsEnabled = true;
+            if (quest.selectAbility != 0)
+            {
+                abbility_1.IsEnabled = false;
+                abbility_1.IsEnabled = false;
+                selectAbblity.IsEnabled = false;
+                startButton.IsEnabled = true;
+            }
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
