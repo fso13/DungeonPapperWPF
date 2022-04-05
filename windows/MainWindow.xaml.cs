@@ -1005,11 +1005,17 @@ namespace DungeonPapperWPF
                                     }
                                 }
                             }
-
-                            if (findMagic == null)
+                            for (int i = 1; i < 5; i++)
                             {
-                                ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+                                if (dice.type == DiceType.Klever)
+                                {
+                                    if (magics.Find(m => m.number == i) == null)
+                                    {
+                                        ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                                    }
+                                }
                             }
+                                
                         }
 
 
