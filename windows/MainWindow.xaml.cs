@@ -1045,6 +1045,10 @@ namespace DungeonPapperWPF
                                         ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                                     }
                                 }
+                                else
+                                {
+                                    ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
+                                }
                             }
 
                         }
@@ -1424,11 +1428,11 @@ namespace DungeonPapperWPF
             }
             else if (quest.selectAbility == 7)
             {
-                party.isAddMoveFromRiver = true;//todo
+                party.isAddMoveFromRiver = true;
             }
             else if (quest.selectAbility == 8)
             {
-                party.isAddPotionFromDiamand = true;//todo
+                party.isAddPotionFromDiamand = true;
             }
             else if (quest.selectAbility == 9)
             {

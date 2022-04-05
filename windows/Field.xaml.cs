@@ -92,6 +92,49 @@ namespace DungeonPapperWPF
                 {
                     blueColor();
 
+                    if (((MainWindow)Window.GetWindow(this)).party.path.Count > 0)
+                    {
+                        Field last = ((MainWindow)Window.GetWindow(this)).party.path.Last();
+
+                        if (((MainWindow)Window.GetWindow(this)).party.isAddMoveFromRiver)
+                        {
+                            if (last.dto.x == this.dto.x)
+                            {
+                                if (last.dto.y > this.dto.y)
+                                {
+                                    if (last.dto.topBarrier == Barrier.River)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                                else
+                                {
+                                    if (last.dto.downBarrier == Barrier.River)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (last.dto.x > this.dto.x)
+                                {
+                                    if (last.dto.leftBarrier == Barrier.River)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                                else
+                                {
+                                    if (last.dto.rightBarrier == Barrier.River)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                     //todo как то определить откуда пришел, если через реку, то добавить +1 к движению
                     if (dto.trap && !((MainWindow)Window.GetWindow(this)).party.isIgnoreTrap)
                     {
