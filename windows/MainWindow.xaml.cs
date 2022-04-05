@@ -706,8 +706,9 @@ namespace DungeonPapperWPF
         }
 
 
-        public void addPotion(int count)
+        public bool addPotion(int count)
         {
+            bool isNotDeleteDice = false;
             for (int i = 1; i <= count; i++)
             {
                 if (i + party.potions.Count() < 13)
@@ -720,12 +721,15 @@ namespace DungeonPapperWPF
             {
                 MessageBox.Show("Вы сварили 4 зелья, за это вы получаете уровень");
                 levelUpFromMove();
+                isNotDeleteDice = true;
             }
             else if (party.potions.Count() < 8 && party.potions.Count() + count >= 8)
             {
                 MessageBox.Show("Вы сварили 8 зелий, за это вы получаете часть магического предмета");
                 currentCountMagicPart++;
                 highlightCreateMagic(null);
+                isNotDeleteDice = true;
+
             }
             else if (party.potions.Count() < 12 && party.potions.Count() + count >= 12)
             {
@@ -734,6 +738,8 @@ namespace DungeonPapperWPF
             }
 
             party.addPotion(count);
+
+            return isNotDeleteDice;
 
         }
 
@@ -912,8 +918,11 @@ namespace DungeonPapperWPF
 
         private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
         {
-            addPotion(2);
-            deleteCurrentDic();
+            bool isNotDeleteDice = addPotion(2);
+            if(!isNotDeleteDice)
+            {
+                deleteCurrentDic();
+            }
         }
 
         private void ButtonCreateMagic_Click(object sender, RoutedEventArgs e)
