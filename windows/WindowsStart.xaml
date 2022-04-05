@@ -25,7 +25,7 @@
                     <ImageBrush ImageSource="/Resources/monstr1_shirt.jpg"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="tbox_legenda" Margin="10,37,148,0" TextWrapping="Wrap" Height="470" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tbox_legenda" Margin="10,37,148,0" TextWrapping="Wrap" Height="470" VerticalAlignment="Top" Background="White"/>
             <Rectangle x:Name="monster_2"  MouseRightButtonDown="monster_MouseRightButtonDown" Height="170" Margin="271,210,18,0" VerticalAlignment="Top" RenderTransformOrigin="1.134,-0.078" RadiusX="4.5" RadiusY="4.5">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/monstr2_shirt.jpg"/>
