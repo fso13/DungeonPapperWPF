@@ -718,10 +718,13 @@ namespace DungeonPapperWPF
 
             if (party.potions.Count() < 4 && party.potions.Count() + count >= 4)
             {
+                MessageBox.Show("Вы сварили 4 зелья, за это вы получаете уровень");
                 levelUpFromMove();
             }
             else if (party.potions.Count() < 8 && party.potions.Count() + count >= 8)
             {
+                MessageBox.Show("Вы сварили 8 зелий, за это вы получаете часть магического предмета");
+                currentCountMagicPart++;
                 highlightCreateMagic(null);
             }
             else if (party.potions.Count() < 12 && party.potions.Count() + count >= 12)
