@@ -21,6 +21,8 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class WindowsStart : Window
     {
+        double zoomScale = 1.0;
+
         public Random random = new Random(DateTime.Now.Millisecond);
         public Quest quest = null;
         public WindowsStart()
@@ -222,6 +224,30 @@ namespace DungeonPapperWPF
 
             abbility_1.Stroke = null;
             quest.selectAbility = int.Parse(abbility_2.Tag as string);
+        }
+
+        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                if (zoomScale <= 1.9)
+                {
+                    zoomScale += 0.1;
+                }
+
+            }
+            else
+            {
+                if (zoomScale >= 1.1)
+                {
+                    zoomScale -= 0.1;
+                }
+
+
+            }
+
+            ScaleTransform.ScaleX = zoomScale;
+            ScaleTransform.ScaleY = zoomScale;
         }
     }
 }

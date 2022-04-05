@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
-        Title="Новая игра" Height="633" Width="784" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF8E744D">
+        Title="Новая игра" Height="633" Width="784" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="#FF8E744D" PreviewMouseWheel="Window_PreviewMouseWheel" MinWidth="784" MinHeight="633">
+    <Grid x:Name="contentGrid" Background="#FF8E744D">
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+        </Grid.RenderTransform>
+        <Rectangle x:Name="zoom" HorizontalAlignment="Left" Height="474" VerticalAlignment="Top" Width="324" MouseRightButtonUp="zoom_MouseRightButtonUp" Margin="230,70,0,0" RadiusX="12.162" RadiusY="12.162"/>
 
-        <Rectangle x:Name="zoom" HorizontalAlignment="Center" Height="474" VerticalAlignment="Center" Width="324" MouseRightButtonUp="zoom_MouseRightButtonUp"/>
-
-        <Button x:Name="startButton" Content="Начать" Margin="438,535,95,0" VerticalAlignment="Top" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center" IsEnabled="False" RenderTransformOrigin="-0.082,-0.749" Height="31" Click="startButton_Click"/>
+        <Button x:Name="startButton" Content="Начать" Margin="438,535,0,0" VerticalAlignment="Top" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center" IsEnabled="False" RenderTransformOrigin="-0.082,-0.749" Height="31" Click="startButton_Click" HorizontalAlignment="Left" Width="251"/>
         <Grid Height="567" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="408">
             <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Width="250" SelectionChanged="cbox_quest_SelectionChanged" Margin="10,10,0,0" Height="22" VerticalAlignment="Top">
                 <ComboBoxItem Content="Квест 1"/>
