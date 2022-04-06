@@ -407,7 +407,10 @@ namespace DungeonPapperWPF
                 }
                 else
                 {
-                    ((CheckBox)this.FindName("blood_" + (i + party.blood))).IsChecked = true;
+                    if(1 + party.blood <= 25)
+                    {
+                        ((CheckBox)this.FindName("blood_" + (1 + party.blood))).IsChecked = true;
+                    }
                 }
 
                 party.damage(1);
@@ -665,6 +668,7 @@ namespace DungeonPapperWPF
                     if(round == 8)
                     {
                         new TotalXP().ShowDialog();
+
                     }
                     buttonDiceGenereted.IsEnabled = true;
 
@@ -811,6 +815,7 @@ namespace DungeonPapperWPF
                 if (i + party.potions.Count() < 13)
                 {
                     ((CheckBox)this.FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
+
                 }
             }
 
@@ -834,34 +839,44 @@ namespace DungeonPapperWPF
                 addDiamond(new Diamond("За 12 зелий"));
             }
 
-            party.addPotion(count);
+            for (int i = 1; i <= count; i++)
+            {
+                if (1 + party.potions.Count() < 13)
+                {
+                    party.addPotion(1);
 
+                }
+            }
             return isNotDeleteDice;
 
         }
 
         public void addDiamond(Diamond diamond)
         {
-            ((Rectangle)this.FindName("Diamond_" + (party.diamonds.Count() + 1))).Fill.Opacity = 1;
 
-            party.addDiamond(diamond);
+            if (party.diamonds.Count() < 10)
+            {
+                ((Rectangle)this.FindName("Diamond_" + (party.diamonds.Count() + 1))).Fill.Opacity = 1;
 
-            if (party.isAddPotionFromDiamand)
-            {
-                addPotion(1);
-            }
-            if (party.diamonds.Count() == 2 || party.diamonds.Count() == 10)
-            {
-                currentCountMagicPart++;
-                highlightCreateMagic(null);
-            }
-            if (party.diamonds.Count() == 4 || party.diamonds.Count() == 8)
-            {
-                addPotion(1);
-            }
-            if (party.diamonds.Count() == 6)
-            {
-                levelUpFromMove();
+                party.addDiamond(diamond);
+
+                if (party.isAddPotionFromDiamand)
+                {
+                    addPotion(1);
+                }
+                if (party.diamonds.Count() == 2 || party.diamonds.Count() == 10)
+                {
+                    currentCountMagicPart++;
+                    highlightCreateMagic(null);
+                }
+                if (party.diamonds.Count() == 4 || party.diamonds.Count() == 8)
+                {
+                    addPotion(1);
+                }
+                if (party.diamonds.Count() == 6)
+                {
+                    levelUpFromMove();
+                }
             }
 
         }

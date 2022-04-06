@@ -1,5 +1,8 @@
 name: Build Web App
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: windows-latest
@@ -54,7 +57,7 @@ jobs:
         body: |
             Automated Release by GitHub Action CI
         draft: false
-        prerelease: true
+        prerelease: false
     - name: Upload Assets to Release
       id: upload-release-asset
       uses: actions/upload-release-asset@v1

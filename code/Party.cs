@@ -18,6 +18,8 @@ namespace DungeonPapperWPF.code
         public int xpBoss2 = 0;
         public int xpBoss3 = 0;
 
+        public bool isDeadPaty = false;
+
         public List<PartyPotion> potions = new List<PartyPotion>();
         public List<PartyMagic> magics = new List<PartyMagic>();
         public List<Diamond> diamonds = new List<Diamond>();
@@ -66,13 +68,25 @@ namespace DungeonPapperWPF.code
 
                 if (potion == null)
                 {
-                    blood += damage;
+                    if(blood + damage > 25)
+                    {
+                        blood   =25;
+                    }
+                    else
+                    {
+                        blood += damage;
+                    }
                 }
                 else
                 {
                     potion.freeCell--;
                     damage--;
                     this.damage(damage);
+                }
+
+                if (blood == hp)
+                {
+                    isDeadPaty = true;
                 }
             }
         }
