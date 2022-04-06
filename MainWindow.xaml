@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         x:Class="DungeonPapperWPF.MainWindow"
         mc:Ignorable="d"
-        Title="Dungeons Paper" Height="691" Width="1048" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" UseLayoutRounding="True" SizeToContent="Manual" Icon="/hero_pack.png" Margin="0,0,0,0" Padding="0,0,0,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+        Title="Dungeons Paper"  Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" ResizeMode="CanMinimize" UseLayoutRounding="False" SizeToContent="WidthAndHeight" Icon="/hero_pack.png" Margin="0,0,0,0"  ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -40,11 +40,7 @@
         <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
         <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
     </Window.Resources>
-    <Grid Background="#FF8E744D" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="678*"/>
-            <RowDefinition Height="13*"/>
-        </Grid.RowDefinitions>
+    <Grid Background="#FF8E744D">
         <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Margin="709,24,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbox_quest_SelectionChanged">
             <ComboBoxItem Content="Стартовая"/>
             <ComboBoxItem Content="Квест 1"/>
@@ -208,7 +204,7 @@
             <CheckBox x:Name="hp_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
-        <Grid x:Name="gridFields" HorizontalAlignment="Left" Width="450" Margin="242,21,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top"/>
+        <Grid x:Name="gridFields" Margin="242,22,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450"/>
         <Button Name="TwoMoveButton" Content="Два движения" HorizontalAlignment="Left" Height="65" Margin="242,553,0,0" VerticalAlignment="Top" Width="88" Click="TwoMoveButton_Click" IsEnabled="False"/>
         <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="21,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click" Width="192"/>
         <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,10,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
@@ -231,9 +227,9 @@
                 <ImageBrush ImageSource="/Plut.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="startButton" Content="Начать" HorizontalAlignment="Left" Margin="936,24,0,0" VerticalAlignment="Top" Width="69" Click="startButton_Click"/>
-        <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" HorizontalAlignment="Left" Margin="709,62,0,0" VerticalAlignment="Top" Width="296" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
-        <Grid x:Name="diceGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="296" Margin="709,101,0,0" IsEnabled="False">
+        <Button x:Name="startButton" Content="Начать" Margin="944,25,10,0" VerticalAlignment="Top" Click="startButton_Click" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center"/>
+        <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" Margin="709,62,10,0" VerticalAlignment="Top" IsEnabled="False" Click="buttonDiceGenereted_Click"/>
+        <Grid x:Name="diceGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="296" Margin="709,101,10,0" IsEnabled="False">
             <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="#FF524127"/>
             <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="50,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
             <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="100,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
@@ -243,7 +239,7 @@
         </Grid>
         <Label Content="Жизни" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
         <Label Content="Урон" HorizontalAlignment="Left" Margin="47,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
-        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="58,150,0,0">
+        <Grid Height="476" VerticalAlignment="Top" Margin="58,150,0,0" HorizontalAlignment="Left" Width="16">
             <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -269,7 +265,7 @@
             <CheckBox x:Name="blood_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
-        <Button x:Name="selectDiceButton" Content="Выбрать кубик" HorizontalAlignment="Left" Margin="709,166,0,0" VerticalAlignment="Top" Width="296" Click="selectDiceButton_Click" IsEnabled="False"/>
+        <Button x:Name="selectDiceButton" Content="Выбрать кубик" Margin="709,166,10,0" VerticalAlignment="Top" Click="selectDiceButton_Click" IsEnabled="False"/>
         <Grid HorizontalAlignment="Left" Height="46" Margin="92,466,0,0" VerticalAlignment="Top" Width="32">
             <CheckBox x:Name="potion_1_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="potion_1_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -394,7 +390,7 @@
             </Rectangle>
             <CheckBox x:Name="potion_12" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
         </Grid>
-        <Button x:Name="ButtonCreatePotion" Content="Сварить зелье" HorizontalAlignment="Left" Height="25" Margin="92,606,0,0" VerticalAlignment="Top" Width="134" Click="ButtonCreatePotion_Click" IsEnabled="False"/>
+        <Button x:Name="ButtonCreatePotion" Content="Сварить зелье" HorizontalAlignment="Left" Margin="92,606,0,10" Width="134" Click="ButtonCreatePotion_Click" IsEnabled="False"/>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Margin="92,151,0,0">
             <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
                 <Rectangle.Fill>
@@ -644,16 +640,16 @@
             </Rectangle.Fill>
         </Rectangle>
         <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="410,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="450,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="430,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="450,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="430,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="468,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="508,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="488,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="508,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="488,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="526,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="564,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="544,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="564,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="544,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="584,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="622,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="602,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="622,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="602,569,0,0" VerticalAlignment="Top" IsEnabled="False"/>
     </Grid>
 </Window>

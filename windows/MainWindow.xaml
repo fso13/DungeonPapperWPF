@@ -1,0 +1,940 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DungeonPapperWPF"
+        WindowStartupLocation="CenterScreen"
+        x:Class="DungeonPapperWPF.MainWindow"
+        mc:Ignorable="d"
+        Title="Dungeons Paper"  Loaded="Window_Loaded" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize" UseLayoutRounding="False" SizeToContent="WidthAndHeight" Margin="0,0,0,0"  ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="1031" Height="765" WindowState="Maximized" MinWidth="1031" MinHeight="669" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" PreviewMouseWheel="Window_PreviewMouseWheel" Background="#FF8E744D">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="14,0,0,0" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+    </Window.Resources>
+    <Grid x:Name="contentGrid" Background="#FF8E744D" HorizontalAlignment="Left" Width="1031" Height="723" VerticalAlignment="Top">
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+        </Grid.RenderTransform>
+
+        <Rectangle x:Name="zoomRec" HorizontalAlignment="Left" Height="435" Margin="709,199,0,0" VerticalAlignment="Top" Width="310" RadiusX="8" RadiusY="8" MouseLeftButtonDown="zoomRec_MouseLeftButtonDown"/>
+        <Grid x:Name="уровни" HorizontalAlignment="Left" Width="144" Margin="73,20,0,0" Height="92" VerticalAlignment="Top" Background="#FF675438">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="cbox_warriorLevel1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="16" Height="16" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorLevel2" Content="" Margin="21,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2" HorizontalAlignment="Left" Width="20">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorLevel3" Content="" HorizontalAlignment="Left" Margin="41,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorLevel4" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2" Margin="61,0,0,0">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorLevel5" Content="" HorizontalAlignment="Left" Margin="102,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorLevel6" Content="" HorizontalAlignment="Left" Margin="124,0,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.RowSpan="2">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel1" Content="" HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel2" Content="" HorizontalAlignment="Left" Margin="21,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel3" Content="" HorizontalAlignment="Left" Margin="41,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel4" Content="" HorizontalAlignment="Left" Margin="61,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel5" Content="" HorizontalAlignment="Left" Margin="102,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_wizardLevel6" Content="" HorizontalAlignment="Left" Margin="124,14,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel1" Content="" HorizontalAlignment="Left" Margin="0,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel2" Content="" HorizontalAlignment="Left" Margin="21,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel3" Content="" HorizontalAlignment="Left" Margin="41,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel4" Content="" HorizontalAlignment="Left" Margin="61,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel5" Content="" HorizontalAlignment="Left" Margin="102,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_clericLevel6" Content="" HorizontalAlignment="Left" Margin="124,37,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel1" Content="" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel2" Content="" HorizontalAlignment="Left" Margin="21,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel3" Content="" HorizontalAlignment="Left" Margin="41,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel4" Content="" HorizontalAlignment="Left" Margin="61,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.651,0.533" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel5" Content="" HorizontalAlignment="Left" Margin="102,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_plutLevel6" Content="" HorizontalAlignment="Left" Margin="124,62,0,0" VerticalAlignment="Top" Foreground="{x:Null}" IsEnabled="False" Checked="cbox_Level_Checked" Grid.Row="1">
+                <CheckBox.Background>
+                    <SolidColorBrush Color="#FF00FF10" Opacity="0.645"/>
+                </CheckBox.Background>
+            </CheckBox>
+            <CheckBox x:Name="cbox_warriorBlackWhite" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="16" Margin="-28,0,0,0" FontStretch="Normal" FontWeight="Normal" ClickMode="Hover" Grid.RowSpan="2" UseLayoutRounding="False" IsEnabled="False"/>
+            <CheckBox x:Name="cbox_wizardBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,14,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
+            <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,37,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
+            <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,62,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
+        </Grid>
+        <Grid x:Name="жизни" HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="9,172,0,0" Background="#FF675438">
+            <CheckBox x:Name="hp_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_21" Content="" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_20" Content="" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_19" Content="" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_18" Content="" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_17" Content="" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_16" Content="" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_15" Content="" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_14" Content="" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_13" Content="" HorizontalAlignment="Left" Margin="0,220,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_12" Content="" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_11" Content="" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_10" Content="" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_9" Content="" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_8" Content="" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_7" Content="" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_6" Content="" HorizontalAlignment="Left" Margin="0,360,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_5" Content="" HorizontalAlignment="Left" Margin="0,380,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_4" Content="" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_3" Content="" HorizontalAlignment="Left" Margin="0,420,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="hp_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+        </Grid>
+        <Grid x:Name="gridFields" Margin="242,110,0,0" Background="#FFE4DCDC" Height="525" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450"/>
+        <Button x:Name="TwoMoveButton" Content="Два&#xD;&#xA;движения" HorizontalAlignment="Left" Height="47" Margin="242,643,0,0" VerticalAlignment="Top" Width="69" Click="TwoMoveButton_Click" IsEnabled="False"/>
+        <Button x:Name="LevelUpButton" Content="Повысить уровень" HorizontalAlignment="Left" Margin="21,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.168,-0.115" IsEnabled="False" Click="LevelUpButton_Click" Width="197"/>
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,10,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25" RenderTransformOrigin="-0.64,0.582">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Warrior.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="26" Margin="21,34,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Wizard.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,59,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Cleric.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="25" Margin="21,83,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="25">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Plut.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="buttonDiceGenereted" Content="Бросить кубики" Margin="709,62,0,0" VerticalAlignment="Top" IsEnabled="False" Click="buttonDiceGenereted_Click" HorizontalAlignment="Left" Width="312"/>
+        <Grid x:Name="diceGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="296" Margin="716,100,0,0" IsEnabled="False">
+            <Rectangle x:Name="dice1_pic" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp" Fill="White" Stroke="#FF524127"/>
+            <Rectangle x:Name="dice2_pic" HorizontalAlignment="Left" Height="45" Margin="50,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice3_pic" HorizontalAlignment="Left" Height="45" Margin="100,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice4_pic" HorizontalAlignment="Left" Height="45" Margin="150,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice5_pic" HorizontalAlignment="Left" Height="45" Margin="200,0,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="45" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+            <Rectangle x:Name="dice6_pic" HorizontalAlignment="Left" Height="45" Margin="250,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="46" Fill="White" MouseLeftButtonUp="dice_pic_MouseLeftButtonUp"/>
+        </Grid>
+        <Label Content="Жизни" HorizontalAlignment="Left" Margin="-5,150,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Label Content="Урон" HorizontalAlignment="Left" Margin="42,150,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
+        <Grid x:Name="урон" Height="472" VerticalAlignment="Top" Margin="42,172,0,0" HorizontalAlignment="Left" Width="44" Background="#FF675438">
+            <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_21" Content="" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_20" Content="" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_19" Content="" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_18" Content="" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_17" Content="" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_16" Content="" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_15" Content="" HorizontalAlignment="Left" Margin="0,180,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_14" Content="" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_13" Content="" HorizontalAlignment="Left" Margin="0,220,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_12" Content="" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_11" Content="" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_10" Content="" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_9" Content="" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_8" Content="" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_7" Content="" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_6" Content="" HorizontalAlignment="Left" Margin="0,360,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_5" Content="" HorizontalAlignment="Left" Margin="0,380,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_4" Content="" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_3" Content="" HorizontalAlignment="Left" Margin="0,420,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_2" Content="" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <CheckBox x:Name="blood_1" Content="" HorizontalAlignment="Left" Margin="0,460,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            <Rectangle HorizontalAlignment="Left" Margin="15,-5,0,449" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (67).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,55,0,389" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (66).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,114,0,330" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (65).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,175,0,269" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (64).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,233,0,211" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (63).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,293,0,151" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (62).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,354,0,90" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (61).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Margin="15,414,0,30" Width="28" Height="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (60).png" Stretch="Fill" TileMode="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Button x:Name="selectDiceButton" Content="Выбрать кубик" Margin="709,166,0,0" VerticalAlignment="Top" Click="selectDiceButton_Click" IsEnabled="False" HorizontalAlignment="Left" Width="312"/>
+        <Grid x:Name="варка_зелий" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="151" Margin="88,491,0,0">
+            <Grid HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_1_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_1_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="34,0,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_2_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_2_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_2" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="68,0,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_3_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_3_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_3" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="102,0,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_4_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_4_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_4" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="0,46,0,0" VerticalAlignment="Top" Width="32">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="potion_5_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_5_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16" Grid.ColumnSpan="2"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22" Grid.ColumnSpan="2">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_5" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="34,46,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_6_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_6_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_6" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="68,46,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_7_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_7_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_7" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="102,46,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_8_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_8_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_8" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="0,92,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_9_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_9_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_9" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="34,92,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_10_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_10_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_10" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="68,92,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_11_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_11_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_11" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="46" Margin="102,92,0,0" VerticalAlignment="Top" Width="32">
+                <CheckBox x:Name="potion_12_1" Content="" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <CheckBox x:Name="potion_12_2" Content="" HorizontalAlignment="Left" Margin="16,29,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+                <Rectangle Height="21" Stroke="#FF524127" VerticalAlignment="Top" Margin="10,8,0,0" Width="22">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/potion.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="potion_12" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
+            </Grid>
+            <Button x:Name="ButtonCreatePotion" Content="Сварить зелье" HorizontalAlignment="Center" Margin="0,140,0,0" Width="134" Click="ButtonCreatePotion_Click" IsEnabled="False" Height="28" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="ковка" HorizontalAlignment="Left" Height="303" VerticalAlignment="Top" Margin="99,171,0,0">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (48).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (88).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_1_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_1_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/Warrior.png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="20" Margin="53,-153,0,0" VerticalAlignment="Top" Width="20">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (2).png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="20" Margin="54,-126,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.25,-0.173">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (3).png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="20" Margin="54,-104,0,0" VerticalAlignment="Top" Width="20">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (4).png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="20" Margin="53,-79,0,0" VerticalAlignment="Top" Width="20">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/Diamond.png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,35,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (52).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (87).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_2_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_2_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/Wizard.png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,70,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (53).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (86).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_3_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_3_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/Cleric.png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,105,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (54).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (85).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_4_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_4_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/Plut.png" Stretch="Fill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,140,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (55).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (84).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_5_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_5_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,175,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (56).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (83).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_6_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_6_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,210,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (57).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (82).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_7_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_7_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="0,245,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="35" Stroke="#FF524127" VerticalAlignment="Top" Width="35">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (58).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="97,0,0,0" Stroke="#FF524127" VerticalAlignment="Center" Width="34">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (81).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" Height="30" Margin="36,2,0,0" Stroke="#FF524127" VerticalAlignment="Top" Width="30">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (89).png" Stretch="None"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <CheckBox x:Name="magic_8_1" Content="" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.088,0.516" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <CheckBox x:Name="magic_8_2" Content="" HorizontalAlignment="Left" Margin="65,19,0,0" VerticalAlignment="Top" IsEnabled="False" Background="#FF14E622" Checked="magic_Checked"/>
+                <Rectangle HorizontalAlignment="Left" Height="33" Margin="75,0,0,0" VerticalAlignment="Center" Width="27">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Resources/image.psd (69).png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Button x:Name="ButtonCreateMagic" Content="Ковать предмет" HorizontalAlignment="Left" Margin="0,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.382" Width="114" IsEnabled="False" Click="ButtonCreateMagic_Click"/>
+        </Grid>
+        <Grid x:Name="алмазы" HorizontalAlignment="Left" VerticalAlignment="Top" Width="325" Margin="367,685,0,0">
+            <Rectangle x:Name="Diamond_1" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (71).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_2" HorizontalAlignment="Left" Height="28" Margin="33,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (72).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_3" HorizontalAlignment="Left" Height="28" Margin="66,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (73).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_4" HorizontalAlignment="Left" Height="28" Margin="99,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (74).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_5" HorizontalAlignment="Left" Height="28" Margin="132,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (75).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_6" HorizontalAlignment="Left" Height="28" Margin="165,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (76).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_7" HorizontalAlignment="Left" Height="28" Margin="198,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (77).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_8" HorizontalAlignment="Left" Height="28" Margin="231,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (78).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_9" HorizontalAlignment="Left" Height="28" Margin="264,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (79).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Diamond_10" HorizontalAlignment="Left" Height="28" Margin="297,0,0,0" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (80).png" Opacity="0.33"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Grid x:Name="убитые_монстры" HorizontalAlignment="Left" VerticalAlignment="Top" Width="357" Margin="335,635,0,0">
+            <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="44" Margin="-16,0,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (41).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="39,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="91,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="64,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="118,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="172,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="144,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="199,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="254,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="227,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="281,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="332,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="307,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="31,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="56,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (91).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="83,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (92).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="110,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (93).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="136,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (94).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="164,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (95).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="192,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (96).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="220,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (97).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="247,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (98).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="274,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (99).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="300,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (100).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="324,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (101).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Button x:Name="newGameButton" Content="Новая игра" Margin="709,22,0,0" VerticalAlignment="Top" Height="26" Click="newGameButton_Click" HorizontalAlignment="Left" Width="312"/>
+        <Grid x:Name="карты_квеста" Margin="710,199,11,24">
+            <Rectangle x:Name="boss_1_rec" HorizontalAlignment="Left" Height="140" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="8.5" RadiusY="8.5" MouseRightButtonDown="rec_MouseRightButtonDown">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr1_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="boss_2_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" HorizontalAlignment="Left" Height="140" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="7" RadiusY="7" Margin="105,0,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr2_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="boss_3_rec" MouseRightButtonDown="rec_MouseRightButtonDown"  HorizontalAlignment="Left" Height="140" Margin="210,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="8.5" RadiusY="8.5">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/monstr3_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="abbility_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" HorizontalAlignment="Left" Height="140" Margin="50,290,0,0" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="6.5" RadiusY="6.5">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="userMission_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" HorizontalAlignment="Left" Height="140" Margin="156,290,0,0" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="6" RadiusY="6">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="mission_1_rec" MouseRightButtonDown="rec_MouseRightButtonDown"  HorizontalAlignment="Left" Height="140" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="8.54" RadiusY="8.54" Margin="0,145,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="mission_2_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" Height="140" Stroke="Black" VerticalAlignment="Top" RadiusX="8.04" RadiusY="8.04" Margin="106,145,0,0" HorizontalAlignment="Left" Width="100">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="mission_3_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" HorizontalAlignment="Left" Height="140" Margin="210,145,0,0" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="9" RadiusY="9">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="222,508,0,0" VerticalAlignment="Top" Width="15" RenderTransformOrigin="0.511,0.479">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/LevelUp.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="222,554,0,0" VerticalAlignment="Top" Width="16">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/MagicThing.png" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="192,104,0,0" VerticalAlignment="Top" Width="28" RadiusX="0" RadiusY="0">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (97).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="14" Margin="223,599,0,0" VerticalAlignment="Top" Width="15">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Diamond.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid x:Name="дайсы_раундов" HorizontalAlignment="Left" Height="96" VerticalAlignment="Top" Width="445" Margin="245,9,0,0">
+            <Rectangle x:Name="dice_1_1" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_1_2" HorizontalAlignment="Left" Height="28" Margin="33,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_1_3" HorizontalAlignment="Left" Height="28" Margin="66,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_1_1_Copy2" HorizontalAlignment="Left" Height="28" Margin="417,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/boss_1.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="dice_4_1" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_4_2" HorizontalAlignment="Left" Height="28" Margin="33,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_4_3" HorizontalAlignment="Left" Height="28" Margin="66,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_1_1_Copy6" HorizontalAlignment="Left" Height="28" Margin="417,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/boss_2.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="dice_7_1" HorizontalAlignment="Left" Height="28" Margin="0,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_7_2" HorizontalAlignment="Left" Height="28" Margin="33,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_1_1_Copy10" HorizontalAlignment="Left" Height="28" Margin="417,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/boss_3.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="dice_2_1" HorizontalAlignment="Left" Height="28" Margin="138,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_2_2" HorizontalAlignment="Left" Height="28" Margin="171,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_2_3" HorizontalAlignment="Left" Height="28" Margin="204,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_1" HorizontalAlignment="Left" Height="28" Margin="278,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_2" HorizontalAlignment="Left" Height="28" Margin="311,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_3" HorizontalAlignment="Left" Height="28" Margin="344,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_5_1" HorizontalAlignment="Left" Height="28" Margin="138,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_5_2" HorizontalAlignment="Left" Height="28" Margin="171,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_5_3" HorizontalAlignment="Left" Height="28" Margin="204,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_1" HorizontalAlignment="Left" Height="28" Margin="278,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_2" HorizontalAlignment="Left" Height="28" Margin="311,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_3" HorizontalAlignment="Left" Height="28" Margin="344,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_7_3" HorizontalAlignment="Left" Height="28" Margin="66,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_1" HorizontalAlignment="Left" Height="28" Margin="138,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_2" HorizontalAlignment="Left" Height="28" Margin="171,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_3" HorizontalAlignment="Left" Height="28" Margin="204,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+        </Grid>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="128,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (94).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="107,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (93).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="87,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (91).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="210,87,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="210,64,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="211,39,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="211,14,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png" Stretch="Fill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="20" Margin="173,112,0,0" VerticalAlignment="Top" Width="20"/>
+    </Grid>
+</Window>

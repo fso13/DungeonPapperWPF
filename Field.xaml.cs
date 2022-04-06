@@ -98,7 +98,7 @@ namespace DungeonPapperWPF
                             ((MainWindow)Window.GetWindow(this)).damage(1);
                         }
                     }
-                    if (dto.monster != null)
+                    if (dto.monster != null && !dto.monster.isDead)
                     {
                         ((MainWindow)Window.GetWindow(this)).deadMonster(dto.monster);
                         monsterFieldAction.Fill = opacityMaskKrestBrush;
@@ -145,7 +145,17 @@ namespace DungeonPapperWPF
                     ((MainWindow)Window.GetWindow(this)).highlightWhereToGo();
                 }
 
+            }else if(this.grid.Opacity > 0 && (this.grid.Background == brushRed))
+            {
+                ((MainWindow)Window.GetWindow(this)).deadMonsterFromArtifact(dto.monster);
+                monsterFieldAction.Fill = opacityMaskKrestBrush;
+                monsterField.Opacity = 1;
             }
+        }
+
+        private void monsterFieldAction_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(this.dto.monster.monsterType.ToString());
         }
     }
 }

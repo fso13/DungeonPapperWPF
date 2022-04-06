@@ -19,7 +19,7 @@ namespace DungeonPapperWPF
 
         public Uri getPath()
         {
-            return new Uri(@"Resources\Potion_"+count+".png", UriKind.Relative);
+            return new Uri(@"Resources\Potion_" + count+".png", UriKind.Relative);
         }
     }
 
@@ -45,8 +45,35 @@ namespace DungeonPapperWPF
             return new Uri(@"Resources\MagicThing.png", UriKind.Relative);
         }
     }
+
+    public class Xp : Prey
+    {
+        public Xp(int count)
+        {
+            this.count = count;
+        }
+
+        public int count { get; set; }
+
+        public Uri getPath()
+        {
+            return null;
+        }
+    }
+
     public class LevelUp : Prey
     {
+        public LevelUp()
+        {
+            this.count = 1;
+        }
+
+        public LevelUp(int count)
+        {
+            this.count = count;
+        }
+
+        public int count { get; set; } = 1;
         public Uri getPath()
         {
             return new Uri(@"Resources\LevelUp.png", UriKind.Relative);

@@ -11,6 +11,8 @@ namespace DungeonPapperWPF
             this.heroClass = heroClass;
         }
 
+        public bool isDead { get; set; }
+
         public MonsterType monsterType { get; set; }
         public HeroClass heroClass { get; set; }
 
@@ -24,6 +26,7 @@ namespace DungeonPapperWPF
             return heroClass.getPath();
 
         }
+
     }
 
     public enum MonsterType
