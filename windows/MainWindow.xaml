@@ -849,6 +849,11 @@
                 <ImageBrush ImageSource="/Resources/MagicThing.png" Stretch="UniformToFill"/>
             </Rectangle.Fill>
         </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="192,104,0,0" VerticalAlignment="Top" Width="28" RadiusX="0" RadiusY="0">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (97).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <Rectangle HorizontalAlignment="Left" Height="14" Margin="223,599,0,0" VerticalAlignment="Top" Width="15">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Resources/Diamond.png"/>
@@ -895,5 +900,41 @@
             <Rectangle x:Name="dice_8_2" HorizontalAlignment="Left" Height="28" Margin="171,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
             <Rectangle x:Name="dice_8_3" HorizontalAlignment="Left" Height="28" Margin="204,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
         </Grid>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="128,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (94).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="107,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (93).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="87,104,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (91).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="210,87,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="210,64,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="211,39,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="28" Margin="211,14,0,0" VerticalAlignment="Top" Width="28">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (90).png" Stretch="Fill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="20" Margin="173,112,0,0" VerticalAlignment="Top" Width="20"/>
     </Grid>
 </Window>
