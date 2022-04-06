@@ -27,12 +27,15 @@ namespace DungeonPapperWPF
             boss.isDead = true;
             MainWindow.party.bosses.Add(boss);
 
+            this.Close();
+
         }
 
         private void btn_fail_Click(object sender, RoutedEventArgs e)
         {
             boss.isDead = false;
             MainWindow.party.bosses.Add(boss);
+            this.Close();
         }
 
         private void btn_fign_Click(object sender, RoutedEventArgs e)
