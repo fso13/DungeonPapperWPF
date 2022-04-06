@@ -5,9 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF.windows"
         mc:Ignorable="d"
-        Title="TotalXP" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="TotalXP" Height="450" Width="636" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="total_xp" Content="000" HorizontalAlignment="Left" Height="113" Margin="114,92,0,0" VerticalAlignment="Top" Width="135" IsEnabled="False" FontSize="72"/>
+        <Label x:Name="total_xp" Content="000" HorizontalAlignment="Left" Height="113" Margin="233,255,0,0" VerticalAlignment="Top" Width="135" IsEnabled="False" FontSize="72"/>
+        <Label x:Name="label_1" Content="000" HorizontalAlignment="Left" Height="46" Margin="23,150,0,0" VerticalAlignment="Top" Width="51" IsEnabled="False" FontSize="36"/>
+        <Label x:Name="label_2" Content="000" HorizontalAlignment="Left" Height="46" Margin="74,150,0,0" VerticalAlignment="Top" Width="52" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_3" Content="000" HorizontalAlignment="Left" Height="46" Margin="126,150,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_4" Content="000" HorizontalAlignment="Left" Height="46" Margin="182,150,0,0" VerticalAlignment="Top" Width="51" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_5" Content="000" HorizontalAlignment="Left" Height="46" Margin="233,150,0,0" VerticalAlignment="Top" Width="52" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_6" Content="000" HorizontalAlignment="Left" Height="46" Margin="285,150,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_7" Content="000" HorizontalAlignment="Left" Height="46" Margin="341,150,0,0" VerticalAlignment="Top" Width="51" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_8" Content="000" HorizontalAlignment="Left" Height="46" Margin="392,150,0,0" VerticalAlignment="Top" Width="52" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_9" Content="000" HorizontalAlignment="Left" Height="46" Margin="444,150,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_10" Content="000" HorizontalAlignment="Left" Height="46" Margin="499,150,0,0" VerticalAlignment="Top" Width="52" IsEnabled="False" FontSize="24"/>
+        <Label x:Name="label_11" Content="000" HorizontalAlignment="Left" Height="46" Margin="551,150,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False" FontSize="24"/>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="21,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_1.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="74,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_2.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="127,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/boss_3.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="180,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/LevelUp.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="233,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/MagicThing.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="286,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/Diamond.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="339,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (41).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="392,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (42).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="446,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (43).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="499,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="53">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (44).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="552,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="52">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (45).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
     </Grid>
 </Window>

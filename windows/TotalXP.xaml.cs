@@ -64,6 +64,26 @@ namespace DungeonPapperWPF.windows
             }
 
             int xp_magic = 0;
+            MainWindow.party.magics.ForEach(mag =>
+            {
+                xp_magic += mag.countPart;
+
+                if (mag.countPart == 2)
+                {
+                    switch (mag.number)
+                    {
+                        case 2:
+                            xp_magic += -1; break;
+                        case 3:
+                            xp_magic += 1; break;
+                        case 5: xp_magic += 4; break;
+                        case 7: xp_magic += 2; break;
+                        case 8: xp_magic += 3; break;
+                        default: break;
+                    }
+                }
+            });
+
             int xp_diamond = 0;
 
             switch (MainWindow.party.diamonds.Count())
@@ -134,11 +154,22 @@ namespace DungeonPapperWPF.windows
                 xp_blood = -25;
             }
 
-            int xp_dead = 0;
+            int xp_dead = MainWindow.party.isDeadPaty ? -9 : 0;
 
             int xp_user_mission = 0;
             int xp_mission = 0;
 
+            label_1.Content = xp_boss1;
+            label_2.Content = xp_boss2;
+            label_3.Content = xp_boss3;
+            label_4.Content = xp_level;
+            label_5.Content = xp_magic;
+            label_6.Content = xp_diamond;
+            label_7.Content = xp_monsters;
+            label_8.Content = xp_blood;
+            label_9.Content = xp_dead;
+            label_10.Content = xp_user_mission;
+            label_11.Content = xp_mission;
 
             total_xp.Content = xp_boss1+ xp_boss2 + xp_boss3 + xp_level+ xp_magic + xp_diamond+ xp_monsters+ xp_blood+ xp_dead+ xp_user_mission+ xp_mission;
 
