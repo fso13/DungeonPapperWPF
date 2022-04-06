@@ -83,7 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BossFightWindows.xaml.cs">
+    <Compile Include="windows\BossFightWindows.xaml.cs">
       <DependentUpon>BossFightWindows.xaml</DependentUpon>
     </Compile>
     <Compile Include="code\AbbilityUtil.cs" />
@@ -99,10 +99,13 @@
     </Compile>
     <Compile Include="code\Mission.cs" />
     <Compile Include="code\UserMission.cs" />
+    <Compile Include="windows\TotalXP.xaml.cs">
+      <DependentUpon>TotalXP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\WindowsStart.xaml.cs">
       <DependentUpon>WindowsStart.xaml</DependentUpon>
     </Compile>
-    <Page Include="BossFightWindows.xaml">
+    <Page Include="windows\BossFightWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +140,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="windows\TotalXP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\WindowsStart.xaml">
       <SubType>Designer</SubType>

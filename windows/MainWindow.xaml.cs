@@ -1,4 +1,5 @@
 ﻿using DungeonPapperWPF.code;
+using DungeonPapperWPF.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -608,14 +609,24 @@ namespace DungeonPapperWPF
                             if (damageParty >= boss.lastDamage.damage)
                             {
                                 xp = boss.lastDamage.xp;
-                                if (!party.isIgnoreDamageFromBoss)
+                            }
+                            else if (damageParty >= boss.middleDamage.damage)
+                            {
+                                xp = boss.lastDamage.xp;
+                            }
+                            else if (damageParty >= boss.firstDamage.damage)
+                            {
+                                xp = boss.lastDamage.xp;
+                            }
+
+                            if (!party.isIgnoreDamageFromBoss)
+                            {
+                                for (int i = 0; i < boss.lastDamage.damage; i++)
                                 {
-                                    for (int i = 0; i < boss.lastDamage.damage; i++)
-                                    {
-                                        damage(1);
-                                    }
+                                    damage(1);
                                 }
                             }
+
 
                             if (round == 3)
                             {
@@ -636,8 +647,24 @@ namespace DungeonPapperWPF
                         }
                         else
                         {
-
+                            if (round == 3)
+                            {
+                                party.xpBoss1 = -boss.minusXp;
+                            }
+                            else if (round == 6)
+                            {
+                                party.xpBoss2 = -boss.minusXp;
+                            }
+                            else if (round == 8)
+                            {
+                                party.xpBoss3 = -boss.minusXp;
+                            }
                         }
+                    }
+
+                    if(round == 8)
+                    {
+                        new TotalXP().ShowDialog();
                     }
                     buttonDiceGenereted.IsEnabled = true;
 
@@ -693,7 +720,7 @@ namespace DungeonPapperWPF
         //бросок кубиков
         private void buttonDiceGenereted_Click(object sender, RoutedEventArgs e)
         {
-            if (round < 8)
+            if (round < 9)
             {
                 round++;
 
@@ -702,7 +729,7 @@ namespace DungeonPapperWPF
                 buttonDiceGenereted.IsEnabled = false;
                 selectDiceButton.IsEnabled = true;
                 diceGrid.IsEnabled = true;
-                currentCountDice = round == 8 ? 2 : 3;
+                currentCountDice = 3;
 
                 List<Dice> dices = diceGenereted();
 
