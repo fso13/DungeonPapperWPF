@@ -837,9 +837,9 @@ namespace DungeonPapperWPF
 
             for (int i = 1; i <= count; i++)
             {
-                if (i + party.potions.Count() < 13)
+                if (1 + party.potions.Count() < 13)
                 {
-                    party.addPotion(count);
+                    party.addPotion(1);
 
                 }
             }
