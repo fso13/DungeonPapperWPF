@@ -46,7 +46,7 @@ namespace DungeonPapperWPF
         public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
         public static int currentCountDeadMonstersFotArtifact = 0;//сколько можно убить монстров за артифакт
 
-        public Party party;//пати, герои, сокровища и тд
+        public static Party party;//пати, герои, сокровища и тд
 
         public static Dice[] generateDices = new Dice[6];//сгенерированный дайсы в раунде
         public static Dice currentDice;//выбранный дайс для действия
@@ -581,6 +581,64 @@ namespace DungeonPapperWPF
 
                 if (currentCountDice == 0)
                 {
+                    if (round == 3 || round == 6 || round == 8)
+                    {
+                        Boss boss = null;
+                        if (round == 3)
+                        {
+                            boss = quest.bosses[0];
+                        }
+                        else if (round == 6)
+                        {
+                            boss = quest.bosses[1];
+                        }
+                        else if (round == 8)
+                        {
+                            boss = quest.bosses[2];
+                        }
+
+                        BossFightWindows.boss = boss;
+                        new BossFightWindows().ShowDialog();
+
+
+                        if (boss.isDead)
+                        {
+                            int damageParty = party.getDamageByBoss(boss);
+                            int xp = 0;
+                            if (damageParty >= boss.lastDamage.damage)
+                            {
+                                xp = boss.lastDamage.xp;
+                                if (!party.isIgnoreDamageFromBoss)
+                                {
+                                    for (int i = 0; i < boss.lastDamage.damage; i++)
+                                    {
+                                        damage(1);
+                                    }
+                                }
+                            }
+
+                            if (round == 3)
+                            {
+                                party.xpBoss1 = xp;
+                            }
+                            else if (round == 6)
+                            {
+                                party.xpBoss2 = xp;
+                            }
+                            else if (round == 8)
+                            {
+                                party.xpBoss3 = xp;
+                            }
+
+                            //Prey prey = boss.prey;
+                            //todo убрать алмазы
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
                     buttonDiceGenereted.IsEnabled = true;
 
                     for (int i = 0; i < 6; i++)
@@ -589,8 +647,6 @@ namespace DungeonPapperWPF
                         rectangle.Stroke = null;
                         rectangle.Fill = null;
                         rectangle.IsEnabled = false;
-
-
                     }
                 }
 
@@ -646,7 +702,7 @@ namespace DungeonPapperWPF
                 buttonDiceGenereted.IsEnabled = false;
                 selectDiceButton.IsEnabled = true;
                 diceGrid.IsEnabled = true;
-                currentCountDice = round == 3 ? 2 : 3;
+                currentCountDice = round == 8 ? 2 : 3;
 
                 List<Dice> dices = diceGenereted();
 

@@ -16,5 +16,7 @@ namespace DungeonPapperWPF
         public Prey prey { get; set; }
         public int minusXp { get; set; }
         public List<Diamond> hideDiamonds { get; set; } = new List<Diamond>();
+
+        public bool isDead { get; set; } = false;
     }
 }

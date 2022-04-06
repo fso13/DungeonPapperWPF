@@ -57,6 +57,8 @@ namespace DungeonPapperWPF
 
             }
 
+            slectedQuestButton.IsEnabled = true;
+
         }
 
         public static Quest quest1 = new Quest(1, "Встреча с разбойниками с Большой дороги всегда сулила беду. \n\n" +

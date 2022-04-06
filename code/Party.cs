@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DungeonPapperWPF.code
@@ -16,12 +13,18 @@ namespace DungeonPapperWPF.code
 
         public int hp = 0;
         public int blood = 0;
+
+        public int xpBoss1 = 0;
+        public int xpBoss2 = 0;
+        public int xpBoss3 = 0;
+
         public List<PartyPotion> potions = new List<PartyPotion>();
         public List<PartyMagic> magics = new List<PartyMagic>();
         public List<Diamond> diamonds = new List<Diamond>();
 
         public List<Field> path = new List<Field>();
         public List<Monster> deadMonsters = new List<Monster>();
+        public List<Boss> bosses = new List<Boss>();
         public int addDamageWithMonsters = 0;
         public int addDamageWithBosses = 0;
         public bool isIgnoreTrap;//игнорировать урон от ловушек
@@ -37,6 +40,22 @@ namespace DungeonPapperWPF.code
         public List<HeroClass> GetHeroes()
         {
             return new List<HeroClass>() { warrior, wizard, cleric, plut };
+        }
+
+        public int getDamageByBoss(Boss boss)
+        {
+            int damage = 0;
+
+            GetHeroes().ForEach(hero =>
+            {
+                damage += hero.level;
+                if(boss.heroClassType == hero.type)
+                {
+                    damage += hero.level;
+                }
+            }) ;
+            damage += addDamageWithBosses;
+            return damage;
         }
 
         public void damage(int damage)

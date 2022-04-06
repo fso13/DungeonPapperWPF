@@ -92,11 +92,11 @@ namespace DungeonPapperWPF
                 {
                     blueColor();
 
-                    if (((MainWindow)Window.GetWindow(this)).party.path.Count > 0)
+                    if (MainWindow.party.path.Count > 0)
                     {
-                        Field last = ((MainWindow)Window.GetWindow(this)).party.path.Last();
+                        Field last = MainWindow.party.path.Last();
 
-                        if (((MainWindow)Window.GetWindow(this)).party.isAddMoveFromRiver)
+                        if (MainWindow.party.isAddMoveFromRiver)
                         {
                             if (last.dto.x == this.dto.x)
                             {
@@ -136,7 +136,7 @@ namespace DungeonPapperWPF
 
                     }
                     //todo как то определить откуда пришел, если через реку, то добавить +1 к движению
-                    if (dto.trap && !((MainWindow)Window.GetWindow(this)).party.isIgnoreTrap)
+                    if (dto.trap && !MainWindow.party.isIgnoreTrap)
                     {
                         ((MainWindow)Window.GetWindow(this)).damage(1);
                     }
@@ -175,11 +175,11 @@ namespace DungeonPapperWPF
                     this.grid.Background = currentBrush;
                     this.heroes.Fill = heroBrush;
 
-                    if (((MainWindow)Window.GetWindow(this)).party.path.Count > 0)
+                    if (MainWindow.party.path.Count > 0)
                     {
-                        ((MainWindow)Window.GetWindow(this)).party.path.Last().isCurrent = false;
+                        MainWindow.party.path.Last().isCurrent = false;
                     }
-                     ((MainWindow)Window.GetWindow(this)).party.path.Add(this);
+                    MainWindow.party.path.Add(this);
                     MainWindow.currentCountStep--;
                     
                     

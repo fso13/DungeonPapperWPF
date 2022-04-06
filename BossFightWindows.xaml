@@ -1,0 +1,24 @@
+﻿<Window x:Class="DungeonPapperWPF.BossFightWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DungeonPapperWPF"
+        mc:Ignorable="d"
+        Title="BossFightWindows" Height="447" Width="477">
+    <Grid>
+        <Rectangle x:Name="boss_rec" HorizontalAlignment="Left" Height="388" Margin="18,23,0,0" Stroke="Black" VerticalAlignment="Top" Width="256" RadiusX="11.688" RadiusY="11.688"/>
+        <Button x:Name="btn_fign" Content="Бой" HorizontalAlignment="Left" Margin="293,23,0,0" VerticalAlignment="Top" Width="167" Click="btn_fign_Click"/>
+        <Button x:Name="btn_ok" Content="Забрать награду" HorizontalAlignment="Left" Margin="293,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False" Click="btn_ok_Click" Visibility="Hidden">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="1"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_fail" Content="Сбежать" HorizontalAlignment="Left" Margin="293,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False" Click="btn_fail_Click" Visibility="Hidden">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="1"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>

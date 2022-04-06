@@ -74,7 +74,7 @@ namespace DungeonPapperWPF.code
 
         public static Boss MINOTAVR = new BossBuilder().WithName("Минотавр")
             .WithNumber(2)
-          .WithLevel(2)
+          .WithLevel(1)
           .WithHeroClassType(HeroClassType.Warrior)
             .WithPrey(new LevelUp())
             .WithMinusXp(3)

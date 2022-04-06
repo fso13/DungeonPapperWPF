@@ -36,7 +36,7 @@
                     <ImageBrush ImageSource="/Resources/monstr3_shirt.jpg"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="slectedQuestButton" Content="Выбрать квест" Margin="10,0,148,10" Height="35" VerticalAlignment="Bottom" Click="slectedQuestButton_Click"/>
+            <Button x:Name="slectedQuestButton" Content="Выбрать квест" Margin="10,0,148,10" Height="35" VerticalAlignment="Bottom" Click="slectedQuestButton_Click" IsEnabled="False"/>
 
         </Grid>
         <Grid Height="368" VerticalAlignment="Top" Margin="438,46,76,0">
