@@ -46,7 +46,7 @@
         </Grid.RenderTransform>
 
         <Rectangle x:Name="zoomRec" HorizontalAlignment="Left" Height="435" Margin="709,199,0,0" VerticalAlignment="Top" Width="310" RadiusX="8" RadiusY="8" MouseLeftButtonDown="zoomRec_MouseLeftButtonDown"/>
-        <Grid HorizontalAlignment="Left" Width="144" Margin="73,20,0,0" Height="92" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Left" Width="144" Margin="73,20,0,0" Height="92" VerticalAlignment="Top" Background="#FF675438">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="20*"/>
@@ -176,7 +176,7 @@
             <CheckBox x:Name="cbox_clericBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,37,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
             <CheckBox x:Name="cbox_plutBlackWhite" Content="" HorizontalAlignment="Left" Margin="-28,62,0,0" VerticalAlignment="Top" IsEnabled="False" Grid.Row="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="21,150,0,0">
+        <Grid HorizontalAlignment="Left" Height="476" VerticalAlignment="Top" Margin="21,150,0,0" Background="#FF675438">
             <CheckBox x:Name="hp_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="hp_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -236,7 +236,7 @@
         </Grid>
         <Label Content="Жизни" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
         <Label Content="Урон" HorizontalAlignment="Left" Margin="47,127,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
-        <Grid Height="476" VerticalAlignment="Top" Margin="58,150,0,0" HorizontalAlignment="Left" Width="16">
+        <Grid Height="476" VerticalAlignment="Top" Margin="58,150,0,0" HorizontalAlignment="Left" Width="16" Background="#FF675438">
             <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -633,7 +633,7 @@
                 </Rectangle.Fill>
             </Rectangle>
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Margin="367,635,0,0">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="325" Margin="367,635,0,0">
             <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="44">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/image.psd (41).png"/>
@@ -642,15 +642,75 @@
             <CheckBox x:Name="Monster_1" Content="" HorizontalAlignment="Left" Margin="48,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
             <CheckBox x:Name="Monster_3" Content="" HorizontalAlignment="Left" Margin="88,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
             <CheckBox x:Name="Monster_2" Content="" HorizontalAlignment="Left" Margin="68,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="106,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="146,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="126,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="164,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="202,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="182,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="222,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="260,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="240,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_4" Content="" HorizontalAlignment="Left" Margin="108,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_6" Content="" HorizontalAlignment="Left" Margin="148,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_5" Content="" HorizontalAlignment="Left" Margin="128,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_7" Content="" HorizontalAlignment="Left" Margin="167,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_9" Content="" HorizontalAlignment="Left" Margin="206,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_8" Content="" HorizontalAlignment="Left" Margin="186,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_10" Content="" HorizontalAlignment="Left" Margin="226,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_12" Content="" HorizontalAlignment="Left" Margin="266,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <CheckBox x:Name="Monster_11" Content="" HorizontalAlignment="Left" Margin="246,16,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="40,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (90).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="60,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (91).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="80,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (92).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="100,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (93).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="120,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (94).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="140,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (95).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="160,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (96).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="179,22,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (97).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="199,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (98).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="219,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (99).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="239,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (100).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="32" Margin="258,23,0,0" VerticalAlignment="Top" Width="32">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Resources/image.psd (101).png"/>
+                </Rectangle.Fill>
+            </Rectangle>
         </Grid>
         <Button x:Name="newGameButton" Content="Новая игра" Margin="709,22,0,0" VerticalAlignment="Top" Height="26" Click="newGameButton_Click" HorizontalAlignment="Left" Width="312"/>
         <Grid Margin="710,199,11,24">
