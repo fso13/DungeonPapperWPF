@@ -811,7 +811,6 @@ namespace DungeonPapperWPF
                 if (i + party.potions.Count() < 13)
                 {
                     ((CheckBox)this.FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
-                    party.addPotion(count);
 
                 }
             }
@@ -836,7 +835,14 @@ namespace DungeonPapperWPF
                 addDiamond(new Diamond("За 12 зелий"));
             }
 
+            for (int i = 1; i <= count; i++)
+            {
+                if (i + party.potions.Count() < 13)
+                {
+                    party.addPotion(count);
 
+                }
+            }
             return isNotDeleteDice;
 
         }
