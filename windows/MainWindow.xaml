@@ -863,7 +863,7 @@
             <Rectangle x:Name="dice_1_1" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="28"/>
             <Rectangle x:Name="dice_1_2" HorizontalAlignment="Left" Height="28" Margin="33,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
             <Rectangle x:Name="dice_1_3" HorizontalAlignment="Left" Height="28" Margin="66,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_1_1_Copy2" HorizontalAlignment="Left" Height="28" Margin="417,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+            <Rectangle x:Name="dice_1_1_Copy2" HorizontalAlignment="Left" Height="28" Margin="367,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/boss_1.png"/>
                 </Rectangle.Fill>
@@ -871,34 +871,37 @@
             <Rectangle x:Name="dice_4_1" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Center" Width="28"/>
             <Rectangle x:Name="dice_4_2" HorizontalAlignment="Left" Height="28" Margin="33,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
             <Rectangle x:Name="dice_4_3" HorizontalAlignment="Left" Height="28" Margin="66,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_1_1_Copy6" HorizontalAlignment="Left" Height="28" Margin="417,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28">
+            <Rectangle x:Name="dice_1_1_Copy6" HorizontalAlignment="Left" Height="28" Margin="367,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/boss_2.png"/>
                 </Rectangle.Fill>
             </Rectangle>
             <Rectangle x:Name="dice_7_1" HorizontalAlignment="Left" Height="28" Margin="0,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
             <Rectangle x:Name="dice_7_2" HorizontalAlignment="Left" Height="28" Margin="33,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_1_1_Copy10" HorizontalAlignment="Left" Height="28" Margin="417,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
+            <Rectangle x:Name="dice_1_1_Copy10" HorizontalAlignment="Left" Height="28" Margin="367,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/boss_3.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="dice_2_1" HorizontalAlignment="Left" Height="28" Margin="138,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_2_2" HorizontalAlignment="Left" Height="28" Margin="171,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_2_3" HorizontalAlignment="Left" Height="28" Margin="204,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_3_1" HorizontalAlignment="Left" Height="28" Margin="278,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_3_2" HorizontalAlignment="Left" Height="28" Margin="311,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_3_3" HorizontalAlignment="Left" Height="28" Margin="344,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_5_1" HorizontalAlignment="Left" Height="28" Margin="138,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_5_2" HorizontalAlignment="Left" Height="28" Margin="171,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_5_3" HorizontalAlignment="Left" Height="28" Margin="204,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_6_1" HorizontalAlignment="Left" Height="28" Margin="278,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_6_2" HorizontalAlignment="Left" Height="28" Margin="311,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
-            <Rectangle x:Name="dice_6_3" HorizontalAlignment="Left" Height="28" Margin="344,0,0,0" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_2_1" HorizontalAlignment="Left" Height="28" Margin="117,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_2_2" HorizontalAlignment="Left" Height="28" Margin="150,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_2_3" HorizontalAlignment="Left" Height="28" Margin="183,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_1" HorizontalAlignment="Left" Height="28" Margin="232,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_2" HorizontalAlignment="Left" Height="28" Margin="265,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_3_3" HorizontalAlignment="Left" Height="28" Margin="298,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_5_1" HorizontalAlignment="Left" Height="28" Margin="117,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_5_2" HorizontalAlignment="Left" Height="28" Margin="150,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_5_3" HorizontalAlignment="Left" Height="28" Margin="183,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_1" HorizontalAlignment="Left" Height="28" Margin="232,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_2" HorizontalAlignment="Left" Height="28" Margin="265,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
+            <Rectangle x:Name="dice_6_3" HorizontalAlignment="Left" Height="28" Margin="298,34,0,34" Stroke="Black" VerticalAlignment="Center" Width="28"/>
             <Rectangle x:Name="dice_7_3" HorizontalAlignment="Left" Height="28" Margin="66,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_8_1" HorizontalAlignment="Left" Height="28" Margin="138,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_8_2" HorizontalAlignment="Left" Height="28" Margin="171,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
-            <Rectangle x:Name="dice_8_3" HorizontalAlignment="Left" Height="28" Margin="204,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_1" HorizontalAlignment="Left" Height="28" Margin="117,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_2" HorizontalAlignment="Left" Height="28" Margin="150,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Rectangle x:Name="dice_8_3" HorizontalAlignment="Left" Height="28" Margin="183,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="28"/>
+            <Label x:Name="label_boss_1_xp" Content="0" HorizontalAlignment="Left" Height="37" Margin="406,-9,0,0" VerticalAlignment="Top" Width="29" FontSize="22"/>
+            <Label x:Name="label_boss_2_xp" Content="0" HorizontalAlignment="Left" Height="37" Margin="406,25,0,0" VerticalAlignment="Top" Width="29" FontSize="22"/>
+            <Label x:Name="label_boss_3_xp" Content="0" HorizontalAlignment="Left" Height="37" Margin="406,58,0,0" VerticalAlignment="Top" Width="29" FontSize="22"/>
         </Grid>
         <Rectangle HorizontalAlignment="Left" Height="28" Margin="128,104,0,0" VerticalAlignment="Top" Width="28">
             <Rectangle.Fill>
