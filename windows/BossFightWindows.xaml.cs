@@ -20,6 +20,8 @@ namespace DungeonPapperWPF
             imageBrushm1.ImageSource =
                 new BitmapImage(new Uri(@"Resources\monstr_" + boss.number + ".jpg", UriKind.Relative));
             boss_rec.Fill = imageBrushm1;
+
+            label_level_party.Content = MainWindow.party.getDamageByBoss(boss);
         }
 
         private void btn_ok_Click(object sender, RoutedEventArgs e)

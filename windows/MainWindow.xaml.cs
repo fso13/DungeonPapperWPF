@@ -634,14 +634,17 @@ namespace DungeonPapperWPF
                             if (round == 3)
                             {
                                 party.xpBoss1 = xp;
+                                label_boss_1_xp.Content = xp;
                             }
                             else if (round == 6)
                             {
                                 party.xpBoss2 = xp;
+                                label_boss_2_xp.Content = xp;
                             }
                             else if (round == 8)
                             {
                                 party.xpBoss3 = xp;
+                                label_boss_3_xp.Content = xp;
                             }
 
                             //Prey prey = boss.prey;
@@ -653,14 +656,17 @@ namespace DungeonPapperWPF
                             if (round == 3)
                             {
                                 party.xpBoss1 = -boss.minusXp;
+                                label_boss_1_xp.Content = -boss.minusXp;
                             }
                             else if (round == 6)
                             {
                                 party.xpBoss2 = -boss.minusXp;
+                                label_boss_2_xp.Content = -boss.minusXp;
                             }
                             else if (round == 8)
                             {
                                 party.xpBoss3 = -boss.minusXp;
+                                label_boss_3_xp.Content = -boss.minusXp;
                             }
                         }
                     }

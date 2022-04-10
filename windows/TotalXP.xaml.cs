@@ -103,7 +103,7 @@ namespace DungeonPapperWPF.windows
             }
             int xp_monsters = 0;
 
-            switch (MainWindow.party.diamonds.Count())
+            switch (MainWindow.party.deadMonsters.Count())
             {
                 case 0: break;
                 case 1: xp_monsters = 1; break;
