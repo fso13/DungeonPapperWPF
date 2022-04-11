@@ -47,6 +47,7 @@ namespace DungeonPapperWPF
         public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
         public static int currentCountDeadMonstersFotArtifact = 0;//сколько можно убить монстров за артифакт
         public static int currentCountLevelUpByAbbility = 0;//сколько можно поднять уровней за абилку
+        public static int currentCountMagicsByAbbility = 0;//сколько можно крафтить предметов по абилке
 
         public static Party party;//пати, герои, сокровища и тд
 
@@ -1408,6 +1409,26 @@ namespace DungeonPapperWPF
 
                     }
                 }
+            }else if (currentCountMagicsByAbbility > 0)
+            {
+                CheckBox checkBox = (CheckBox)sender;
+                checkBox.IsChecked = true;
+
+                string name = checkBox.Name.Replace("magic_", "");
+
+                if (name.EndsWith("_1"))
+                {
+                    party.addMagic(new PartyMagic(int.Parse(name[0].ToString()), 1));
+                    currentCountMagicsByAbbility--;
+                }
+
+                for (int i = 1; i <= 8; i++)
+                {
+                    ((CheckBox)this.FindName("magic_" + i + "_1")).IsEnabled = false;
+                    ((CheckBox)this.FindName("magic_" + i + "_2")).IsEnabled = false;
+                }
+
+                hieghtingMagicsByAbbility();
             }
         }
 
@@ -1556,7 +1577,8 @@ namespace DungeonPapperWPF
         {
             if (quest.selectAbility == 1)
             {
-                //закрасить две разных части разных предметов
+                currentCountMagicsByAbbility = 2;
+                hieghtingMagicsByAbbility();
             }
             else if (quest.selectAbility == 3)
             {
@@ -1644,6 +1666,32 @@ namespace DungeonPapperWPF
                         ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + 2)).IsEnabled = true;
                     }
                 });
+            }
+        }
+
+        public void hieghtingMagicsByAbbility()
+        {
+            if (currentCountMagicsByAbbility > 0)
+            {
+                //подсветить любой предмет
+                for (int i = 1; i < 9; i++)
+                {
+                    PartyMagic findMagic = null;
+
+                    foreach (PartyMagic magic in party.magics)
+                    {
+                        if (magic.number == i)
+                        {
+                            findMagic = magic;
+                            break;
+                        }
+                    }
+
+                    if (findMagic == null)
+                    {
+                        ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
+                    }
+                }
             }
         }
 
