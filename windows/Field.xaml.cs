@@ -97,48 +97,78 @@ namespace DungeonPapperWPF
                     {
                         Field last = MainWindow.party.path.Last();
 
-                        if (MainWindow.party.isAddMoveFromRiver)
+
+                        if (last.dto.x == this.dto.x)
                         {
-                            if (last.dto.x == this.dto.x)
+                            if (last.dto.y > this.dto.y)
                             {
-                                if (last.dto.y > this.dto.y)
+                                if (last.dto.topBarrier == Barrier.River)
                                 {
-                                    if (last.dto.topBarrier == Barrier.River)
+                                    MainWindow.party.countUserMission2 += 1;
+                                    if (MainWindow.party.isAddMoveFromRiver)
                                     {
                                         MainWindow.currentCountStep++;
                                     }
                                 }
-                                else
+                                else if(last.dto.topBarrier == Barrier.Black || last.dto.topBarrier == Barrier.Wall)
                                 {
-                                    if (last.dto.downBarrier == Barrier.River)
-                                    {
-                                        MainWindow.currentCountStep++;
-                                    }
+                                    MainWindow.party.countUserMission2 += 1;
                                 }
                             }
                             else
                             {
-                                if (last.dto.x > this.dto.x)
+                                if (last.dto.downBarrier == Barrier.River)
                                 {
-                                    if (last.dto.leftBarrier == Barrier.River)
+                                    MainWindow.party.countUserMission2 += 1;
+                                    if (MainWindow.party.isAddMoveFromRiver)
                                     {
                                         MainWindow.currentCountStep++;
                                     }
                                 }
-                                else
+                                else if (last.dto.downBarrier == Barrier.Black || last.dto.downBarrier == Barrier.Wall)
                                 {
-                                    if (last.dto.rightBarrier == Barrier.River)
-                                    {
-                                        MainWindow.currentCountStep++;
-                                    }
+                                    MainWindow.party.countUserMission2 += 1;
                                 }
                             }
                         }
-
+                        else
+                        {
+                            if (last.dto.x > this.dto.x)
+                            {
+                                if (last.dto.leftBarrier == Barrier.River)
+                                {
+                                    MainWindow.party.countUserMission2 += 1;
+                                    if (MainWindow.party.isAddMoveFromRiver)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                                else if (last.dto.leftBarrier == Barrier.Black || last.dto.leftBarrier == Barrier.Wall)
+                                {
+                                    MainWindow.party.countUserMission2 += 1;
+                                }
+                            }
+                            else
+                            {
+                                if (last.dto.rightBarrier == Barrier.River)
+                                {
+                                    MainWindow.party.countUserMission2 += 1;
+                                    if (MainWindow.party.isAddMoveFromRiver)
+                                    {
+                                        MainWindow.currentCountStep++;
+                                    }
+                                }
+                                else if (last.dto.rightBarrier == Barrier.Black || last.dto.rightBarrier == Barrier.Wall)
+                                {
+                                    MainWindow.party.countUserMission2 += 1;
+                                }
+                            }
+                        }
                     }
-                    //todo как то определить откуда пришел, если через реку, то добавить +1 к движению
+                   
                     if (dto.trap && !MainWindow.party.isIgnoreTrap)
                     {
+                        MainWindow.party.countUserMission2 += 1;
                         ((MainWindow)Window.GetWindow(this)).damage(1);
                     }
                     if (dto.monster != null && !dto.monster.isDead)

@@ -23,6 +23,11 @@ namespace DungeonPapperWPF.code
             public int selectMission { get; set; }
             public List<int> missions { get; set; }
             public List<Boss> bosses { get; set; }
+
+
+            public int roundMissionComplete1 = -1;
+            public int roundMissionComplete2 = -1;
+            public int roundMissionComplete3 = -1;
         }
 
         public static Boss STRAG = new BossBuilder().WithName("Страж")

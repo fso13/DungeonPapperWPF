@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DungeonPapperWPF.windows
 {
-    
+
     public partial class TotalXP : Window
     {
         public TotalXP()
@@ -24,12 +13,323 @@ namespace DungeonPapperWPF.windows
 
         public int xpUserMission()
         {
-            return 0;
+            switch (MainWindow.quest.selectMission)
+            {
+                case 1:
+                    switch (MainWindow.party.deadMonsters.FindAll(m => m.heroClass.level == 3).Count())
+                    {
+                        case 2: return 2;
+                        case 3: return 4;
+                        case 4: return 6;
+                        default: return 0;
+                    }
+
+                case 2:
+                    int countUserMission2 = MainWindow.party.countUserMission2;
+                    if (countUserMission2 >= 4 && countUserMission2 < 7)
+                    {
+                        return 2;
+                    }
+                    else if (countUserMission2 >= 7 && countUserMission2 < 10)
+                    {
+                        return 4;
+                    }
+                    else if (countUserMission2 >= 10)
+                    {
+                        return 6;
+                    }
+                    return 0;
+
+                case 3:
+                    switch (MainWindow.party.deadMonsters.FindAll(m => m.heroClass.level == 5).Count())
+                    {
+                        case 2: return 2;
+                        case 3: return 4;
+                        case 4: return 6;
+                        default: return 0;
+                    }
+
+                case 4:
+                    switch (MainWindow.party.hp)
+                    {
+                        case 12: return 2;
+                        case 13: return 2;
+                        case 14: return 2;
+                        case 15: return 2;
+                        case 16: return 4;
+                        case 17: return 4;
+                        case 18: return 4;
+                        case 19: return 4;
+                        case 20: return 6;
+                        case 21: return 6;
+                        case 22: return 6;
+                        case 23: return 6;
+                        case 24: return 6;
+                        default: return 0;
+                    }
+
+                case 5:
+                    {
+                        int room = 0;
+
+                        MainWindow.party.path.ForEach(row =>
+                        {
+                            if (row.dto.x == 0 || row.dto.x == 5 || row.dto.y == 0 || row.dto.y == 6)
+                            {
+                                room++;
+                            }
+                        });
+
+                        if (room >= 10 && room < 13)
+                        {
+                            return 2;
+                        }
+                        else if (room >= 13 && room < 16)
+                        {
+                            return 4;
+                        }
+                        else if (room >= 16)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+                case 6:
+                    switch (MainWindow.party.deadMonsters.Count())
+                    {
+                        case 4: return 2;
+                        case 5: return 2;
+                        case 6: return 2;
+                        case 7: return 4;
+                        case 8: return 4;
+                        case 9: return 4;
+                        case 10: return 4;
+                        case 11: return 6;
+                        case 12: return 6;
+                        default: return 0;
+                    }
+
+                case 7:
+                    {
+                        int xp = MainWindow.party.xpBoss1 + MainWindow.party.xpBoss2 + MainWindow.party.xpBoss3;
+                        if (xp >= 10 && xp < 15)
+                        {
+                            return 2;
+                        }
+                        else if (xp >= 15 && xp < 20)
+                        {
+                            return 4;
+                        }
+                        else if (xp >= 20)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+                case 8:
+                    {
+                        int[] columns = new int[6] { 0, 0, 0, 0, 0, 0 };
+
+                        MainWindow.party.path.ForEach(row =>
+                        {
+                            columns[row.dto.x] += 1;
+                        });
+
+                        int rr = columns.OfType<int>().ToList().FindAll(x => x >= 4).Count();
+                        if (rr == 4)
+                        {
+                            return 2;
+                        }
+                        else if (rr == 5)
+                        {
+                            return 4;
+                        }
+                        else if (rr == 6)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+                case 9:
+                    switch (MainWindow.party.deadMonsters.FindAll(m => m.heroClass.level == 4).Count())
+                    {
+                        case 2: return 2;
+                        case 3: return 4;
+                        case 4: return 6;
+                        default: return 0;
+                    }
+
+                case 10:
+                    {
+                        int potion = MainWindow.party.potions.Count();
+                        if (potion >= 6 && potion < 9)
+                        {
+                            return 2;
+                        }
+                        else if (potion >= 9 && potion < 12)
+                        {
+                            return 4;
+                        }
+                        else if (potion >= 12)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+                case 11:
+                    {
+                        int room = 0;
+
+                        MainWindow.party.path.ForEach(row =>
+                        {
+                            if ((row.dto.x == 0 && row.dto.y == 0) ||
+                            (row.dto.x == 0 && row.dto.y == 6) ||
+                            (row.dto.x == 5 && row.dto.y == 0) ||
+                            (row.dto.x == 5 && row.dto.y == 6))
+                            {
+                                room++;
+                            }
+                        });
+
+                        if (room == 1)
+                        {
+                            return 2;
+                        }
+                        else if (room == 2)
+                        {
+                            return 4;
+                        }
+                        else if (room >= 3)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+
+                case 12:
+                    {//todo потом заменить на норм карточку, потому что должна быть пол части волшебных предметов
+                        int[] columns = new int[6] { 0, 0, 0, 0, 0, 0 };
+
+                        MainWindow.party.path.ForEach(row =>
+                        {
+                            columns[row.dto.x] += 1;
+                        });
+
+                        int rr = columns.OfType<int>().ToList().FindAll(x => x >= 4).Count();
+                        if (rr == 4)
+                        {
+                            return 2;
+                        }
+                        else if (rr == 5)
+                        {
+                            return 4;
+                        }
+                        else if (rr == 6)
+                        {
+                            return 6;
+                        }
+                        return 0;
+                    }
+                case 13:
+                    int diamond = MainWindow.party.diamonds.Count();
+                    if (diamond >= 2 && diamond < 5)
+                    {
+                        return 2;
+                    }
+                    else if (diamond >= 5 && diamond < 7)
+                    {
+                        return 4;
+                    }
+                    else if (diamond >= 7)
+                    {
+                        return 6;
+                    }
+                    return 0;
+
+
+                case 14:
+                    int heroes = MainWindow.party.GetHeroes().FindAll(h => h.level >= 5).Count();
+                    if (heroes >= 2 && heroes < 3)
+                    {
+                        return 2;
+                    }
+                    else if (heroes >= 3 && heroes < 4)
+                    {
+                        return 4;
+                    }
+                    else if (heroes >= 4)
+                    {
+                        return 6;
+                    }
+                    return 0;
+
+                case 15:
+                    int path = MainWindow.party.path.Count();
+                    if (path >= 20 && path < 25)
+                    {
+                        return 2;
+                    }
+                    else if (path >= 25 && path < 30)
+                    {
+                        return 4;
+                    }
+                    else if (path >= 30)
+                    {
+                        return 6;
+                    }
+                    return 0;
+
+                case 16:
+
+                    int[] rows = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
+
+                    MainWindow.party.path.ForEach(row =>
+                    {
+                        rows[row.dto.y] += 1;
+                    });
+
+                    int r = rows.OfType<int>().ToList().FindAll(x => x == 6).Count();
+                    if (r == 1)
+                    {
+                        return 2;
+                    }
+                    else if (r == 2)
+                    {
+                        return 4;
+                    }
+                    else if (r >= 3)
+                    {
+                        return 6;
+                    }
+                    return 0;
+
+                default: return 0;
+            }
         }
 
         public int xpMissions()
         {
-            return 0;
+
+            int one = xpMission(MainWindow.quest.roundMissionComplete1);
+            int two = xpMission(MainWindow.quest.roundMissionComplete2);
+            int three = xpMission(MainWindow.quest.roundMissionComplete3);
+            return one + two + three;
+        }
+
+        public int xpMission(int round)
+        {
+            switch (round)
+            {
+                case 1: return 6;
+                case 2: return 5;
+                case 3: return 4;
+                case 4: return 4;
+                case 5: return 3;
+                case 6: return 3;
+                case 7: return 2;
+                case 8: return 1;
+                default: return 0;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -46,7 +346,7 @@ namespace DungeonPapperWPF.windows
                 {
                     minLevel = hero.level;
                 }
-;               if(hero.level == 6)
+; if (hero.level == 6)
                 {
                     xp_level++;
                 }
@@ -159,15 +459,15 @@ namespace DungeonPapperWPF.windows
             {
                 xp_blood = -21;
             }
-            if (MainWindow.party.blood ==24)
+            if (MainWindow.party.blood == 24)
             {
                 xp_blood = -25;
             }
 
             int xp_dead = MainWindow.party.isDeadPaty ? -9 : 0;
 
-            int xp_user_mission = 0;
-            int xp_mission = 0;
+            int xp_user_mission = xpUserMission();
+            int xp_mission = xpMissions();
 
             label_1.Content = xp_boss1;
             label_2.Content = xp_boss2;
@@ -181,7 +481,7 @@ namespace DungeonPapperWPF.windows
             label_10.Content = xp_user_mission;
             label_11.Content = xp_mission;
 
-            total_xp.Content = xp_boss1+ xp_boss2 + xp_boss3 + xp_level+ xp_magic + xp_diamond+ xp_monsters+ xp_blood+ xp_dead+ xp_user_mission+ xp_mission;
+            total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xp_mission;
 
         }
     }
