@@ -23,7 +23,6 @@ namespace DungeonPapperWPF
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
 
-        public Array valuesOutlook = Enum.GetValues(typeof(Outlook));
         public Random random = new Random(DateTime.Now.Millisecond);
 
         public static ImageBrush riverBrushVertical = new ImageBrush();
@@ -648,24 +647,39 @@ namespace DungeonPapperWPF
                         {
                             int damageParty = party.getDamageByBoss(boss);
                             int xp = 0;
-                            if (damageParty >= boss.lastDamage.damage)
+                            if (damageParty >= boss.lastDamage.heroLevel)
                             {
                                 xp = boss.lastDamage.xp;
-                            }
-                            else if (damageParty >= boss.middleDamage.damage)
-                            {
-                                xp = boss.lastDamage.xp;
-                            }
-                            else if (damageParty >= boss.firstDamage.damage)
-                            {
-                                xp = boss.lastDamage.xp;
-                            }
 
-                            if (!party.isIgnoreDamageFromBoss)
-                            {
-                                for (int i = 0; i < boss.lastDamage.damage; i++)
+                                if (!party.isIgnoreDamageFromBoss)
                                 {
-                                    damage(1);
+                                    for (int i = 0; i < boss.lastDamage.damage; i++)
+                                    {
+                                        damage(1);
+                                    }
+                                }
+                            }
+                            else if (damageParty >= boss.middleDamage.heroLevel)
+                            {
+                                xp = boss.middleDamage.xp;
+
+                                if (!party.isIgnoreDamageFromBoss)
+                                {
+                                    for (int i = 0; i < boss.middleDamage.damage; i++)
+                                    {
+                                        damage(1);
+                                    }
+                                }
+                            }
+                            else if (damageParty >= boss.firstDamage.heroLevel)
+                            {
+                                xp = boss.firstDamage.xp;
+                                if (!party.isIgnoreDamageFromBoss)
+                                {
+                                    for (int i = 0; i < boss.firstDamage.damage; i++)
+                                    {
+                                        damage(1);
+                                    }
                                 }
                             }
 
@@ -823,9 +837,13 @@ namespace DungeonPapperWPF
                     }
                 }
             }
+
+
+
+
         }
 
-        //получение жизни
+       //получение жизни
         public void addHp()
         {
             party.addHp();

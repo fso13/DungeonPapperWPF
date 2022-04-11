@@ -18,6 +18,8 @@ namespace DungeonPapperWPF.code
         public int xpBoss2 = 0;
         public int xpBoss3 = 0;
 
+        public int countUserMission2 = 0;
+
         public bool isDeadPaty = false;
 
         public List<PartyPotion> potions = new List<PartyPotion>();
@@ -68,9 +70,9 @@ namespace DungeonPapperWPF.code
 
                 if (potion == null)
                 {
-                    if(blood + damage > 25)
+                    if (blood + damage > 25)
                     {
-                        blood   =25;
+                        blood = 25;
                     }
                     else
                     {
