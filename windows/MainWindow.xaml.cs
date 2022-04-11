@@ -418,6 +418,11 @@ namespace DungeonPapperWPF
                 party.damage(1);
             }
 
+            if (party.isDeadPaty)
+            {
+                cbox_party_dead.IsChecked = true;
+            }
+
             MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
 

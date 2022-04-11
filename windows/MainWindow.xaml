@@ -939,5 +939,6 @@
             </Rectangle.Fill>
         </Rectangle>
         <Rectangle HorizontalAlignment="Left" Height="20" Margin="173,112,0,0" VerticalAlignment="Top" Width="20"/>
+        <CheckBox x:Name="cbox_party_dead" Content="Партия погибла&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,659,0,0" VerticalAlignment="Top" Width="111" Height="21" IsEnabled="False"/>
     </Grid>
 </Window>
