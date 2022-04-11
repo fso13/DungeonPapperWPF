@@ -309,7 +309,27 @@ namespace DungeonPapperWPF.windows
 
         public int xpMissions()
         {
-            return 0;
+
+            int one = xpMission(MainWindow.quest.roundMissionComplete1);
+            int two = xpMission(MainWindow.quest.roundMissionComplete2);
+            int three = xpMission(MainWindow.quest.roundMissionComplete3);
+            return one + two + three;
+        }
+
+        public int xpMission(int round)
+        {
+            switch (round)
+            {
+                case 1: return 6;
+                case 2: return 5;
+                case 3: return 4;
+                case 4: return 4;
+                case 5: return 3;
+                case 6: return 3;
+                case 7: return 2;
+                case 8: return 1;
+                default: return 0;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -326,7 +346,7 @@ namespace DungeonPapperWPF.windows
                 {
                     minLevel = hero.level;
                 }
-;               if(hero.level == 6)
+; if (hero.level == 6)
                 {
                     xp_level++;
                 }
@@ -439,7 +459,7 @@ namespace DungeonPapperWPF.windows
             {
                 xp_blood = -21;
             }
-            if (MainWindow.party.blood ==24)
+            if (MainWindow.party.blood == 24)
             {
                 xp_blood = -25;
             }
@@ -447,7 +467,7 @@ namespace DungeonPapperWPF.windows
             int xp_dead = MainWindow.party.isDeadPaty ? -9 : 0;
 
             int xp_user_mission = xpUserMission();
-            int xp_mission = 0;
+            int xp_mission = xpMissions();
 
             label_1.Content = xp_boss1;
             label_2.Content = xp_boss2;
@@ -461,7 +481,7 @@ namespace DungeonPapperWPF.windows
             label_10.Content = xp_user_mission;
             label_11.Content = xp_mission;
 
-            total_xp.Content = xp_boss1+ xp_boss2 + xp_boss3 + xp_level+ xp_magic + xp_diamond+ xp_monsters+ xp_blood+ xp_dead+ xp_user_mission+ xp_mission;
+            total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xp_mission;
 
         }
     }

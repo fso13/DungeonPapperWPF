@@ -746,6 +746,223 @@ namespace DungeonPapperWPF
                 TwoMoveButton.IsEnabled = false;
                 ButtonCreatePotion.IsEnabled = false;
                 ButtonCreateMagic.IsEnabled = false;
+
+
+                //проверка выполняния миссий
+                compliteMissions();
+            }
+        }
+
+        //проверка выполняния миссий
+        public void compliteMissions()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                compliteMission(quest.missions[i - 1], i);
+            }
+        }
+
+        public void compliteMission(int number, int index)
+        {
+            int r = -1;
+
+            if(index == 1)
+            {
+                r = quest.roundMissionComplete1;
+            }
+            else if (index == 2)
+            {
+                r = quest.roundMissionComplete2;
+            }
+            else if (index == 3)
+            {
+                r = quest.roundMissionComplete3;
+            }
+
+            if (r == -1)
+            {
+                switch (number)
+                {
+                    case 1:
+                        {
+                            if (party.path.FindAll(f => f.dto.one != null || f.dto.two != null || f.dto.three != null).Count() == 3)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            if (party.GetHeroes().FindAll(f => f.level >= 5).Count() >= 2)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            int[] columns = new int[6] { 0, 0, 0, 0, 0, 0 };
+
+                            party.path.ForEach(row =>
+                            {
+                                columns[row.dto.x] += 1;
+                            });
+
+                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 5).Count();
+                            if (rr >= 1)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 4:
+                        {
+                            int room = 0;
+
+                            party.path.ForEach(row =>
+                            {
+                                if ((row.dto.x == 0 && row.dto.y == 0) ||
+                                (row.dto.x == 0 && row.dto.y == 6) ||
+                                (row.dto.x == 5 && row.dto.y == 0) ||
+                                (row.dto.x == 5 && row.dto.y == 6))
+                                {
+                                    room++;
+                                }
+                            });
+
+                            if (room >=2)
+                            {
+                                r = this.round;
+                            }
+
+                            break;
+                        }
+                    case 5:
+                        {
+                            int one = party.deadMonsters.FindAll(m=>m.heroClass.level==3).Count();
+                            int two = party.deadMonsters.FindAll(m => m.heroClass.level == 4).Count();
+                            int three = party.deadMonsters.FindAll(m => m.heroClass.level == 5).Count();
+
+                            if(one >1 && two>0 && three > 0)
+                            {
+                                r = this.round;
+                            }
+                            
+                            break;
+                        }
+                    case 6:
+                        {
+                            if (party.magics.FindAll(m => m.countPart == 2).Count() >= 4)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 7:
+                        {
+                            int[] rows = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
+
+                            party.path.ForEach(row =>
+                            {
+                                rows[row.dto.y] += 1;
+                            });
+
+                            int rr = rows.OfType<int>().ToList().FindAll(x => x == 6).Count();
+                            if (rr >=1)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 8:
+                        {
+
+                            if (party.path.Count() >= 15)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 9:
+                        {
+                            if (party.diamonds.Count() >= 4)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 10:
+                        {
+                            if(party.GetHeroes().FindAll(h=>h.level>=4).Count() >= 3)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 11:
+                        {
+                            if (party.GetHeroes().FindAll(h => h.level == 6).Count() >= 1)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 12:
+                        {
+                            if (party.deadMonsters.Count() >= 6)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 13:
+                        {
+                            if (party.potions.Count() >= 8)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 14:
+                        {
+                            if (party.GetHeroes().FindAll(h => h.level >= 3).Count() ==4)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 15:
+                        {
+                            if(party.hp >= 12)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    case 16:
+                        {
+                            if (party.path.FindAll(f => f.dto.trap != null).Count() >= 5)
+                            {
+                                r = this.round;
+                            }
+                            break;
+                        }
+                    defaut: break;
+                }
+
+
+                if (index == 1)
+                {
+                  quest.roundMissionComplete1 = r;
+                }
+                else if (index == 2)
+                {
+                    quest.roundMissionComplete2 = r;
+                }
+                else if (index == 3)
+                {
+                    quest.roundMissionComplete3 = r;
+                }
             }
         }
 
@@ -837,10 +1054,6 @@ namespace DungeonPapperWPF
                     }
                 }
             }
-
-
-
-
         }
 
        //получение жизни
