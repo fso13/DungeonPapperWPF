@@ -22,6 +22,16 @@ namespace DungeonPapperWPF.windows
             InitializeComponent();
         }
 
+        public int xpUserMission()
+        {
+            return 0;
+        }
+
+        public int xpMissions()
+        {
+            return 0;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int xp_boss1 = MainWindow.party.xpBoss1;

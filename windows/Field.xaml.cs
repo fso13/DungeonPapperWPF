@@ -24,6 +24,7 @@ namespace DungeonPapperWPF
         public static SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         public static SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
         public static SolidColorBrush brushBlue = new SolidColorBrush(Colors.Blue);
+        public static SolidColorBrush brushYellow = new SolidColorBrush(Colors.Yellow);
         public static SolidColorBrush currentBrush = new SolidColorBrush(Colors.DarkBlue);
 
         public static ImageBrush opacityMaskCircleBrush = new ImageBrush();
@@ -193,11 +194,33 @@ namespace DungeonPapperWPF
                 monsterFieldAction.Fill = opacityMaskKrestBrush;
                 monsterField.Opacity = 1;
             }
+
+            else if (this.grid.Opacity > 0 && (this.grid.Background == brushYellow))
+            {
+                ((MainWindow)Window.GetWindow(this)).addDiamond(dto.prey as Diamond);
+                dto.prey = null;
+                preyFieldAction.Fill = opacityMaskCircleBrush;
+                preyField.Opacity = 1;
+
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 7; j++)
+                    {
+                        MainWindow.fields[j, i].clearColor();
+                    }
+                }
+            }
         }
 
         private void monsterFieldAction_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show(this.dto.monster.monsterType.ToString());
+        }
+
+        internal void yellowColor()
+        {
+            brushYellow.Opacity = 0.40;
+            this.grid.Background = brushYellow;
         }
     }
 }
