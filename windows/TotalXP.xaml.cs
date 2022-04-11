@@ -316,6 +316,31 @@ namespace DungeonPapperWPF.windows
             return one + two + three;
         }
 
+        public int xpAbbility()
+        {
+            switch (MainWindow.quest.selectAbility)
+            {
+                case 1: return -3;
+                case 2: return 2;
+                case 3: return 2;
+                case 4: return -2;
+                case 5: return 2;
+                case 6: return -3;
+                case 7: return -1;
+                case 8: return -1;
+                case 9: return 0;
+                case 10: return 0;
+                case 11: return -1;
+                case 12: return 3;
+                case 13: return 0;
+                case 14: return -1;
+                case 15: return -2;
+                case 16: return -2;
+                default: return 0;
+
+            }
+        }
+
         public int xpMission(int round)
         {
             switch (round)
@@ -478,10 +503,10 @@ namespace DungeonPapperWPF.windows
             label_7.Content = xp_monsters;
             label_8.Content = xp_blood;
             label_9.Content = xp_dead;
-            label_10.Content = xp_user_mission;
+            label_10.Content = xp_user_mission + xpAbbility();
             label_11.Content = xp_mission;
 
-            total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xp_mission;
+            total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xpAbbility() + xp_mission;
 
         }
     }
