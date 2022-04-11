@@ -51,7 +51,7 @@ namespace DungeonPapperWPF
         }
         public void greanColor()
         {
-            if (!isPath)
+            if (!isCurrent)
             {
                 brushGreen.Opacity = 0.40;
                 this.grid.Background = brushGreen;
@@ -87,7 +87,7 @@ namespace DungeonPapperWPF
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.grid.Opacity > 0 && (this.grid.Background == brushGreen || isPath) && !isCurrent)
+            if (this.grid.Opacity > 0 && (this.grid.Background == brushGreen) && !isCurrent)
             {
                 if (MainWindow.currentCountStep > 0)
                 {
