@@ -38,7 +38,7 @@ namespace DungeonPapperWPF
 
         private static bool isStart = false;
         private static FieldDto[,] fieldDtos = new FieldDto[7, 6];//поля в виже дто
-        private static Field[,] fields = new Field[7, 6];//поля в окне приложения
+        public static Field[,] fields = new Field[7, 6];//поля в окне приложения
 
         private int round = 0;//раунд игры
         public static int currentCountStep = 0;//сколько есть клеток передвижения
@@ -46,6 +46,7 @@ namespace DungeonPapperWPF
         public static int currentCountDice = 0;//сколько еще можно потратить дайсов на действия
         public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
         public static int currentCountDeadMonstersFotArtifact = 0;//сколько можно убить монстров за артифакт
+        public static int currentCountLevelUpByAbbility = 0;//сколько можно поднять уровней за абилку
 
         public static Party party;//пати, герои, сокровища и тд
 
@@ -498,7 +499,7 @@ namespace DungeonPapperWPF
                             party.addDamageWithBosses += 1;
                         }
 
-                        if(hero.level == 5 && party.isAddMagicFrom5Level)
+                        if (hero.level == 5 && party.isAddMagicFrom5Level)
                         {
                             MessageBox.Show("Ваш герой достиг 5 уровня, получите часть предмета");
                             currentCountMagicPart++;
@@ -541,8 +542,40 @@ namespace DungeonPapperWPF
                     diceGrid.IsEnabled = true;
                 }
             }
+            else if (currentCountLevelUpByAbbility > 0)
+            {
+                CheckBox checkBox = (CheckBox)sender;
+                checkBox.IsChecked = true;
+                string name = checkBox.Name;
+                party.GetHeroes().ForEach(hero =>
+                {
 
-            if (isStart)
+                    if (name.Contains(hero.type.ToString().ToLower()))
+                    {
+                        hero.level++;
+                        addHp();
+                        currentCountLevelUpByAbbility--;
+                    }
+
+                });
+
+                party.GetHeroes().ForEach(hero =>
+                {
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + i)).IsEnabled = false;
+                    }
+
+                });
+
+
+                if (currentCountLevelUpByAbbility > 0)
+                {
+                    hieghtingLevelUpByAbbility();
+                }
+            }
+
+            if (isStart && selectDicesIsCurrentRound.Count>0)
             {
                 if (currentCountLevel == 0)
                 {
@@ -1198,6 +1231,8 @@ namespace DungeonPapperWPF
 
         public bool magicFromDice = false;
 
+
+        //подсветка могстров для убийства по артефакту
         private void hieghtingdeadMonsterFromArtifact()
         {
             for (int i = 0; i < 6; i++)
@@ -1537,7 +1572,8 @@ namespace DungeonPapperWPF
             }
             else if (quest.selectAbility == 6)
             {
-                //поднять уровень двум разным героям на 1
+                currentCountLevelUpByAbbility = 2;
+                hieghtingLevelUpByAbbility();
             }
             else if (quest.selectAbility == 7)
             {
@@ -1555,7 +1591,7 @@ namespace DungeonPapperWPF
             }
             else if (quest.selectAbility == 10)
             {
-                party.isIgnoreDamageFromBoss = true;//todo
+                party.isIgnoreDamageFromBoss = true;
             }
             else if (quest.selectAbility == 11)
             {
@@ -1567,12 +1603,11 @@ namespace DungeonPapperWPF
             }
             else if (quest.selectAbility == 13)
             {
-                //украсть любой алмаз
+                hieghtingDiamondFromArtifact();
             }
             else if (quest.selectAbility == 14)
             {
                 party.isAddPotionFromCreatePOtionByDice = true;
-
             }
             else if (quest.selectAbility == 15)
             {
@@ -1583,6 +1618,35 @@ namespace DungeonPapperWPF
                 party.isAddMagicFromDeadn3Monster = true;
             }
         }
+
+        //подсветка алмаза для похищения по абилке
+        public void hieghtingDiamondFromArtifact()
+        {
+
+            foreach (Field field in gridFields.Children)
+            {
+                if (field.dto.prey != null && field.dto.prey is Diamond)
+                {
+                    field.yellowColor();
+                }
+            }
+
+        }
+        //подсветить уровни по абилке №6
+        public void hieghtingLevelUpByAbbility()
+        {
+            if (currentCountLevelUpByAbbility > 0)
+            {
+                party.GetHeroes().ForEach(hero =>
+                {
+                    if (hero.level == 1)
+                    {
+                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + 2)).IsEnabled = true;
+                    }
+                });
+            }
+        }
+
 
         private void rec_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -1607,7 +1671,6 @@ namespace DungeonPapperWPF
                 {
                     zoom += 0.1;
                 }
-
             }
             else
             {
@@ -1615,8 +1678,6 @@ namespace DungeonPapperWPF
                 {
                     zoom -= 0.1;
                 }
-
-
             }
 
             ScaleTransform.ScaleX = zoom;
