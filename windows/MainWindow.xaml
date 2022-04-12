@@ -236,7 +236,7 @@
         </Grid>
         <Label Content="Жизни" HorizontalAlignment="Left" Margin="-5,150,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
         <Label Content="Урон" HorizontalAlignment="Left" Margin="42,150,0,0" VerticalAlignment="Top" Height="26" Foreground="White"/>
-        <Grid x:Name="урон" Height="472" VerticalAlignment="Top" Margin="42,172,0,0" HorizontalAlignment="Left" Width="44" Background="#FF675438">
+        <Grid x:Name="урон" Height="476" VerticalAlignment="Top" Margin="42,172,0,0" HorizontalAlignment="Left" Width="44" Background="#FF675438">
             <CheckBox x:Name="blood_24" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_23" Content="" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
             <CheckBox x:Name="blood_22" Content="" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" IsEnabled="False" Width="16" Height="16"/>
@@ -939,6 +939,36 @@
             </Rectangle.Fill>
         </Rectangle>
         <Rectangle HorizontalAlignment="Left" Height="20" Margin="173,112,0,0" VerticalAlignment="Top" Width="20"/>
-        <CheckBox x:Name="cbox_party_dead" Content="Партия погибла&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,659,0,0" VerticalAlignment="Top" Width="111" Height="21" IsEnabled="False"/>
+        <CheckBox x:Name="cbox_party_dead" Content="Партия&#xD;&#xA;погибла" HorizontalAlignment="Left" Margin="11,662,0,0" VerticalAlignment="Top" Width="86" Height="40" IsEnabled="False"/>
+        <Rectangle HorizontalAlignment="Left" Height="32" Margin="2,673,0,0" VerticalAlignment="Top" Width="33">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Resources/image.psd (63).png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="1" HorizontalAlignment="Left" Margin="25,626,0,0" VerticalAlignment="Top"/>
+        <Label Content="2" HorizontalAlignment="Left" Margin="25,606,0,0" VerticalAlignment="Top"/>
+        <Label Content="3" HorizontalAlignment="Left" Margin="25,588,0,0" VerticalAlignment="Top"/>
+        <Label Content="4" HorizontalAlignment="Left" Margin="25,568,0,0" VerticalAlignment="Top"/>
+        <Label Content="5" HorizontalAlignment="Left" Margin="25,547,0,0" VerticalAlignment="Top"/>
+        <Label Content="6" HorizontalAlignment="Left" Margin="25,527,0,0" VerticalAlignment="Top"/>
+        <Label Content="7" HorizontalAlignment="Left" Margin="25,509,0,0" VerticalAlignment="Top"/>
+        <Label Content="8" HorizontalAlignment="Left" Margin="25,489,0,0" VerticalAlignment="Top"/>
+        <Label Content="9" HorizontalAlignment="Left" Margin="25,466,0,0" VerticalAlignment="Top"/>
+        <Label Content="10" HorizontalAlignment="Left" Margin="21,446,0,0" VerticalAlignment="Top"/>
+        <Label Content="11" HorizontalAlignment="Left" Margin="21,428,0,0" VerticalAlignment="Top"/>
+        <Label Content="12" HorizontalAlignment="Left" Margin="21,408,0,0" VerticalAlignment="Top"/>
+        <Label Content="13" HorizontalAlignment="Left" Margin="21,385,0,0" VerticalAlignment="Top"/>
+        <Label Content="14" HorizontalAlignment="Left" Margin="21,365,0,0" VerticalAlignment="Top"/>
+        <Label Content="15" HorizontalAlignment="Left" Margin="21,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="16" HorizontalAlignment="Left" Margin="21,326,0,0" VerticalAlignment="Top"/>
+        <Label Content="17" HorizontalAlignment="Left" Margin="21,306,0,0" VerticalAlignment="Top"/>
+        <Label Content="18" HorizontalAlignment="Left" Margin="21,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="19" HorizontalAlignment="Left" Margin="21,267,0,0" VerticalAlignment="Top"/>
+        <Label Content="20" HorizontalAlignment="Left" Margin="21,247,0,0" VerticalAlignment="Top"/>
+        <Label Content="21" HorizontalAlignment="Left" Margin="21,227,0,0" VerticalAlignment="Top"/>
+        <Label Content="22" HorizontalAlignment="Left" Margin="21,207,0,0" VerticalAlignment="Top"/>
+        <Label Content="23" HorizontalAlignment="Left" Margin="21,186,0,0" VerticalAlignment="Top"/>
+        <Label Content="24" HorizontalAlignment="Left" Margin="21,166,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
