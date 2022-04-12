@@ -764,18 +764,18 @@ namespace DungeonPapperWPF
 
             if (quest.roundMissionComplete1>0)
             {
-                mission_1_rec.Stroke = Brushes.Blue;
-                mission_1_rec.StrokeThickness = 10;
+                mission_1_rec.Stroke = Brushes.SaddleBrown;
+                mission_1_rec.StrokeThickness = 8;
             }
             else if (quest.roundMissionComplete2 > 0)
             {
-                mission_2_rec.Stroke = Brushes.Blue;
-                mission_2_rec.StrokeThickness = 10;
+                mission_2_rec.Stroke = Brushes.SaddleBrown;
+                mission_2_rec.StrokeThickness = 8;
             }
             else if (quest.roundMissionComplete3 > 0)
             {
-                mission_3_rec.Stroke = Brushes.Blue;
-                mission_3_rec.StrokeThickness = 10;
+                mission_3_rec.Stroke = Brushes.SaddleBrown;
+                mission_3_rec.StrokeThickness = 8;
             }
 
         }
