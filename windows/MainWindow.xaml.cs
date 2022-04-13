@@ -1993,23 +1993,15 @@ namespace DungeonPapperWPF
         private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
 
-            if (e.Delta < 0)
-            {
-                if (zoom <= 1.9)
-                {
-                    zoom += 0.1;
-                }
-            }
-            else
-            {
-                if (zoom >= 1.1)
-                {
-                    zoom -= 0.1;
-                }
-            }
+           
+        }
 
-            ScaleTransform.ScaleX = zoom;
-            ScaleTransform.ScaleY = zoom;
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            ScaleTransform.ScaleX = e.NewSize.Height / 765;
+            ScaleTransform.ScaleY = e.NewSize.Height / 765;
+
         }
     }
 }
