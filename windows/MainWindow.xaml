@@ -718,7 +718,7 @@
             </Rectangle>
         </Grid>
         <Grid x:Name="убитые_монстры" HorizontalAlignment="Left" VerticalAlignment="Top" Width="357" Margin="335,635,0,0">
-            <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="44" Margin="-16,0,0,0">
+            <Rectangle x:Name="Monster" HorizontalAlignment="Left" Height="45" VerticalAlignment="Center" Width="44" Margin="-6,0,0,0">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/image.psd (41).png"/>
                 </Rectangle.Fill>
