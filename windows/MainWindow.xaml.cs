@@ -688,20 +688,25 @@ namespace DungeonPapperWPF
                             {
                                 party.xpBoss1 = xp;
                                 label_boss_1_xp.Content = xp;
+                                boss_1_rec.Opacity = 0.3;
                             }
                             else if (round == 6)
                             {
                                 party.xpBoss2 = xp;
                                 label_boss_2_xp.Content = xp;
+                                boss_2_rec.Opacity = 0.3;
+
                             }
                             else if (round == 8)
                             {
                                 party.xpBoss3 = xp;
                                 label_boss_3_xp.Content = xp;
+                                boss_3_rec.Opacity = 0.3;
+
                             }
 
-                            //Prey prey = boss.prey;
-                            //todo убрать алмазы
+                         
+                           
 
                         }
                         else
@@ -710,21 +715,45 @@ namespace DungeonPapperWPF
                             {
                                 party.xpBoss1 = -boss.minusXp;
                                 label_boss_1_xp.Content = -boss.minusXp;
+                                boss_1_rec.Opacity = 0.3;
                             }
                             else if (round == 6)
                             {
                                 party.xpBoss2 = -boss.minusXp;
                                 label_boss_2_xp.Content = -boss.minusXp;
+                                boss_2_rec.Opacity = 0.3;
                             }
                             else if (round == 8)
                             {
                                 party.xpBoss3 = -boss.minusXp;
                                 label_boss_3_xp.Content = -boss.minusXp;
+                                boss_3_rec.Opacity = 0.3;
                             }
                         }
+
+                        boss.hideDiamonds.ForEach(d => {
+                            for (int i = 0; i < 6; i++)
+                            {
+                                for (int j = 0; j < 7; j++)
+                                {
+                                    Field f = fields[j, i];
+                                    if(f.dto.prey!=null && f.dto.prey is Diamond)
+                                    {
+                                        if(((Diamond)f.dto.prey).name == d.name)
+                                        {
+                                            f.dto.prey = null;
+                                            f.preyFieldAction.Fill = Field.opacityMaskKrestBrush;
+                                            f.preyField.Opacity = 1;
+                                        }
+                                    }
+                                }
+                            }
+
+                        });
+                            //todo убрать алмазы
                     }
 
-                    if(round == 8)
+                    if (round == 8)
                     {
                         new TotalXP().ShowDialog();
 
@@ -764,18 +793,15 @@ namespace DungeonPapperWPF
 
             if (quest.roundMissionComplete1>0)
             {
-                mission_1_rec.Stroke = Brushes.SaddleBrown;
-                mission_1_rec.StrokeThickness = 8;
+                mission_1_rec.Opacity = 0.3;
             }
             else if (quest.roundMissionComplete2 > 0)
             {
-                mission_2_rec.Stroke = Brushes.SaddleBrown;
-                mission_2_rec.StrokeThickness = 8;
+                mission_2_rec.Opacity = 0.3;
             }
             else if (quest.roundMissionComplete3 > 0)
             {
-                mission_3_rec.Stroke = Brushes.SaddleBrown;
-                mission_3_rec.StrokeThickness = 8;
+                mission_3_rec.Opacity = 0.3;
             }
 
         }

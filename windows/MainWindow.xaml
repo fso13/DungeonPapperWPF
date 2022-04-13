@@ -825,7 +825,7 @@
             </Rectangle>
             <Rectangle x:Name="mission_1_rec" MouseRightButtonDown="rec_MouseRightButtonDown"  HorizontalAlignment="Left" Height="140" Stroke="Black" VerticalAlignment="Top" Width="100" RadiusX="8.54" RadiusY="8.54" Margin="0,145,0,0">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg" Opacity="1"/>
                 </Rectangle.Fill>
             </Rectangle>
             <Rectangle x:Name="mission_2_rec"  MouseRightButtonDown="rec_MouseRightButtonDown" Height="140" Stroke="Black" VerticalAlignment="Top" RadiusX="8.04" RadiusY="8.04" Margin="106,145,0,0" HorizontalAlignment="Left" Width="100">

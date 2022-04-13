@@ -18,19 +18,19 @@
         </Grid.ColumnDefinitions>
         <Rectangle x:Name="leftTopFieldEvent" HorizontalAlignment="Left" Height="31" Margin="6,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
         <Rectangle x:Name="rightDouwFieldEvent" HorizontalAlignment="Left" Height="31" Margin="38,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="leftDownFieldEvent" HorizontalAlignment="Left" Height="31" Margin="6,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="rightTopFieldEvent" HorizontalAlignment="Left" Height="31" Margin="38,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
+        <Rectangle x:Name="leftDownFieldEvent" HorizontalAlignment="Left" Height="31" Margin="0,44,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
+        <Rectangle x:Name="rightTopFieldEvent" HorizontalAlignment="Left" Height="31" Margin="44,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" Grid.ColumnSpan="2"/>
         <Rectangle x:Name="leftWallButton" HorizontalAlignment="Left" Height="75" Stroke="Black" VerticalAlignment="Center" Width="6" StrokeThickness="0"/>
         <Rectangle x:Name="rightWallButton" HorizontalAlignment="Center" Height="75" Stroke="Black" VerticalAlignment="Center" Width="6" StrokeThickness="0" Grid.Column="1"/>
         <Rectangle x:Name="topWallButton" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="75" StrokeThickness="0" Grid.ColumnSpan="2"/>
         <Rectangle x:Name="downWallButton" HorizontalAlignment="Left" Height="6" Stroke="Black" VerticalAlignment="Top" Width="75" Margin="0,69,0,0" StrokeThickness="0" Grid.ColumnSpan="2">
         </Rectangle>
-        <Rectangle x:Name="monsterField" HorizontalAlignment="Left" Height="31" Margin="6,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="levelHeroField" HorizontalAlignment="Left" Height="31" Margin="38,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="trapField" HorizontalAlignment="Left" Height="31" Margin="6,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="preyField" HorizontalAlignment="Left" Height="31" Margin="38,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="heroes" HorizontalAlignment="Left" Height="34" Margin="20,22,0,0" VerticalAlignment="Top" Width="35"/>
-        <Rectangle x:Name="preyFieldAction" HorizontalAlignment="Left" Height="31" Margin="38,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
-        <Rectangle x:Name="monsterFieldAction" HorizontalAlignment="Left" Height="31" Margin="6,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" IsEnabled="False" MouseLeftButtonUp="monsterFieldAction_MouseLeftButtonUp"/>
+        <Rectangle x:Name="monsterField" HorizontalAlignment="Left" Height="31" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
+        <Rectangle x:Name="levelHeroField" HorizontalAlignment="Left" Height="31" Margin="44,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="trapField" HorizontalAlignment="Left" Height="31" Margin="0,44,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0"/>
+        <Rectangle x:Name="preyField" HorizontalAlignment="Left" Height="31" Margin="44,44,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="preyFieldAction" HorizontalAlignment="Left" Height="31" Margin="44,44,0,0" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="monsterFieldAction" HorizontalAlignment="Left" Height="31" Stroke="Black" VerticalAlignment="Top" Width="31" StrokeThickness="0" IsEnabled="False" MouseLeftButtonUp="monsterFieldAction_MouseLeftButtonUp"/>
+        <Rectangle x:Name="heroes" HorizontalAlignment="Left" Height="24" VerticalAlignment="Center" Width="75" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>
