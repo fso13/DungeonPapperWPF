@@ -1745,7 +1745,7 @@ namespace DungeonPapperWPF
 
             ImageBrush imageBrush3 = new ImageBrush();
             imageBrush3.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[3] + ".jpg", UriKind.Relative));
             mission_3_rec.Fill = imageBrush3;
 
 
