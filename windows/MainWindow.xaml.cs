@@ -621,7 +621,7 @@ namespace DungeonPapperWPF
 
                 currentCountDice--;
 
-                if (currentCountDice == 0)
+                if (selectDicesIsCurrentRound.Count() == 3)
                 {
                     if (round == 3 || round == 6 || round == 8)
                     {
@@ -852,7 +852,7 @@ namespace DungeonPapperWPF
                                 columns[row.dto.x] += 1;
                             });
 
-                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 5).Count();
+                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 7).Count();
                             if (rr >= 1)
                             {
                                 r = this.round;

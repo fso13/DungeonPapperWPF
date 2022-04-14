@@ -42,7 +42,7 @@ namespace DungeonPapperWPF
 
         private void btn_fign_Click(object sender, RoutedEventArgs e)
         {
-            int minLifeBoss = boss.firstDamage.damage;
+            int minLifeBoss = boss.firstDamage.heroLevel;
             if (boss.level == 1)
             {
                 if (MainWindow.party.path.Find(f => f.dto.one != null) != null)
@@ -50,15 +50,15 @@ namespace DungeonPapperWPF
                     if (minLifeBoss > MainWindow.party.getDamageByBoss(boss))
                     {
                         MessageBox.Show("Вы не можете нанести урон монстру, бегите...");
-
                         btn_fail.IsEnabled = true;
                         btn_fail.Visibility = Visibility.Visible;
                     }
-                    MessageBox.Show("Вы сразили монстра, заберите награду");
-
-                    btn_ok.IsEnabled = true;
-                    btn_ok.Visibility = Visibility.Visible;
-
+                    else
+                    {
+                        MessageBox.Show("Вы сразили монстра, заберите награду");
+                        btn_ok.IsEnabled = true;
+                        btn_ok.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {
@@ -67,7 +67,6 @@ namespace DungeonPapperWPF
                     btn_fail.IsEnabled = true;
                     btn_fail.Visibility = Visibility.Visible;
                 }
-
             }
 
             if (boss.level == 2)
@@ -82,11 +81,13 @@ namespace DungeonPapperWPF
                         btn_fail.IsEnabled = true;
                         btn_fail.Visibility = Visibility.Visible;
                     }
-                    MessageBox.Show("Вы сразили монстра, заберите награду");
+                    else
+                    {
+                        MessageBox.Show("Вы сразили монстра, заберите награду");
 
-                    btn_ok.IsEnabled = true;
-                    btn_ok.Visibility = Visibility.Visible;
-
+                        btn_ok.IsEnabled = true;
+                        btn_ok.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {
@@ -95,7 +96,6 @@ namespace DungeonPapperWPF
                     btn_fail.IsEnabled = true;
                     btn_fail.Visibility = Visibility.Visible;
                 }
-
             }
 
             if (boss.level == 3)
@@ -109,11 +109,13 @@ namespace DungeonPapperWPF
                         btn_fail.IsEnabled = true;
                         btn_fail.Visibility = Visibility.Visible;
                     }
-                    MessageBox.Show("Вы сразили монстра, заберите награду");
+                    else
+                    {
+                        MessageBox.Show("Вы сразили монстра, заберите награду");
 
-                    btn_ok.IsEnabled = true;
-                    btn_ok.Visibility = Visibility.Visible;
-
+                        btn_ok.IsEnabled = true;
+                        btn_ok.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {
