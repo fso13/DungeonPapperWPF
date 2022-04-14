@@ -795,11 +795,11 @@ namespace DungeonPapperWPF
             {
                 mission_1_rec.Opacity = 0.3;
             }
-            else if (quest.roundMissionComplete2 > 0)
+            if (quest.roundMissionComplete2 > 0)
             {
                 mission_2_rec.Opacity = 0.3;
             }
-            else if (quest.roundMissionComplete3 > 0)
+            if (quest.roundMissionComplete3 > 0)
             {
                 mission_3_rec.Opacity = 0.3;
             }
@@ -985,7 +985,16 @@ namespace DungeonPapperWPF
                         }
                     case 16:
                         {
-                            if (party.path.FindAll(f => f.dto.trap != null).Count() >= 5)
+
+                            List<FieldDto> f = new List<FieldDto>();
+                            party.path.FindAll(fff => fff.dto.trap).ForEach(ff =>
+                            {
+                               if( f.FindAll(dto=>dto.x == ff.dto.x && dto.y == ff.dto.y).Count() == 0)
+                                {
+                                    f.Add(ff.dto);
+                                }
+                            });
+                            if (f.Count() >= 5)
                             {
                                 r = this.round;
                             }
@@ -1735,17 +1744,17 @@ namespace DungeonPapperWPF
 
             ImageBrush imageBrush1 = new ImageBrush();
             imageBrush1.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[0] + ".jpg", UriKind.Relative));
             mission_1_rec.Fill = imageBrush1;
 
             ImageBrush imageBrush2 = new ImageBrush();
             imageBrush2.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
             mission_2_rec.Fill = imageBrush2;
 
             ImageBrush imageBrush3 = new ImageBrush();
             imageBrush3.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[3] + ".jpg", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
             mission_3_rec.Fill = imageBrush3;
 
 
