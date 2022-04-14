@@ -621,7 +621,7 @@ namespace DungeonPapperWPF
 
                 currentCountDice--;
 
-                if (currentCountDice == 0)
+                if (selectDicesIsCurrentRound.Count() == 3)
                 {
                     if (round == 3 || round == 6 || round == 8)
                     {
@@ -852,7 +852,7 @@ namespace DungeonPapperWPF
                                 columns[row.dto.x] += 1;
                             });
 
-                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 5).Count();
+                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 7).Count();
                             if (rr >= 1)
                             {
                                 r = this.round;
@@ -1725,6 +1725,7 @@ namespace DungeonPapperWPF
         {
             new WindowsStart().ShowDialog();
 
+            if (quest != null) { 
             fieldDtos = Quests.getQuest(quest.questNumber);
 
             ImageBrush imageBrushm1 = new ImageBrush();
@@ -1775,92 +1776,94 @@ namespace DungeonPapperWPF
 
             drawField();
 
-            if (!isStart)
-            {
-                party = new Party();
-                addHp();
-                addHp();
-                addHp();
-                addHp();
-                //TwoMoveButton.IsEnabled = true;
-                //LevelUpButton.IsEnabled = true;
-                buttonDiceGenereted.IsEnabled = true;
-
-                if (quest.selectMission == 1 ||
-                    quest.selectMission == 5 ||
-                    quest.selectMission == 8 ||
-                    quest.selectMission == 9 ||
-                    quest.selectMission == 11 ||
-                    quest.selectMission == 12 ||
-                    quest.selectMission == 13 ||
-                    quest.selectMission == 15)
+                if (!isStart)
                 {
-                    party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.Black);
-                }
-                else
-                {
-                    party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.White);
-                }
+                    party = new Party();
+                    addHp();
+                    addHp();
+                    addHp();
+                    addHp();
+                    //TwoMoveButton.IsEnabled = true;
+                    //LevelUpButton.IsEnabled = true;
+                    buttonDiceGenereted.IsEnabled = true;
 
-                if (quest.selectMission == 3 ||
-                    quest.selectMission == 4 ||
-                    quest.selectMission == 5 ||
-                    quest.selectMission == 7 ||
-                    quest.selectMission == 10 ||
-                    quest.selectMission == 12 ||
-                    quest.selectMission == 16)
-                {
-                    party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.Black);
-                }
-                else
-                {
-                    party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.White);
-                }
+                    if (quest.selectMission == 1 ||
+                        quest.selectMission == 5 ||
+                        quest.selectMission == 8 ||
+                        quest.selectMission == 9 ||
+                        quest.selectMission == 11 ||
+                        quest.selectMission == 12 ||
+                        quest.selectMission == 13 ||
+                        quest.selectMission == 15)
+                    {
+                        party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.Black);
+                    }
+                    else
+                    {
+                        party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.White);
+                    }
 
-                if (quest.selectMission == 1 ||
-                   quest.selectMission == 2 ||
-                   quest.selectMission == 3 ||
-                   quest.selectMission == 6 ||
-                   quest.selectMission == 7 ||
-                   quest.selectMission == 11 ||
-                   quest.selectMission == 14 ||
-                   quest.selectMission == 15 ||
-                   quest.selectMission == 16)
-                {
-                    party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.Black);
+                    if (quest.selectMission == 3 ||
+                        quest.selectMission == 4 ||
+                        quest.selectMission == 5 ||
+                        quest.selectMission == 7 ||
+                        quest.selectMission == 10 ||
+                        quest.selectMission == 12 ||
+                        quest.selectMission == 16)
+                    {
+                        party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.Black);
+                    }
+                    else
+                    {
+                        party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.White);
+                    }
+
+                    if (quest.selectMission == 1 ||
+                       quest.selectMission == 2 ||
+                       quest.selectMission == 3 ||
+                       quest.selectMission == 6 ||
+                       quest.selectMission == 7 ||
+                       quest.selectMission == 11 ||
+                       quest.selectMission == 14 ||
+                       quest.selectMission == 15 ||
+                       quest.selectMission == 16)
+                    {
+                        party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.Black);
+                    }
+                    else
+                    {
+                        party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.White);
+                    }
+
+                    if (quest.selectMission == 2 ||
+                       quest.selectMission == 4 ||
+                       quest.selectMission == 6 ||
+                       quest.selectMission == 8 ||
+                       quest.selectMission == 9 ||
+                       quest.selectMission == 10 ||
+                       quest.selectMission == 13 ||
+                       quest.selectMission == 14)
+                    {
+                        party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.Black);
+                    }
+                    else
+                    {
+                        party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.White);
+                    }
+
+                    drawLevel();
+                    drawOutlook();
+
+
+
+                    addAbbilityActionAfterNewGame();
+
+                    newGameButton.IsEnabled = false;
+                    isStart = true;
                 }
-                else
-                {
-                    party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.White);
-                }
-
-                if (quest.selectMission == 2 ||
-                   quest.selectMission == 4 ||
-                   quest.selectMission == 6 ||
-                   quest.selectMission == 8 ||
-                   quest.selectMission == 9 ||
-                   quest.selectMission == 10 ||
-                   quest.selectMission == 13 ||
-                   quest.selectMission == 14)
-                {
-                    party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.Black);
-                }
-                else
-                {
-                    party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.White);
-                }
-
-                drawLevel();
-                drawOutlook();
-
-               
-
-                addAbbilityActionAfterNewGame();
-
-                newGameButton.IsEnabled = false;
-                isStart = true;
             }
         }
+
         public bool deadMonsterFromAbbility = false;
         private void addAbbilityActionAfterNewGame()
         {
