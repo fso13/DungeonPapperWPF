@@ -203,37 +203,50 @@ namespace DungeonPapperWPF
 
         private void user_mission_1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            user_mission_1.Stroke = Brushes.Red;
-            user_mission_1.StrokeThickness = 5;
-            user_mission_2.Stroke = null;
-            quest.selectMission = int.Parse(user_mission_1.Tag as string);
+            if (quest!= null && quest.missions!= null)
+            {
+                user_mission_1.Stroke = Brushes.Red;
+                user_mission_1.StrokeThickness = 5;
+                user_mission_2.Stroke = null;
+                quest.selectMission = int.Parse(user_mission_1.Tag as string);
+            }
+       
         }
 
         private void user_mission_2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            user_mission_2.Stroke = Brushes.Red;
-            user_mission_2.StrokeThickness = 5;
+            if (quest != null && quest.missions != null)
+            {
+                user_mission_2.Stroke = Brushes.Red;
+                user_mission_2.StrokeThickness = 5;
 
-            user_mission_1.Stroke = null;
-            quest.selectMission = int.Parse(user_mission_2.Tag as string);
+                user_mission_1.Stroke = null;
+                quest.selectMission = int.Parse(user_mission_2.Tag as string);
+            }
         }
 
         private void abbility_1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            abbility_1.Stroke = Brushes.Red;
-            abbility_1.StrokeThickness = 5;
+            if (quest != null && quest.missions != null)
+            {
+                abbility_1.Stroke = Brushes.Red;
+                abbility_1.StrokeThickness = 5;
 
-            abbility_2.Stroke = null;
-            quest.selectAbility = int.Parse(abbility_1.Tag as string);
+                abbility_2.Stroke = null;
+                quest.selectAbility = int.Parse(abbility_1.Tag as string);
+            }
         }
 
         private void abbility_2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            abbility_2.Stroke = Brushes.Red;
-            abbility_2.StrokeThickness = 5;
+            if (quest != null && quest.missions != null)
+            {
+                abbility_2.Stroke = Brushes.Red;
+                abbility_2.StrokeThickness = 5;
 
-            abbility_1.Stroke = null;
-            quest.selectAbility = int.Parse(abbility_2.Tag as string);
+                abbility_1.Stroke = null;
+                quest.selectAbility = int.Parse(abbility_2.Tag as string);
+            }
         }
 
         private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
