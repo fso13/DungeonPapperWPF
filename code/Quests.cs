@@ -396,6 +396,25 @@ namespace DungeonPapperWPF.code
 
         };
 
+
+        //мумия, химера, дракон
+        static List<FieldDto> quest6 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(MUMIA).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(DRAKON).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(0).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(2).WithTwo(HIMERA).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(3).WithRightBarrier(Barrier.Black).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+
+
+
+        };
+
         public static FieldDto[,] getQuest(int index)
         {
             switch (index)
@@ -406,6 +425,7 @@ namespace DungeonPapperWPF.code
                 case 3: return merge(quest3);
                 case 4: return merge(quest4);
                 case 5: return merge(quest5);
+                case 6: return merge(quest6);
                 default: return getDefault();
             }
 
