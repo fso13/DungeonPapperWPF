@@ -1,7 +1,9 @@
 ﻿using DungeonPapperWPF.code;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -196,6 +198,14 @@ namespace DungeonPapperWPF
             quest.missions = new List<int> { m1, m2, m3 };
             selectUserMission.IsEnabled = true;
             slectedQuestButton.IsEnabled = false;
+
+            cbox_quest.IsEnabled = false;
+
+            if (ConfigurationManager.AppSettings["VoiceEnable"].ToString() == "true" )
+            {
+                SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+                synthesizer.Speak(tbox_legenda.Text);
+            }
         }
 
         public int randomInt(List<int> indexes)
