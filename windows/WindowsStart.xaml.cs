@@ -21,8 +21,6 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class WindowsStart : Window
     {
-        double zoomScale = 1.0;
-
         public Random random = new Random(DateTime.Now.Millisecond);
         public Quest quest = null;
         public WindowsStart()
@@ -35,6 +33,18 @@ namespace DungeonPapperWPF
             if (cbox_quest.SelectedIndex + 1 == 1)
             {
                 quest = quest1;
+            }
+            if (cbox_quest.SelectedIndex + 1 == 2)
+            {
+                quest = quest2;
+            }
+            if (cbox_quest.SelectedIndex + 1 == 3)
+            {
+                quest = quest3;
+            }
+            if (cbox_quest.SelectedIndex + 1 == 4)
+            {
+                quest = quest4;
             }
 
             if (quest != null)
@@ -63,11 +73,32 @@ namespace DungeonPapperWPF
 
         public static Quest quest1 = new Quest(1, "Встреча с разбойниками с Большой дороги всегда сулила беду. \n\n" +
             "Но ныче бандитов развелось так много, что королевской гвардии уже не под силу справиться со всеми негодяями, которые прячутся среди руин.\n\n" +
-            "Слава, ждёт тех искателей приключений, кто отважится разобраться с разбойниками. Но банды, опаснее той, что устроило свое логово в древней крпости Дартима, в королевстве еще не видали.\n\n" +
+            "Слава, ждёт тех искателей приключений, кто отважится разобраться с разбойниками. Но банды, опаснее той, что устроило свое логово в древней крпости Дартима," +
+            " в королевстве еще не видали.\n\n" +
             "В качестве грубой силы бандиты используют МИНОТАВРА, пленительная ВАМПИРША строит козни, а заправляет всем древний СТРАЖ.\n\n" +
             "Пусть эта банда и кажется странной, но с ней даже самым смелым героям королевства будет не до шуток.",
             new List<Boss>() { MINOTAVR, VAMP, STRAG });
 
+        public static Quest quest2 = new Quest(2, "Королевство в отчаянии: уцелевшим разбойникам из дартимской банды удалось убежать в хрустальный город Банц \n\n" +
+    "Днем бандиты прячутся в катакомбах города, а ночью промышляют грабежами и заказными убиствами. Местная воровская гильдия \"Братство змея\" объявила войну пришлым разбойникам" +
+            " и посулила щедрую награду тому, кто избавится от них\n\n" +
+    "МИНОТАВА видели возле катакомб. Сокровища бандитов теперь стережет ХИМЕРА, из за чего негодяи стали еще опасней. Поведевает бандой все тот же злой гений - СТРАЖ.",
+    new List<Boss>() { MINOTAVR, HIMERA, STRAG });
+
+        public static Quest quest3 = new Quest(3, "И вновь главарю дартимских бандитов удалось сбежать. \n\n" +
+    "Власти королевства обещают солидную награду героям, которые положат конец его коварным планам.\n\n" +
+    "Разведчик обнаружил логово разбойников в Вентиме, зажиточном торговом городе с развлетвленной системой канализации и сетью туннелей. Просто рай для этой нечисти.\n\n" +
+    "Вход в логово охранаяет могучий ГОЛЕМ. Верная сообщница главаря, кровожадная ВАМПИРША, вышла из тени, чтобы вновь помочь своему хозяину.\n\n" +
+    "А уаправляет ими все тот же беспощадный СТРАЖ - самый опасный из всей банды.",
+    new List<Boss>() { GOLEM, VAMP, STRAG });
+
+        public static Quest quest4 = new Quest(4, "Гном Фонкин Великолепный был богатым ремесленником из тогргового города Вентима. " +
+            "Он потратил целое состояние и уйму времени, чтобы собрать внушительную коллекцию волшебных предметов, самоцветов, звериных чучел и разных диковинок. \n\n" +
+    "И хотя коллекция музея Фонкина получилась поистине изумительной, нн владелец даже не подозревал, какую опасность она представляет.\n\n" +
+    "Когда звезды на небе выстроились особым образом, из саркофага востала древняя МУМИЯ! " +
+            "С помощью колдоства воскревший жрец сумел вдохнуть жизнь в два музейных экспоната: огромного ВЕЛИКАНА и свирепую ГИДРУ.\n\n" +
+    "Придя в отчаяние от возникшего хаоса, Фонкин надеется, что герои смогут победить чудовищ и в музее вновь воцарится мир и покой.",
+    new List<Boss>() { MUMIA, VELIKAN, GIDRA });
         private void monster_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             zoom.Opacity = 1;
@@ -85,7 +116,7 @@ namespace DungeonPapperWPF
 
         private void slectedQuestButton_Click(object sender, RoutedEventArgs e)
         {
-            List<int> indexes = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15,16 };
+            List<int> indexes = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
             int index = randomInt(indexes);
             int m1 = indexes[index];
             indexes.RemoveAt(index);
@@ -162,7 +193,7 @@ namespace DungeonPapperWPF
             abbility_2.Fill = imageBrush7;
             abbility_2.Tag = ab2.ToString();
 
-            quest.missions = new List<int> {m1,m2,m3 };
+            quest.missions = new List<int> { m1, m2, m3 };
             selectUserMission.IsEnabled = true;
             slectedQuestButton.IsEnabled = false;
         }
@@ -174,14 +205,14 @@ namespace DungeonPapperWPF
 
         private void selectUserMission_Click(object sender, RoutedEventArgs e)
         {
-            if(quest.selectMission != 0)
+            if (quest.selectMission != 0)
             {
                 user_mission_1.IsEnabled = false;
                 user_mission_2.IsEnabled = false;
                 selectUserMission.IsEnabled = false;
                 selectAbblity.IsEnabled = true;
             }
-            
+
         }
 
         private void selectAbblity_Click(object sender, RoutedEventArgs e)
@@ -203,14 +234,14 @@ namespace DungeonPapperWPF
 
         private void user_mission_1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (quest!= null && quest.missions!= null)
+            if (quest != null && quest.missions != null)
             {
                 user_mission_1.Stroke = Brushes.Red;
                 user_mission_1.StrokeThickness = 5;
                 user_mission_2.Stroke = null;
                 quest.selectMission = int.Parse(user_mission_1.Tag as string);
             }
-       
+
         }
 
         private void user_mission_2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -251,7 +282,7 @@ namespace DungeonPapperWPF
 
         private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

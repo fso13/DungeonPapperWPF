@@ -34,7 +34,7 @@ namespace DungeonPapperWPF.code
             .WithNumber(12)
           .WithLevel(3)
           .WithHeroClassType(HeroClassType.Wizard)
-            .WithPrey(new LevelUp(2))
+            .WithPrey(new Xp(2))
             .WithMinusXp(5)
             .WithFirstDamage(new BossDamageBuilder()
                 .WithXp(4)
@@ -117,20 +117,75 @@ namespace DungeonPapperWPF.code
 
         };
 
+        public static Boss HIMERA = new BossBuilder().WithName("Химера")
+        .WithNumber(8)
+      .WithLevel(2)
+      .WithHeroClassType(HeroClassType.Plut)
+        .WithPrey(new MagicThing())
+        .WithMinusXp(4)
+        .WithFirstDamage(new BossDamageBuilder()
+            .WithXp(3)
+            .WithDamage(4)
+            .WithHeroLevel(14)
+            .Build())
+        .WithMiddleDamage(new BossDamageBuilder()
+            .WithXp(5)
+            .WithDamage(3)
+            .WithHeroLevel(18)
+            .Build())
+        .WithLastDamage(new BossDamageBuilder()
+            .WithXp(7)
+            .WithDamage(2)
+            .WithHeroLevel(22)
+            .Build())
+        .WithHideDiamonds(new List<Diamond>() { new Diamond("E"), new Diamond("H") })
+      .Build();
+
         //минотавр, химера, страж
         static List<FieldDto> quest2 = new List<FieldDto>() {
+
+            new FieldDtoBuilder().Withx(4).Withy(0).WithThree(STRAG).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(5).WithOne(MINOTAVR).Build(),
+
             new FieldDtoBuilder().Withx(3).Withy(2).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
             new FieldDtoBuilder().Withx(4).Withy(2).WithTopBarrier(Barrier.Black).Build(),
 
-           new FieldDtoBuilder().Withx(0).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTopBarrier(Barrier.Black).WithTwo(HIMERA).Build(),
            new FieldDtoBuilder().Withx(1).Withy(3).WithTopBarrier(Barrier.Black).Build(),
 
            new FieldDtoBuilder().Withx(2).Withy(5).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
 
         };
 
+        public static Boss GOLEM = new BossBuilder().WithName("Голем")
+                                            .WithNumber(3)
+                                            .WithLevel(1)
+                                            .WithHeroClassType(HeroClassType.Plut)
+                                            .WithPrey(new Potion(2))
+                                            .WithMinusXp(3)
+                                            .WithFirstDamage(new BossDamageBuilder()
+                                                .WithXp(2)
+                                                .WithDamage(3)
+                                                .WithHeroLevel(9)
+                                                .Build())
+                                            .WithMiddleDamage(new BossDamageBuilder()
+                                                .WithXp(4)
+                                                .WithDamage(2)
+                                                .WithHeroLevel(13)
+                                                .Build())
+                                            .WithLastDamage(new BossDamageBuilder()
+                                                .WithXp(6)
+                                                .WithDamage(1)
+                                                .WithHeroLevel(17)
+                                                .Build())
+                                            .WithHideDiamonds(new List<Diamond>() { new Diamond("B"), new Diamond("D") })
+                                            .Build();
+
         //голем,вампирша,страж
         static List<FieldDto> quest3 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(3).Withy(3).WithTwo(VAMP).Build(),
+            new FieldDtoBuilder().Withx(0).Withy(1).WithThree(STRAG).Build(),
+
             new FieldDtoBuilder().Withx(2).Withy(1).WithRightBarrier(Barrier.Black).Build(),
             new FieldDtoBuilder().Withx(3).Withy(2).WithTopBarrier(Barrier.Black).Build(),
 
@@ -138,16 +193,88 @@ namespace DungeonPapperWPF.code
            new FieldDtoBuilder().Withx(1).Withy(3).WithTopBarrier(Barrier.Black).Build(),
 
            new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
-           new FieldDtoBuilder().Withx(3).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(5).WithTopBarrier(Barrier.Black).WithOne(GOLEM).Build(),
            new FieldDtoBuilder().Withx(4).Withy(5).WithTopBarrier(Barrier.Black).Build(),
 
         };
+        public static Boss GIDRA = new BossBuilder().WithName("Гидра")
+            .WithNumber(10)
+          .WithLevel(3)
+          .WithHeroClassType(HeroClassType.Plut)
+            .WithPrey(new Xp(2))
+            .WithMinusXp(5)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(4)
+                .WithDamage(5)
+                .WithHeroLevel(18)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(6)
+                .WithDamage(4)
+                .WithHeroLevel(23)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(8)
+                .WithDamage(3)
+                .WithHeroLevel(28)
+                .Build())
+          .Build();
 
+        public static Boss VELIKAN = new BossBuilder().WithName("Великан")
+            .WithNumber(7)
+          .WithLevel(2)
+          .WithHeroClassType(HeroClassType.Warrior)
+            .WithPrey(new LevelUp())
+            .WithMinusXp(4)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(3)
+                .WithDamage(4)
+                .WithHeroLevel(14)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(5)
+                .WithDamage(3)
+                .WithHeroLevel(18)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(7)
+                .WithDamage(2)
+                .WithHeroLevel(22)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("E"), new Diamond("F") })
+          .Build();
+
+        public static Boss MUMIA = new BossBuilder().WithName("Мумия")
+            .WithNumber(1)
+          .WithLevel(1)
+          .WithHeroClassType(HeroClassType.Cleric)
+            .WithPrey(new Xp(2))
+            .WithMinusXp(3)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(2)
+                .WithDamage(3)
+                .WithHeroLevel(9)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(4)
+                .WithDamage(2)
+                .WithHeroLevel(13)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(6)
+                .WithDamage(1)
+                .WithHeroLevel(17)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("B"), new Diamond("C") })
+          .Build();
 
         //мумия, великан, гидра
         static List<FieldDto> quest4 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(1).Withy(5).WithOne(MUMIA).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(0).WithThree(GIDRA).Build(),
+
             new FieldDtoBuilder().Withx(3).Withy(1).WithRightBarrier(Barrier.Black).Build(),
-            new FieldDtoBuilder().Withx(4).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(2).WithTopBarrier(Barrier.Black).WithTwo(VELIKAN).Build(),
 
            new FieldDtoBuilder().Withx(3).Withy(3).WithRightBarrier(Barrier.Black).Build(),
            new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
@@ -156,6 +283,100 @@ namespace DungeonPapperWPF.code
            new FieldDtoBuilder().Withx(2).Withy(6).WithRightBarrier(Barrier.Black).WithTopBarrier(Barrier.Black).Build(),
 
         };
+
+        public static Boss DRAKON = new BossBuilder().WithName("Дракон")
+                           .WithNumber(9)
+                          .WithLevel(3)
+                          .WithHeroClassType(HeroClassType.Warrior)
+                            .WithPrey(new Xp(2))
+                            .WithMinusXp(5)
+                            .WithFirstDamage(new BossDamageBuilder()
+                                .WithXp(4)
+                                .WithDamage(5)
+                                .WithHeroLevel(18)
+                                .Build())
+                            .WithMiddleDamage(new BossDamageBuilder()
+                                .WithXp(6)
+                                .WithDamage(4)
+                                .WithHeroLevel(23)
+                                .Build())
+                            .WithLastDamage(new BossDamageBuilder()
+                                .WithXp(8)
+                                .WithDamage(3)
+                                .WithHeroLevel(28)
+                                .Build())
+                          .Build();
+
+        public static Boss LICH = new BossBuilder().WithName("Лич")
+    .WithNumber(11)
+  .WithLevel(3)
+  .WithHeroClassType(HeroClassType.Cleric)
+    .WithPrey(new Xp(2))
+    .WithMinusXp(5)
+    .WithFirstDamage(new BossDamageBuilder()
+        .WithXp(4)
+        .WithDamage(5)
+        .WithHeroLevel(18)
+        .Build())
+    .WithMiddleDamage(new BossDamageBuilder()
+        .WithXp(6)
+        .WithDamage(4)
+        .WithHeroLevel(23)
+        .Build())
+    .WithLastDamage(new BossDamageBuilder()
+        .WithXp(8)
+        .WithDamage(3)
+        .WithHeroLevel(28)
+        .Build())
+  .Build();
+
+        public static Boss ELEMENTAL = new BossBuilder().WithName("Элементаль")
+            .WithNumber(6)
+          .WithLevel(2)
+          .WithHeroClassType(HeroClassType.Wizard)
+            .WithPrey(new Potion(2))
+            .WithMinusXp(4)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(3)
+                .WithDamage(4)
+                .WithHeroLevel(14)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(5)
+                .WithDamage(3)
+                .WithHeroLevel(18)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(7)
+                .WithDamage(2)
+                .WithHeroLevel(22)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("G"), new Diamond("H") })
+          .Build();
+
+        public static Boss GARGULIA = new BossBuilder().WithName("Гаргулья")
+            .WithNumber(4)
+          .WithLevel(1)
+          .WithHeroClassType(HeroClassType.Wizard)
+            .WithPrey(new MagicThing())
+            .WithMinusXp(3)
+            .WithFirstDamage(new BossDamageBuilder()
+                .WithXp(2)
+                .WithDamage(3)
+                .WithHeroLevel(9)
+                .Build())
+            .WithMiddleDamage(new BossDamageBuilder()
+                .WithXp(4)
+                .WithDamage(2)
+                .WithHeroLevel(13)
+                .Build())
+            .WithLastDamage(new BossDamageBuilder()
+                .WithXp(6)
+                .WithDamage(1)
+                .WithHeroLevel(17)
+                .Build())
+            .WithHideDiamonds(new List<Diamond>() { new Diamond("A"), new Diamond("C") })
+          .Build();
 
         public static FieldDto[,] getQuest(int index)
         {
