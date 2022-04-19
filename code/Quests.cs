@@ -378,6 +378,138 @@ namespace DungeonPapperWPF.code
             .WithHideDiamonds(new List<Diamond>() { new Diamond("A"), new Diamond("C") })
           .Build();
 
+
+
+        //мумия, элементать, гидра
+        static List<FieldDto> quest5 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(MUMIA).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(GIDRA).Build(),
+
+            new FieldDtoBuilder().Withx(2).Withy(1).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTwo(ELEMENTAL).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(1).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+
+           new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
+
+        //мумия, химера, дракон
+        static List<FieldDto> quest6 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(MUMIA).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(DRAKON).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(0).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(2).WithTwo(HIMERA).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(3).WithRightBarrier(Barrier.Black).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
+        //гаргулья, химера, лич
+        static List<FieldDto> quest7 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(GARGULIA).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(LICH).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTwo(HIMERA).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(1).Withy(2).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+
+           new FieldDtoBuilder().Withx(5).Withy(4).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(4).Withy(3).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(1).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
+        //гаргулья, великан, лич
+        static List<FieldDto> quest8 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(0).Withy(1).WithThree(LICH).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTwo(VELIKAN).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(1).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(5).WithRightBarrier(Barrier.Black).WithOne(GARGULIA).WithTopBarrier(Barrier.Black).Build(),
+        };
+
+
+
+        //гаргулья, великан, гидра
+        static List<FieldDto> quest9 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(LICH).Build(),
+
+            new FieldDtoBuilder().Withx(2).Withy(1).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(2).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(3).WithTwo(VELIKAN).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(4).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(4).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(1).Withy(5).WithRightBarrier(Barrier.Black).WithOne(GARGULIA).Build(),
+            new FieldDtoBuilder().Withx(1).Withy(6).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
+
+        //голем, элементаль, дракон
+        static List<FieldDto> quest10 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(0).WithThree(DRAKON).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(4).Withy(2).WithTwo(ELEMENTAL).Build(),
+
+            new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+
+
+            new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(GOLEM).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+
+
+        };
+
+
+        //голем, вампирша, дракон
+        static List<FieldDto> quest11 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(DRAKON).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(1).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(3).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).WithTwo(VAMP).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(1).Withy(5).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).WithOne(GOLEM).Build(),
+        };
+
+
+        //минотавр, элементаль, лич
+        static List<FieldDto> quest12 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(0).Withy(1).WithThree(LICH).Build(),
+
+            new FieldDtoBuilder().Withx(2).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(3).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(2).WithTwo(ELEMENTAL).Build(),
+
+            new FieldDtoBuilder().Withx(4).Withy(4).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).WithOne(MINOTAVR).Build(),
+
+            new FieldDtoBuilder().Withx(3).Withy(5).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(3).Withy(6).WithRightBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(4).Withy(6).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
+
         public static FieldDto[,] getQuest(int index)
         {
             switch (index)
@@ -387,6 +519,14 @@ namespace DungeonPapperWPF.code
                 case 2: return merge(quest2);
                 case 3: return merge(quest3);
                 case 4: return merge(quest4);
+                case 5: return merge(quest5);
+                case 6: return merge(quest6);
+                case 7: return merge(quest7);
+                case 8: return merge(quest8);
+                case 9: return merge(quest9);
+                case 10: return merge(quest10);
+                case 11: return merge(quest11);
+                case 12: return merge(quest12);
                 default: return getDefault();
             }
 
