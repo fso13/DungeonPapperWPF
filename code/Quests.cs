@@ -428,6 +428,17 @@ namespace DungeonPapperWPF.code
 
         };
 
+        //гаргулья, великан, лич
+        static List<FieldDto> quest8 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(0).Withy(1).WithThree(LICH).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTwo(VELIKAN).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(1).Withy(2).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(4).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(3).Withy(5).WithRightBarrier(Barrier.Black).WithOne(GARGULIA).WithTopBarrier(Barrier.Black).Build(),
+
+        };
+
         public static FieldDto[,] getQuest(int index)
         {
             switch (index)
@@ -440,6 +451,7 @@ namespace DungeonPapperWPF.code
                 case 5: return merge(quest5);
                 case 6: return merge(quest6);
                 case 7: return merge(quest7);
+                case 8: return merge(quest8);
                 default: return getDefault();
             }
 
