@@ -411,7 +411,20 @@ namespace DungeonPapperWPF.code
             new FieldDtoBuilder().Withx(3).Withy(3).WithRightBarrier(Barrier.Black).WithTopBarrier(Barrier.Black).Build(),
             new FieldDtoBuilder().Withx(4).Withy(3).WithTopBarrier(Barrier.Black).Build(),
 
+        };
 
+        //гаргулья, химера, лич
+        static List<FieldDto> quest7 = new List<FieldDto>() {
+            new FieldDtoBuilder().Withx(4).Withy(4).WithOne(GARGULIA).WithTopBarrier(Barrier.Black).Build(),
+            new FieldDtoBuilder().Withx(2).Withy(0).WithThree(LICH).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(3).WithTwo(HIMERA).WithTopBarrier(Barrier.Black).Build(),
+
+            new FieldDtoBuilder().Withx(1).Withy(2).WithTopBarrier(Barrier.Black).WithRightBarrier(Barrier.Black).Build(),
+
+           new FieldDtoBuilder().Withx(5).Withy(4).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(4).Withy(3).WithRightBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(0).Withy(5).WithTopBarrier(Barrier.Black).Build(),
+           new FieldDtoBuilder().Withx(1).Withy(5).WithTopBarrier(Barrier.Black).Build(),
 
         };
 
@@ -426,6 +439,7 @@ namespace DungeonPapperWPF.code
                 case 4: return merge(quest4);
                 case 5: return merge(quest5);
                 case 6: return merge(quest6);
+                case 7: return merge(quest7);
                 default: return getDefault();
             }
 
