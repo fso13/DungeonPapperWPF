@@ -19,6 +19,7 @@
                 <ComboBoxItem Content="Квест 2"/>
                 <ComboBoxItem Content="Квест 3"/>
                 <ComboBoxItem Content="Квест 4"/>
+                <ComboBoxItem Content="Квест 5"/>
             </ComboBox>
             <Rectangle x:Name="monster_1" Margin="271,35,18,362" RenderTransformOrigin="1.134,-0.078" RadiusX="4" RadiusY="4" MouseRightButtonDown="monster_MouseRightButtonDown">
                 <Rectangle.Fill>
