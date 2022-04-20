@@ -19,7 +19,6 @@ namespace DungeonPapperWPF
     public partial class MainWindow : Window
     {
 
-        double zoom = 1.0;
         SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
 
@@ -34,7 +33,9 @@ namespace DungeonPapperWPF
         public static ImageBrush twoBossBrush = new ImageBrush();
         public static ImageBrush threeBossBrush = new ImageBrush();
 
-
+        public bool deadMonsterFromAbbility = false;
+        public bool magicFromDice = false;
+        public bool levelFromDice = false;
         private static bool isStart = false;
         private static FieldDto[,] fieldDtos = new FieldDto[7, 6];//поля в виже дто
         public static Field[,] fields = new Field[7, 6];//поля в окне приложения
@@ -450,7 +451,6 @@ namespace DungeonPapperWPF
 
         }
 
-        public bool levelFromDice = false;
         //выбор действия поднятия уровня
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {
@@ -757,15 +757,20 @@ namespace DungeonPapperWPF
                     {
                         new TotalXP().ShowDialog();
 
+                        System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                        Application.Current.Shutdown();
                     }
-                    buttonDiceGenereted.IsEnabled = true;
-
-                    for (int i = 0; i < 6; i++)
+                    else
                     {
-                        Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-                        rectangle.Stroke = null;
-                        rectangle.Fill = null;
-                        rectangle.IsEnabled = false;
+                        buttonDiceGenereted.IsEnabled = true;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            Rectangle rectangle = ((Rectangle) this.FindName("dice" + (i + 1) + "_pic"));
+                            rectangle.Stroke = null;
+                            rectangle.Fill = null;
+                            rectangle.IsEnabled = false;
+                        }
                     }
                 }
 
@@ -1519,7 +1524,7 @@ namespace DungeonPapperWPF
             }
         }
 
-        public bool magicFromDice = false;
+
 
 
         //подсветка могстров для убийства по артефакту
@@ -1723,58 +1728,83 @@ namespace DungeonPapperWPF
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
+
+            isStart = false;
+            fieldDtos = new FieldDto[7, 6]; //поля в виже дто
+            fields = new Field[7, 6]; //поля в окне приложения
+
+            round = 0; //раунд игры
+            currentCountStep = 0; //сколько есть клеток передвижения
+            currentCountLevel = 0; //сколько есть повышений уровня
+            currentCountDice = 0; //сколько еще можно потратить дайсов на действия
+            currentCountMagicPart = 0; //сколько еще можно потратить дайсов на действия
+            currentCountDeadMonstersFotArtifact = 0; //сколько можно убить монстров за артифакт
+            currentCountLevelUpByAbbility = 0; //сколько можно поднять уровней за абилку
+            currentCountMagicsByAbbility = 0; //сколько можно крафтить предметов по абилке
+            deadMonsterFromAbbility = false;
+            party = null; //пати, герои, сокровища и тд
+
+            generateDices = new Dice[6]; //сгенерированный дайсы в раунде
+            currentDice = null; //выбранный дайс для действия
+            selectDicesIsCurrentRound = new List<Dice>(); //дайсы которые были выбраны в раунде
+        magicFromDice = false;
+        levelFromDice = false;
+        quest = null;
+
             new WindowsStart().ShowDialog();
 
-            if (quest != null) { 
-            fieldDtos = Quests.getQuest(quest.questNumber);
+            if (quest != null)
+            {
+                fieldDtos = Quests.getQuest(quest.questNumber);
 
-            ImageBrush imageBrushm1 = new ImageBrush();
-            imageBrushm1.ImageSource =
-                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[0].number + ".jpg", UriKind.Relative));
-            boss_1_rec.Fill = imageBrushm1;
+                ImageBrush imageBrushm1 = new ImageBrush();
+                imageBrushm1.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[0].number + ".jpg", UriKind.Relative));
+                boss_1_rec.Fill = imageBrushm1;
 
-            ImageBrush imageBrushm2 = new ImageBrush();
-            imageBrushm2.ImageSource =
-                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[1].number + ".jpg", UriKind.Relative));
-            boss_2_rec.Fill = imageBrushm2;
+                ImageBrush imageBrushm2 = new ImageBrush();
+                imageBrushm2.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[1].number + ".jpg", UriKind.Relative));
+                boss_2_rec.Fill = imageBrushm2;
 
-            ImageBrush imageBrushm3 = new ImageBrush();
-            imageBrushm3.ImageSource =
-                new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[2].number + ".jpg", UriKind.Relative));
-            boss_3_rec.Fill = imageBrushm3;
+                ImageBrush imageBrushm3 = new ImageBrush();
+                imageBrushm3.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[2].number + ".jpg", UriKind.Relative));
+                boss_3_rec.Fill = imageBrushm3;
 
-            ImageBrush imageBrush1 = new ImageBrush();
-            imageBrush1.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[0] + ".jpg", UriKind.Relative));
-            mission_1_rec.Fill = imageBrush1;
+                ImageBrush imageBrush1 = new ImageBrush();
+                imageBrush1.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[0] + ".jpg", UriKind.Relative));
+                mission_1_rec.Fill = imageBrush1;
 
-            ImageBrush imageBrush2 = new ImageBrush();
-            imageBrush2.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
-            mission_2_rec.Fill = imageBrush2;
+                ImageBrush imageBrush2 = new ImageBrush();
+                imageBrush2.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
+                mission_2_rec.Fill = imageBrush2;
 
-            ImageBrush imageBrush3 = new ImageBrush();
-            imageBrush3.ImageSource =
-                new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
-            mission_3_rec.Fill = imageBrush3;
-
-
-            ImageBrush imageBrush4 = new ImageBrush();
-            imageBrush4.ImageSource =
-                new BitmapImage(new Uri(@"Resources\user_mission_" + quest.selectMission + ".png", UriKind.Relative));
-            userMission_rec.Fill = imageBrush4;
-
-            ImageBrush imageBrush6 = new ImageBrush();
-            imageBrush6.ImageSource =
-                new BitmapImage(new Uri(@"Resources\ability_" + quest.selectAbility + ".png", UriKind.Relative));
-            abbility_rec.Fill = imageBrush6;
+                ImageBrush imageBrush3 = new ImageBrush();
+                imageBrush3.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
+                mission_3_rec.Fill = imageBrush3;
 
 
-            gridFields.Children.Clear();
-            gridFields.RowDefinitions.Clear();
-            gridFields.ColumnDefinitions.Clear();
+                ImageBrush imageBrush4 = new ImageBrush();
+                imageBrush4.ImageSource =
+                    new BitmapImage(
+                        new Uri(@"Resources\user_mission_" + quest.selectMission + ".png", UriKind.Relative));
+                userMission_rec.Fill = imageBrush4;
 
-            drawField();
+                ImageBrush imageBrush6 = new ImageBrush();
+                imageBrush6.ImageSource =
+                    new BitmapImage(new Uri(@"Resources\ability_" + quest.selectAbility + ".png", UriKind.Relative));
+                abbility_rec.Fill = imageBrush6;
+
+
+                gridFields.Children.Clear();
+                gridFields.RowDefinitions.Clear();
+                gridFields.ColumnDefinitions.Clear();
+
+                drawField();
 
                 if (!isStart)
                 {
@@ -1819,14 +1849,14 @@ namespace DungeonPapperWPF
                     }
 
                     if (quest.selectMission == 1 ||
-                       quest.selectMission == 2 ||
-                       quest.selectMission == 3 ||
-                       quest.selectMission == 6 ||
-                       quest.selectMission == 7 ||
-                       quest.selectMission == 11 ||
-                       quest.selectMission == 14 ||
-                       quest.selectMission == 15 ||
-                       quest.selectMission == 16)
+                        quest.selectMission == 2 ||
+                        quest.selectMission == 3 ||
+                        quest.selectMission == 6 ||
+                        quest.selectMission == 7 ||
+                        quest.selectMission == 11 ||
+                        quest.selectMission == 14 ||
+                        quest.selectMission == 15 ||
+                        quest.selectMission == 16)
                     {
                         party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.Black);
                     }
@@ -1836,13 +1866,13 @@ namespace DungeonPapperWPF
                     }
 
                     if (quest.selectMission == 2 ||
-                       quest.selectMission == 4 ||
-                       quest.selectMission == 6 ||
-                       quest.selectMission == 8 ||
-                       quest.selectMission == 9 ||
-                       quest.selectMission == 10 ||
-                       quest.selectMission == 13 ||
-                       quest.selectMission == 14)
+                        quest.selectMission == 4 ||
+                        quest.selectMission == 6 ||
+                        quest.selectMission == 8 ||
+                        quest.selectMission == 9 ||
+                        quest.selectMission == 10 ||
+                        quest.selectMission == 13 ||
+                        quest.selectMission == 14)
                     {
                         party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.Black);
                     }
@@ -1864,7 +1894,6 @@ namespace DungeonPapperWPF
             }
         }
 
-        public bool deadMonsterFromAbbility = false;
         private void addAbbilityActionAfterNewGame()
         {
             if (quest.selectAbility == 1)
