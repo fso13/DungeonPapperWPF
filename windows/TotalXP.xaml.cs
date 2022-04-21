@@ -6,8 +6,10 @@ namespace DungeonPapperWPF.windows
 
     public partial class TotalXP : Window
     {
-        public TotalXP()
+        public Window parent;
+        public TotalXP(Window parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
@@ -341,7 +343,7 @@ namespace DungeonPapperWPF.windows
             }
         }
 
-        public int xpMission(int round)
+        public static int xpMission(int round)
         {
             switch (round)
             {
@@ -508,6 +510,11 @@ namespace DungeonPapperWPF.windows
 
             total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xpAbbility() + xp_mission;
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((MainWindow)parent).parent.Show();
         }
     }
 }

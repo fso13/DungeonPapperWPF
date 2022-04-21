@@ -101,11 +101,17 @@
     </Compile>
     <Compile Include="code\Mission.cs" />
     <Compile Include="code\UserMission.cs" />
+    <Compile Include="windows\LaunchWindow.xaml.cs">
+      <DependentUpon>LaunchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\TotalXP.xaml.cs">
       <DependentUpon>TotalXP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\WindowsStart.xaml.cs">
-      <DependentUpon>WindowsStart.xaml</DependentUpon>
+    <Compile Include="windows\NewGameWindows.xaml.cs">
+      <DependentUpon>NewGameWindows.xaml</DependentUpon>
     </Compile>
     <Page Include="windows\BossFightWindows.xaml">
       <SubType>Designer</SubType>
@@ -115,7 +121,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\MainWindow.xaml">
+    <Page Include="windows\LaunchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\GameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -135,19 +145,23 @@
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>
     <Compile Include="code\FieldDto.cs" />
-    <Compile Include="windows\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="windows\GameWindow.xaml.cs">
+      <DependentUpon>GameWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="windows\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\TotalXP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\WindowsStart.xaml">
+    <Page Include="windows\NewGameWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

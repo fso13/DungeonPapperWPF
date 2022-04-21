@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Speech.Synthesis;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,11 +19,15 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class WindowsStart : Window
     {
+        SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         public Random random = new Random(DateTime.Now.Millisecond);
         public Quest quest = null;
-
-        public WindowsStart()
+        public Window parent;
+        
+        private Thread myThread = null;
+        public WindowsStart(Window parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
@@ -337,10 +342,11 @@ namespace DungeonPapperWPF
 
             cbox_quest.IsEnabled = false;
 
-            if (ConfigurationManager.AppSettings["VoiceEnable"].ToString() == "true")
+            if (ConfigurationManager.AppSettings["VoiceEnable"] == "true")
             {
-                SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-                synthesizer.Speak(tbox_legenda.Text);
+                string text = tbox_legenda.Text;
+               
+                synthesizer.SpeakAsync(text);
             }
         }
 
@@ -374,8 +380,13 @@ namespace DungeonPapperWPF
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.quest = quest;
-            this.Close();
+            synthesizer.Pause();
+
+            var window = new MainWindow(quest, this);
+            
+            window.Owner = this;
+            window.Show();
+            this.Hide();
         }
 
         private void user_mission_1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -426,15 +437,16 @@ namespace DungeonPapperWPF
             }
         }
 
-        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-
-        }
-
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ScaleTransform.ScaleX = e.NewSize.Height / 633;
             ScaleTransform.ScaleY = e.NewSize.Height / 633;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            synthesizer.Pause();
+            parent.Show();
         }
     }
 }

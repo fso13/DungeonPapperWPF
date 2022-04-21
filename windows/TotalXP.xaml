@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF.windows"
         mc:Ignorable="d"
-        Title="TotalXP" Height="450" Width="636" Loaded="Window_Loaded">
+        Title="TotalXP" Height="450" Width="636" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Background="#FF8E744D">
         <Label x:Name="total_xp" Content="000" HorizontalAlignment="Left" Height="113" Margin="233,255,0,0" VerticalAlignment="Top" Width="135" IsEnabled="False" FontSize="72" Foreground="Black"/>
         <Label x:Name="label_1" Content="000" HorizontalAlignment="Left" Height="46" Margin="23,150,0,0" VerticalAlignment="Top" Width="51" IsEnabled="False" FontSize="24" Foreground="Black"/>
