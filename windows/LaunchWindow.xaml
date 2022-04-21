@@ -5,17 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF.windows"
         mc:Ignorable="d"
-        Title="LaunchWindow" Height="328" Width="500" Background="#FF8E744D" SizeToContent="WidthAndHeight" MinWidth="500" MinHeight="328" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged">
-    <Grid>
+        Title="LaunchWindow" Height="378" Width="500" Background="#FF8E744D" SizeToContent="Manual" MinWidth="500" MinHeight="338" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged">
+    <Grid Margin="0,0,0,12">
         <Grid.RenderTransform>
             <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
         </Grid.RenderTransform>
-        <Grid Height="214" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" Margin="172,50,0,0">
+        <Grid HorizontalAlignment="Left" Width="146" Margin="172,22,0,-2">
             <Button x:Name="NewGameBtn" Content="Новая игра" HorizontalAlignment="Center" VerticalAlignment="Top" Height="49" Width="146" Click="NewGameBtn_Click"/>
-            <Button x:Name="SettingsGameBtn" Content="Настройки" HorizontalAlignment="Center" VerticalAlignment="Center" Height="49" Width="146" Click="SettingsGameBtn_Click"/>
-            <Button x:Name="RatingGameBtn" Content="Рейтинг" HorizontalAlignment="Center" Margin="0,165,0,0" VerticalAlignment="Top" Height="49" Width="146" Click="RatingGameBtn_Click"/>
+            <Button x:Name="SettingsGameBtn" Content="Настройки" HorizontalAlignment="Center" VerticalAlignment="Top" Height="49" Width="146" Click="SettingsGameBtn_Click" Margin="0,70,0,0"/>
+            <Button x:Name="RatingGameBtn" Content="Рейтинг" HorizontalAlignment="Center" Margin="0,147,0,0" VerticalAlignment="Top" Height="49" Width="146" Click="RatingGameBtn_Click"/>
+            <Button x:Name="UpdateBtn" Content="Обновление" HorizontalAlignment="Center" Margin="0,221,0,0" Width="146" Click="UpdateBtn_Click" Height="49" VerticalAlignment="Top"/>
 
         </Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Height="46" Margin="47,266,0,0" VerticalAlignment="Top" Width="60" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+            </Button.Background>
+        </Button>
+        <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Margin="59,312,0,10" Width="372" IsIndeterminate="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden"/>
 
     </Grid>
 </Window>
