@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DungeonPapperWPF.windows.RatingUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DungeonPapperWPF.windows"
+             mc:Ignorable="d" Height="30" Width="451">
+    <Grid Background="White">
+        <Label x:Name="nick" Content="Label" HorizontalAlignment="Left" Margin="53,0,0,0" VerticalAlignment="Center" Width="225"/>
+        <Label x:Name="number" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="38"/>
+        <Label x:Name="xp" Content="Label" Margin="383,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="58"/>
+        <Label x:Name="quest" Content="Label" Margin="325,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="53"/>
+
+    </Grid>
+</UserControl>

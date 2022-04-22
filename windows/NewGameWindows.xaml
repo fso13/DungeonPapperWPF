@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
-        Title="Новая игра" Height="633" Width="784" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="#FF8E744D" MinWidth="784" MinHeight="633" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
+        Title="Новая игра" Height="633" Width="784" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="#FF8E744D" MinWidth="784" MinHeight="633" SizeChanged="Window_SizeChanged" Closing="Window_Closing" WindowState="Maximized">
     <Grid x:Name="contentGrid" Background="#FF8E744D">
         <Grid.RenderTransform>
             <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
