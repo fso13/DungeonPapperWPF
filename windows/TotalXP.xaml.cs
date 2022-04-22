@@ -1,11 +1,17 @@
 ﻿using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Windows;
+using DungeonPapperWPF.code;
 
 namespace DungeonPapperWPF.windows
 {
 
     public partial class TotalXP : Window
     {
+        static HttpClient client = new HttpClient();
+
         public Window parent;
         public TotalXP(Window parent)
         {
@@ -509,6 +515,13 @@ namespace DungeonPapperWPF.windows
             label_11.Content = xp_mission;
 
             total_xp.Content = xp_boss1 + xp_boss2 + xp_boss3 + xp_level + xp_magic + xp_diamond + xp_monsters + xp_blood + xp_dead + xp_user_mission + xpAbbility() + xp_mission;
+
+
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
+            client.PostAsync("https://dnd5-webapi.herokuapp.com/rating?nick=" + ConfUtil.read()["nick"] + "&quest="+ MainWindow.quest.questNumber + "&&xp=" + total_xp.Content, null);
 
         }
 

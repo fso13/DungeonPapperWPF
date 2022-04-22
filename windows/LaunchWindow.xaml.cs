@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
+using DungeonPapperWPF.code;
 
 namespace DungeonPapperWPF.windows
 {
@@ -41,7 +43,7 @@ namespace DungeonPapperWPF.windows
 
         private void RatingGameBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Еще не реализованно");
+           new RatingWindow().Show();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -104,6 +106,25 @@ namespace DungeonPapperWPF.windows
         public class Release
         {
             public string name { get; set; }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, string> props = new Dictionary<string, string>();
+
+            if (File.Exists("user.conf"))
+            {
+                props = ConfUtil.read();
+
+                if (!props.ContainsKey("nick"))
+                {
+                    new NickWindow().Show();
+                }
+            }
+            else
+            {
+                new NickWindow().Show();
+            }
         }
     }
 }

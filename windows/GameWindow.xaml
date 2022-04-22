@@ -4,10 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF"
-        WindowStartupLocation="CenterScreen"
         x:Class="DungeonPapperWPF.MainWindow"
         mc:Ignorable="d"
-        Title="Dungeons Paper"  Loaded="Window_Loaded" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize" UseLayoutRounding="False" SizeToContent="WidthAndHeight" Margin="0,0,0,0"  ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="1031" Height="765" WindowState="Normal" MinWidth="1031" MinHeight="765" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" PreviewMouseWheel="Window_PreviewMouseWheel" Background="#FF8E744D" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
+        Title="Dungeons Paper"  Loaded="Window_Loaded" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Width="1055" Height="765" WindowState="Maximized" MinWidth="1055" MinHeight="765"  PreviewMouseWheel="Window_PreviewMouseWheel" Background="#FF8E744D" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

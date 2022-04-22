@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
-        Title="BossFightWindows" Height="447" Width="579.311">
+        Title="BossFightWindows" Height="447" Width="579.311" Background="#FF8E744D">
     <Grid>
         <Rectangle x:Name="boss_rec" HorizontalAlignment="Left" Height="388" Margin="18,23,0,0" Stroke="Black" VerticalAlignment="Top" Width="256" RadiusX="11.688" RadiusY="11.688"/>
         <Button x:Name="btn_fign" Content="Бой" HorizontalAlignment="Left" Margin="293,23,0,0" VerticalAlignment="Top" Width="250" Click="btn_fign_Click"/>
