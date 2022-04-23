@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonPapperWPF.windows"
         mc:Ignorable="d"
-        Title="LaunchWindow" Height="378" Width="500" Background="#FF8E744D" SizeToContent="Manual" MinWidth="500" MinHeight="338" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged" WindowState="Maximized" Loaded="Window_Loaded">
+        Title="Бумажные подземелья" Height="378" Width="500" Background="#FF8E744D" SizeToContent="Manual" MinWidth="500" MinHeight="338" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged" WindowState="Maximized" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,12">
         <Grid.RenderTransform>
             <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
