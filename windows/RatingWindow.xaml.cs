@@ -25,6 +25,7 @@ namespace DungeonPapperWPF.windows
     /// </summary>
     public partial class RatingWindow : Window
     {
+        public static SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
         static HttpClient client = new HttpClient();
         public static List<Rating> ratings = new List<Rating>();
 
@@ -60,17 +61,47 @@ namespace DungeonPapperWPF.windows
            ratings = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Rating>>(await ratingsJson);
 
            ratings.Sort((emp1, emp2) => emp2.xp.CompareTo(emp1.xp));
+           var nick = ConfUtil.read()["nick"];
 
-           for(int i = 0; i < ratings.Count; i++)
+            for (int i = 0; i < ratings.Count; i++)
             {
                 RatingUserControl userControl = new RatingUserControl();
                 userControl.number.Content = i+1;
                 userControl.nick.Content = ratings[i].nick;
                 userControl.quest.Content = ratings[i].quest;
                 userControl.xp.Content = ratings[i].xp;
+                if (nick.Equals(ratings[i].nick))
+                {
+                    userControl.Background = brushGreen;
+                }
                 listBox.Items.Add(userControl);
             }
 
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            listBox.Items.Clear();
+            var nick = ConfUtil.read()["nick"];
+
+            for (int i = 0; i < ratings.Count; i++)
+            {
+                if (questCbox.SelectedIndex == 0 || ratings[i].quest == questCbox.SelectedIndex)
+                {
+                    RatingUserControl userControl = new RatingUserControl();
+                    userControl.number.Content = i + 1;
+                    userControl.nick.Content = ratings[i].nick;
+                    userControl.quest.Content = ratings[i].quest;
+                    userControl.xp.Content = ratings[i].xp;
+
+                    if (nick.Equals(ratings[i].nick))
+                    {
+                        userControl.Background = brushGreen;
+                    }
+                    listBox.Items.Add(userControl);
+                }
+            }
+        }
     }
+
 }

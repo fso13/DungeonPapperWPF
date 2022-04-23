@@ -25,6 +25,11 @@ namespace DungeonPapperWPF.windows
             splashScreen.Close(TimeSpan.FromSeconds(5));
             System.Threading.Thread.Sleep(5000);
             InitializeComponent();
+
+            string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            currentVersion = currentVersion.Substring(0, currentVersion.Length - 2);
+
+            this.Title += " v" + currentVersion;
         }
 
         private void NewGameBtn_Click(object sender, RoutedEventArgs e)
@@ -70,8 +75,8 @@ namespace DungeonPapperWPF.windows
 
             var msg = await System.Text.Json.JsonSerializer.DeserializeAsync<Release>(await streamTask);
 
-            string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            currentVersion = currentVersion.Substring(0, currentVersion.Length - 3);
+            string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            currentVersion = currentVersion.Substring(0, currentVersion.Length - 2);
             string lastVersion = msg.name.Replace("v", "");
 
             if (lastVersion.CompareTo(currentVersion) > 0)
