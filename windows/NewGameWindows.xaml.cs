@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Speech.Synthesis;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,12 +18,11 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class WindowsStart : Window
     {
-        SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+        private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         public Random random = new Random(DateTime.Now.Millisecond);
         public Quest quest = null;
         public Window parent;
-        
-        private Thread myThread = null;
+
         public WindowsStart(Window parent)
         {
             this.parent = parent;
@@ -33,89 +31,51 @@ namespace DungeonPapperWPF
 
         private void cbox_quest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbox_quest.SelectedIndex + 1 == 1)
-            {
-                quest = quest1;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 1) quest = quest1;
 
-            if (cbox_quest.SelectedIndex + 1 == 2)
-            {
-                quest = quest2;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 2) quest = quest2;
 
-            if (cbox_quest.SelectedIndex + 1 == 3)
-            {
-                quest = quest3;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 3) quest = quest3;
 
-            if (cbox_quest.SelectedIndex + 1 == 4)
-            {
-                quest = quest4;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 4) quest = quest4;
 
-            if (cbox_quest.SelectedIndex + 1 == 5)
-            {
-                quest = quest5;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 5) quest = quest5;
 
-            if (cbox_quest.SelectedIndex + 1 == 6)
-            {
-                quest = quest6;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 6) quest = quest6;
 
-            if (cbox_quest.SelectedIndex + 1 == 7)
-            {
-                quest = quest7;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 7) quest = quest7;
 
-            if (cbox_quest.SelectedIndex + 1 == 8)
-            {
-                quest = quest8;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 8) quest = quest8;
 
-            if (cbox_quest.SelectedIndex + 1 == 9)
-            {
-                quest = quest9;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 9) quest = quest9;
 
-            if (cbox_quest.SelectedIndex + 1 == 10)
-            {
-                quest = quest10;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 10) quest = quest10;
 
-            if (cbox_quest.SelectedIndex + 1 == 11)
-            {
-                quest = quest11;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 11) quest = quest11;
 
-            if (cbox_quest.SelectedIndex + 1 == 12)
-            {
-                quest = quest12;
-            }
+            if (cbox_quest.SelectedIndex + 1 == 12) quest = quest12;
 
 
             if (quest != null)
             {
                 tbox_legenda.Text = quest.text;
-                ImageBrush imageBrush1 = new ImageBrush();
+                var imageBrush1 = new ImageBrush();
                 imageBrush1.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[0].number + ".jpg", UriKind.Relative));
                 monster_1.Fill = imageBrush1;
 
-                ImageBrush imageBrush2 = new ImageBrush();
+                var imageBrush2 = new ImageBrush();
                 imageBrush2.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[1].number + ".jpg", UriKind.Relative));
                 monster_2.Fill = imageBrush2;
 
-                ImageBrush imageBrush3 = new ImageBrush();
+                var imageBrush3 = new ImageBrush();
                 imageBrush3.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[2].number + ".jpg", UriKind.Relative));
                 monster_3.Fill = imageBrush3;
-
             }
 
             slectedQuestButton.IsEnabled = true;
-
         }
 
         public static Quest quest1 = new Quest(1,
@@ -218,7 +178,7 @@ namespace DungeonPapperWPF
             "Для защиты стен замка коварный гном выковал ГОЛЕМА, " +
             "заточил в своей кузнице ЭЛЕМЕНТАЛЯ, дабы горнило никогда не остывало, и укротил красного ДРАКОНА, оседлав его.\n\n" +
             "Тем, кто сумеет завоевать эту древнюю твердыню, с лихвой достанется и золота, и славы.",
-            new List<Boss>() {GOLEM, ELEMENTAL,DRAKON});
+            new List<Boss>() {GOLEM, ELEMENTAL, DRAKON});
 
         public static Quest quest11 = new Quest(11,
             "Миндартис атакован!\n\n" +
@@ -228,7 +188,7 @@ namespace DungeonPapperWPF
             "Но худшее было впереди.\n\n" +
             "Из-за грозовых туч появился разъяренный ДРАКОН, готовый уничтожить город высших эльфов.\n\n" +
             "Лишь величайшим из героев под силу победить чудовищ, спасти город и завоевать уважение лесных владык.",
-            new List<Boss>() {GOLEM, VAMP,DRAKON});
+            new List<Boss>() {GOLEM, VAMP, DRAKON});
 
         public static Quest quest12 = new Quest(12,
             "Шрам манит к себе искателей приключений со всего королевсства. Созданный в незапамятные времена древней стихией, этот громадный кратер известен суровым ландшафтом," +
@@ -239,98 +199,96 @@ namespace DungeonPapperWPF
             "Вечная слава победителей свирепых чудовищ вроде МИНОТАВРА, желание испытать магические способности в схватке с ЭЛЕМЕНТАЛЕМ" +
             "или легендарные сокровища жестокого ЛИЧА.\n\n" +
             "Готовы ли вы вписать свое имя в историю.",
-
             new List<Boss>() {MINOTAVR, ELEMENTAL, LICH});
 
         private void monster_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             zoom.Opacity = 1;
             zoom.Fill = ((Rectangle) sender).Fill;
-            Canvas.SetZIndex(zoom, 1);
-
+            Panel.SetZIndex(zoom, 1);
         }
 
         private void zoom_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             zoom.Opacity = 1;
             zoom.Fill = null;
-            Canvas.SetZIndex(zoom, 100);
+            Panel.SetZIndex(zoom, 100);
         }
 
         private void slectedQuestButton_Click(object sender, RoutedEventArgs e)
         {
-            List<int> indexes = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
-            int index = randomInt(indexes);
-            int m1 = indexes[index];
+            var indexes = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+            var index = randomInt(indexes);
+            var m1 = indexes[index];
             indexes.RemoveAt(index);
 
             index = randomInt(indexes);
-            int m2 = indexes[index];
+            var m2 = indexes[index];
             indexes.RemoveAt(index);
 
             index = randomInt(indexes);
-            int m3 = indexes[index];
+            var m3 = indexes[index];
             indexes.RemoveAt(index);
 
             indexes = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
             index = randomInt(indexes);
-            int um1 = indexes[index];
+            var um1 = indexes[index];
             indexes.RemoveAt(index);
 
             index = randomInt(indexes);
-            int um2 = indexes[index];
+            var um2 = indexes[index];
             indexes.RemoveAt(index);
 
 
             indexes = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
             index = randomInt(indexes);
-            int ab1 = indexes[index];
+            var ab1 = indexes[index];
             indexes.RemoveAt(index);
 
             index = randomInt(indexes);
-            int ab2 = indexes[index];
+            var ab2 = indexes[index];
             indexes.RemoveAt(index);
 
 
-            ImageBrush imageBrush1 = new ImageBrush();
+            var imageBrush1 = new ImageBrush();
             imageBrush1.ImageSource =
                 new BitmapImage(new Uri(@"Resources\mission_" + m1 + ".jpg", UriKind.Relative));
             mission_1.Fill = imageBrush1;
             mission_1.Tag = m1.ToString();
 
-            ImageBrush imageBrush2 = new ImageBrush();
+            var imageBrush2 = new ImageBrush();
             imageBrush2.ImageSource =
                 new BitmapImage(new Uri(@"Resources\mission_" + m2 + ".jpg", UriKind.Relative));
             mission_2.Fill = imageBrush2;
             mission_2.Tag = m2.ToString();
 
-            ImageBrush imageBrush3 = new ImageBrush();
+            var imageBrush3 = new ImageBrush();
             imageBrush3.ImageSource =
                 new BitmapImage(new Uri(@"Resources\mission_" + m3 + ".jpg", UriKind.Relative));
             mission_3.Fill = imageBrush3;
             mission_3.Tag = m3.ToString();
 
 
-            ImageBrush imageBrush4 = new ImageBrush();
+            var imageBrush4 = new ImageBrush();
             imageBrush4.ImageSource =
                 new BitmapImage(new Uri(@"Resources\user_mission_" + um1 + ".png", UriKind.Relative));
             user_mission_1.Fill = imageBrush4;
             user_mission_1.Tag = um1.ToString();
 
-            ImageBrush imageBrush5 = new ImageBrush();
+            var imageBrush5 = new ImageBrush();
             imageBrush5.ImageSource =
                 new BitmapImage(new Uri(@"Resources\user_mission_" + um2 + ".png", UriKind.Relative));
             user_mission_2.Fill = imageBrush5;
             user_mission_2.Tag = um2.ToString();
 
 
-            ImageBrush imageBrush6 = new ImageBrush();
+            var imageBrush6 = new ImageBrush();
             imageBrush6.ImageSource =
                 new BitmapImage(new Uri(@"Resources\ability_" + ab1 + ".png", UriKind.Relative));
             abbility_1.Fill = imageBrush6;
             abbility_1.Tag = ab1.ToString();
 
-            ImageBrush imageBrush7 = new ImageBrush();
+            var imageBrush7 = new ImageBrush();
             imageBrush7.ImageSource =
                 new BitmapImage(new Uri(@"Resources\ability_" + ab2 + ".png", UriKind.Relative));
             abbility_2.Fill = imageBrush7;
@@ -344,8 +302,8 @@ namespace DungeonPapperWPF
 
             if (ConfigurationManager.AppSettings["VoiceEnable"] == "true")
             {
-                string text = tbox_legenda.Text;
-               
+                var text = tbox_legenda.Text;
+
                 synthesizer.SpeakAsync(text);
             }
         }
@@ -364,7 +322,6 @@ namespace DungeonPapperWPF
                 selectUserMission.IsEnabled = false;
                 selectAbblity.IsEnabled = true;
             }
-
         }
 
         private void selectAbblity_Click(object sender, RoutedEventArgs e)
@@ -383,10 +340,10 @@ namespace DungeonPapperWPF
             synthesizer.Pause();
 
             var window = new MainWindow(quest, this);
-            
+
             window.Owner = this;
             window.Show();
-            this.Hide();
+            Hide();
         }
 
         private void user_mission_1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -398,7 +355,6 @@ namespace DungeonPapperWPF
                 user_mission_2.Stroke = null;
                 quest.selectMission = int.Parse(user_mission_1.Tag as string);
             }
-
         }
 
         private void user_mission_2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

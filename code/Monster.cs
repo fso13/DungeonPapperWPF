@@ -24,9 +24,7 @@ namespace DungeonPapperWPF
         public Uri getPathHeroLevel()
         {
             return heroClass.getPath();
-
         }
-
     }
 
     public enum MonsterType

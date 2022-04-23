@@ -3,37 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DungeonPapperWPF.windows"
         mc:Ignorable="d"
         Title="Рейтинговая таблица" Height="450" Width="470" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="125*"/>
-            <ColumnDefinition Width="67*"/>
-            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="67*" />
+            <ColumnDefinition Width="43*" />
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="questCbox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="161" Height="22" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="Все квесты"/>
-            <ComboBoxItem Content="Квест 1"/>
-            <ComboBoxItem Content="Квест 2"/>
-            <ComboBoxItem Content="Квест 3"/>
-            <ComboBoxItem Content="Квест 4"/>
-            <ComboBoxItem Content="Квест 5"/>
-            <ComboBoxItem Content="Квест 6"/>
-            <ComboBoxItem Content="Квест 7"/>
-            <ComboBoxItem Content="Квест 8"/>
-            <ComboBoxItem Content="Квест 9"/>
-            <ComboBoxItem Content="Квест 10"/>
-            <ComboBoxItem Content="Квест 11"/>
-            <ComboBoxItem Content="Квест 12"/>
+        <ComboBox x:Name="questCbox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"
+                  Height="22" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="Все квесты" />
+            <ComboBoxItem Content="Квест 1" />
+            <ComboBoxItem Content="Квест 2" />
+            <ComboBoxItem Content="Квест 3" />
+            <ComboBoxItem Content="Квест 4" />
+            <ComboBoxItem Content="Квест 5" />
+            <ComboBoxItem Content="Квест 6" />
+            <ComboBoxItem Content="Квест 7" />
+            <ComboBoxItem Content="Квест 8" />
+            <ComboBoxItem Content="Квест 9" />
+            <ComboBoxItem Content="Квест 10" />
+            <ComboBoxItem Content="Квест 11" />
+            <ComboBoxItem Content="Квест 12" />
         </ComboBox>
         <Grid Margin="0,37,0,0" Grid.ColumnSpan="3">
-            <ListBox ItemTemplate="{DynamicResource ListBoxItemTemplate1}" x:Name="listBox" Margin="0,36,0,0" >
-            </ListBox>
-            <Label Content="Ник" RenderTransformOrigin="0.383,0.68" Margin="45,5,0,0" HorizontalAlignment="Left" Width="60" VerticalAlignment="Top"/>
-            <Label Content="Номер квеста" RenderTransformOrigin="0.383,0.68" Margin="268,5,87,0" VerticalAlignment="Top"/>
-            <Label Content="Очки" RenderTransformOrigin="0.383,0.68" Margin="400,5,0,0" VerticalAlignment="Top"/>
-            <Label Content="#" RenderTransformOrigin="0.383,0.68" Margin="10,5,0,0" HorizontalAlignment="Left" Width="30" VerticalAlignment="Top"/>
+            <ListBox ItemTemplate="{DynamicResource ListBoxItemTemplate1}" x:Name="listBox" Margin="0,36,0,0" />
+            <Label Content="Ник" RenderTransformOrigin="0.383,0.68" Margin="45,5,0,0" HorizontalAlignment="Left"
+                   Width="60" VerticalAlignment="Top" />
+            <Label Content="Номер квеста" RenderTransformOrigin="0.383,0.68" Margin="268,5,87,0"
+                   VerticalAlignment="Top" />
+            <Label Content="Очки" RenderTransformOrigin="0.383,0.68" Margin="400,5,0,0" VerticalAlignment="Top" />
+            <Label Content="#" RenderTransformOrigin="0.383,0.68" Margin="10,5,0,0" HorizontalAlignment="Left"
+                   Width="30" VerticalAlignment="Top" />
         </Grid>
 
     </Grid>

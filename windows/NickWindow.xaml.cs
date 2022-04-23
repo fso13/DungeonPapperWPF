@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using DungeonPapperWPF.code;
+﻿using DungeonPapperWPF.code;
+using System.Windows;
 
 namespace DungeonPapperWPF.windows
 {
@@ -18,7 +18,7 @@ namespace DungeonPapperWPF.windows
             if (nickTextBox.Text != null && nickTextBox.Text.Length > 0)
             {
                 ConfUtil.save("nick", nickTextBox.Text);
-                this.Close();
+                Close();
             }
         }
     }

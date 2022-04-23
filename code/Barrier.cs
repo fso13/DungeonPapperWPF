@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DungeonPapperWPF
+﻿namespace DungeonPapperWPF
 {
     public enum Barrier
     {

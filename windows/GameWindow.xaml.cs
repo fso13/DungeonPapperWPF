@@ -19,8 +19,8 @@ namespace DungeonPapperWPF
     public partial class MainWindow : Window
     {
         public Window parent;
-        SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
-        SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
+        private SolidColorBrush brushGreen = new SolidColorBrush(Colors.Green);
+        private SolidColorBrush brushRed = new SolidColorBrush(Colors.Red);
 
         public Random random = new Random(DateTime.Now.Millisecond);
 
@@ -37,23 +37,23 @@ namespace DungeonPapperWPF
         public bool magicFromDice = false;
         public bool levelFromDice = false;
         private static bool isStart = false;
-        private static FieldDto[,] fieldDtos = new FieldDto[7, 6];//поля в виже дто
-        public static Field[,] fields = new Field[7, 6];//поля в окне приложения
+        private static FieldDto[,] fieldDtos = new FieldDto[7, 6]; //поля в виже дто
+        public static Field[,] fields = new Field[7, 6]; //поля в окне приложения
 
-        private int round = 0;//раунд игры
-        public static int currentCountStep = 0;//сколько есть клеток передвижения
-        public static int currentCountLevel = 0;//сколько есть повышений уровня
-        public static int currentCountDice = 0;//сколько еще можно потратить дайсов на действия
-        public static int currentCountMagicPart = 0;//сколько еще можно потратить дайсов на действия
-        public static int currentCountDeadMonstersFotArtifact = 0;//сколько можно убить монстров за артифакт
-        public static int currentCountLevelUpByAbbility = 0;//сколько можно поднять уровней за абилку
-        public static int currentCountMagicsByAbbility = 0;//сколько можно крафтить предметов по абилке
+        private int round = 0; //раунд игры
+        public static int currentCountStep = 0; //сколько есть клеток передвижения
+        public static int currentCountLevel = 0; //сколько есть повышений уровня
+        public static int currentCountDice = 0; //сколько еще можно потратить дайсов на действия
+        public static int currentCountMagicPart = 0; //сколько еще можно потратить дайсов на действия
+        public static int currentCountDeadMonstersFotArtifact = 0; //сколько можно убить монстров за артифакт
+        public static int currentCountLevelUpByAbbility = 0; //сколько можно поднять уровней за абилку
+        public static int currentCountMagicsByAbbility = 0; //сколько можно крафтить предметов по абилке
 
-        public static Party party;//пати, герои, сокровища и тд
+        public static Party party; //пати, герои, сокровища и тд
 
-        public static Dice[] generateDices = new Dice[6];//сгенерированный дайсы в раунде
-        public static Dice currentDice;//выбранный дайс для действия
-        public static List<Dice> selectDicesIsCurrentRound = new List<Dice>();//дайсы которые были выбраны в раунде
+        public static Dice[] generateDices = new Dice[6]; //сгенерированный дайсы в раунде
+        public static Dice currentDice; //выбранный дайс для действия
+        public static List<Dice> selectDicesIsCurrentRound = new List<Dice>(); //дайсы которые были выбраны в раунде
 
         public static Quest quest = null;
 
@@ -62,15 +62,15 @@ namespace DungeonPapperWPF
             this.parent = parent;
             MainWindow.quest = quest;
             riverBrushVertical.ImageSource =
-                    new BitmapImage(new Uri(@"Resources\river_vertical.png", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\river_vertical.png", UriKind.Relative));
             riverBrushHorizontal.ImageSource =
-                    new BitmapImage(new Uri(@"Resources\river_horizontal.png", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\river_horizontal.png", UriKind.Relative));
             woodyBrushVertical.ImageSource =
-                    new BitmapImage(new Uri(@"Resources\woody_vertical.png", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\woody_vertical.png", UriKind.Relative));
             woodyBrushHorizontal.ImageSource =
-                    new BitmapImage(new Uri(@"Resources\woody_horizontal.png", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\woody_horizontal.png", UriKind.Relative));
             trapBrush.ImageSource =
-                    new BitmapImage(new Uri(@"Resources\trap.png", UriKind.Relative));
+                new BitmapImage(new Uri(@"Resources\trap.png", UriKind.Relative));
 
             oneBossBrush.ImageSource =
                 new BitmapImage(new Uri(@"Resources\boss_1.png", UriKind.Relative));
@@ -84,7 +84,6 @@ namespace DungeonPapperWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             isStart = false;
             fieldDtos = new FieldDto[7, 6]; //поля в виже дто
             fields = new Field[7, 6]; //поля в окне приложения
@@ -108,46 +107,46 @@ namespace DungeonPapperWPF
 
             if (quest != null)
             {
-                fieldDtos = Quests.getQuest(quest.questNumber);
+                fieldDtos = getQuest(quest.questNumber);
 
-                ImageBrush imageBrushm1 = new ImageBrush();
+                var imageBrushm1 = new ImageBrush();
                 imageBrushm1.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[0].number + ".jpg", UriKind.Relative));
                 boss_1_rec.Fill = imageBrushm1;
 
-                ImageBrush imageBrushm2 = new ImageBrush();
+                var imageBrushm2 = new ImageBrush();
                 imageBrushm2.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[1].number + ".jpg", UriKind.Relative));
                 boss_2_rec.Fill = imageBrushm2;
 
-                ImageBrush imageBrushm3 = new ImageBrush();
+                var imageBrushm3 = new ImageBrush();
                 imageBrushm3.ImageSource =
                     new BitmapImage(new Uri(@"Resources\monstr_" + quest.bosses[2].number + ".jpg", UriKind.Relative));
                 boss_3_rec.Fill = imageBrushm3;
 
-                ImageBrush imageBrush1 = new ImageBrush();
+                var imageBrush1 = new ImageBrush();
                 imageBrush1.ImageSource =
                     new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[0] + ".jpg", UriKind.Relative));
                 mission_1_rec.Fill = imageBrush1;
 
-                ImageBrush imageBrush2 = new ImageBrush();
+                var imageBrush2 = new ImageBrush();
                 imageBrush2.ImageSource =
                     new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[1] + ".jpg", UriKind.Relative));
                 mission_2_rec.Fill = imageBrush2;
 
-                ImageBrush imageBrush3 = new ImageBrush();
+                var imageBrush3 = new ImageBrush();
                 imageBrush3.ImageSource =
                     new BitmapImage(new Uri(@"Resources\mission_" + quest.missions[2] + ".jpg", UriKind.Relative));
                 mission_3_rec.Fill = imageBrush3;
 
 
-                ImageBrush imageBrush4 = new ImageBrush();
+                var imageBrush4 = new ImageBrush();
                 imageBrush4.ImageSource =
                     new BitmapImage(
                         new Uri(@"Resources\user_mission_" + quest.selectMission + ".png", UriKind.Relative));
                 userMission_rec.Fill = imageBrush4;
 
-                ImageBrush imageBrush6 = new ImageBrush();
+                var imageBrush6 = new ImageBrush();
                 imageBrush6.ImageSource =
                     new BitmapImage(new Uri(@"Resources\ability_" + quest.selectAbility + ".png", UriKind.Relative));
                 abbility_rec.Fill = imageBrush6;
@@ -178,13 +177,9 @@ namespace DungeonPapperWPF
                         quest.selectMission == 12 ||
                         quest.selectMission == 13 ||
                         quest.selectMission == 15)
-                    {
                         party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.Black);
-                    }
                     else
-                    {
                         party.warrior = new HeroClass(HeroClassType.Warrior, 1, Outlook.White);
-                    }
 
                     if (quest.selectMission == 3 ||
                         quest.selectMission == 4 ||
@@ -193,13 +188,9 @@ namespace DungeonPapperWPF
                         quest.selectMission == 10 ||
                         quest.selectMission == 12 ||
                         quest.selectMission == 16)
-                    {
                         party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.Black);
-                    }
                     else
-                    {
                         party.wizard = new HeroClass(HeroClassType.Wizard, 1, Outlook.White);
-                    }
 
                     if (quest.selectMission == 1 ||
                         quest.selectMission == 2 ||
@@ -210,13 +201,9 @@ namespace DungeonPapperWPF
                         quest.selectMission == 14 ||
                         quest.selectMission == 15 ||
                         quest.selectMission == 16)
-                    {
                         party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.Black);
-                    }
                     else
-                    {
                         party.cleric = new HeroClass(HeroClassType.Cleric, 1, Outlook.White);
-                    }
 
                     if (quest.selectMission == 2 ||
                         quest.selectMission == 4 ||
@@ -226,17 +213,12 @@ namespace DungeonPapperWPF
                         quest.selectMission == 10 ||
                         quest.selectMission == 13 ||
                         quest.selectMission == 14)
-                    {
                         party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.Black);
-                    }
                     else
-                    {
                         party.plut = new HeroClass(HeroClassType.Plut, 1, Outlook.White);
-                    }
 
                     drawLevel();
                     drawOutlook();
-
 
 
                     addAbbilityActionAfterNewGame();
@@ -250,109 +232,69 @@ namespace DungeonPapperWPF
         //отрисовка карты
         private void drawField()
         {
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
-                ColumnDefinition colDef = new ColumnDefinition();
+                var colDef = new ColumnDefinition();
                 gridFields.ColumnDefinitions.Add(colDef);
             }
 
-            for (int j = 0; j < 7; j++)
+            for (var j = 0; j < 7; j++)
             {
-                RowDefinition rowDef = new RowDefinition();
+                var rowDef = new RowDefinition();
                 gridFields.RowDefinitions.Add(rowDef);
             }
 
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    drawField(i, j);
-                }
-            }
+            for (var i = 0; i < 6; i++)
+            for (var j = 0; j < 7; j++)
+                drawField(i, j);
         }
 
         //отрисовка комнаты
         private void drawField(int i, int j)
         {
-            FieldDto dto = fieldDtos[j, i];
+            var dto = fieldDtos[j, i];
 
-            Field f = new Field();
+            var f = new Field();
 
-            if (dto.trap)
-            {
-                f.trapField.Fill = trapBrush;
-            }
+            if (dto.trap) f.trapField.Fill = trapBrush;
 
             if (dto.prey != null)
             {
-                ImageBrush preyBrush = new ImageBrush();
+                var preyBrush = new ImageBrush();
                 preyBrush.ImageSource = new BitmapImage(dto.prey.getPath());
                 f.preyField.Fill = preyBrush;
             }
 
             if (dto.monster != null)
             {
-                ImageBrush monsterBrush = new ImageBrush();
+                var monsterBrush = new ImageBrush();
                 monsterBrush.ImageSource = new BitmapImage(dto.monster.getPathMonster());
                 f.monsterField.Fill = monsterBrush;
 
-                ImageBrush heroLevelBrush = new ImageBrush();
+                var heroLevelBrush = new ImageBrush();
                 heroLevelBrush.ImageSource = new BitmapImage(dto.monster.getPathHeroLevel());
                 f.levelHeroField.Fill = heroLevelBrush;
             }
 
-            if (dto.one != null)
-            {
-                f.monsterField.Fill = oneBossBrush;
-            }
-            if (dto.two != null)
-            {
-                f.monsterField.Fill = twoBossBrush;
-            }
-            if (dto.three != null)
-            {
-                f.monsterField.Fill = threeBossBrush;
-            }
+            if (dto.one != null) f.monsterField.Fill = oneBossBrush;
+            if (dto.two != null) f.monsterField.Fill = twoBossBrush;
+            if (dto.three != null) f.monsterField.Fill = threeBossBrush;
 
-            if (dto.rightBarrier == Barrier.Wall)
-            {
-                f.rightWallButton.Fill = woodyBrushVertical;
-            }
-            if (dto.leftBarrier == Barrier.Wall && i == 0)
-            {
-                f.leftWallButton.Fill = woodyBrushVertical;
-            }
-            if (dto.topBarrier == Barrier.Wall)
-            {
-                f.topWallButton.Fill = woodyBrushHorizontal;
-            }
+            if (dto.rightBarrier == Barrier.Wall) f.rightWallButton.Fill = woodyBrushVertical;
+            if (dto.leftBarrier == Barrier.Wall && i == 0) f.leftWallButton.Fill = woodyBrushVertical;
+            if (dto.topBarrier == Barrier.Wall) f.topWallButton.Fill = woodyBrushHorizontal;
 
 
-            if (dto.rightBarrier == Barrier.Black)
-            {
-                f.rightWallButton.Fill = Brushes.Black;
-            }
-            if (dto.leftBarrier == Barrier.Black && i == 0)
-            {
-                f.leftWallButton.Fill = Brushes.Black;
-            }
-            if (dto.topBarrier == Barrier.Black)
-            {
-                f.topWallButton.Fill = Brushes.Black;
-            }
+            if (dto.rightBarrier == Barrier.Black) f.rightWallButton.Fill = Brushes.Black;
+            if (dto.leftBarrier == Barrier.Black && i == 0) f.leftWallButton.Fill = Brushes.Black;
+            if (dto.topBarrier == Barrier.Black) f.topWallButton.Fill = Brushes.Black;
 
 
-            if (dto.leftBarrier == Barrier.River)
-            {
-                f.leftWallButton.Fill = riverBrushVertical;
-            }
-            if (dto.downBarrier == Barrier.River)
-            {
-                f.downWallButton.Fill = riverBrushHorizontal;
-            }
+            if (dto.leftBarrier == Barrier.River) f.leftWallButton.Fill = riverBrushVertical;
+            if (dto.downBarrier == Barrier.River) f.downWallButton.Fill = riverBrushHorizontal;
 
 
-            f.Name = String.Format("field_{0}_{1}", i, j);
+            f.Name = string.Format("field_{0}_{1}", i, j);
             Grid.SetRow(f, j);
             Grid.SetColumn(f, i);
 
@@ -364,8 +306,8 @@ namespace DungeonPapperWPF
         public Field[] GetRow(int rowNumber)
         {
             return Enumerable.Range(0, fields.GetLength(1))
-                    .Select(x => fields[rowNumber, x])
-                    .ToArray();
+                .Select(x => fields[rowNumber, x])
+                .ToArray();
         }
 
         //кнопка действия движения
@@ -385,141 +327,109 @@ namespace DungeonPapperWPF
             {
                 if (party.path.Count == 0)
                 {
-                    for (int i = 0; i < 6; i++)
-                    {
-                        fields[6, i].greanColor();
-                    }
+                    for (var i = 0; i < 6; i++) fields[6, i].greanColor();
                 }
                 else
                 {
-
-                    for (int i = 0; i < 6; i++)
-                    {
-                        for (int j = 0; j < 7; j++)
-                        {
-                            fields[j, i].clearColor();
-                        }
-                    }
+                    for (var i = 0; i < 6; i++)
+                    for (var j = 0; j < 7; j++)
+                        fields[j, i].clearColor();
 
 
-                    Field last = party.path.Last();
+                    var last = party.path.Last();
 
 
                     //влево
                     if (last.dto.leftBarrier == Barrier.None ||
-                        (last.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                        (last.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                        (last.dto.leftBarrier == Barrier.River && party.isPresentMagic(3)))
+                        last.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                        last.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                        last.dto.leftBarrier == Barrier.River && party.isPresentMagic(3))
                     {
                         if (last.dto.x > 0)
                         {
-                            Field left = fields[last.dto.y, last.dto.x - 1];
+                            var left = fields[last.dto.y, last.dto.x - 1];
                             if (left.dto.rightBarrier == Barrier.None ||
-                                (left.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                                (left.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                                (left.dto.rightBarrier == Barrier.River && party.isPresentMagic(3)))
-                            {
+                                left.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                                left.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                                left.dto.rightBarrier == Barrier.River && party.isPresentMagic(3))
                                 left.greanColor();
-                            }
                         }
                         else if (last.dto.x == 0 && (last.dto.y == 3 || last.dto.y == 5))
                         {
-                            Field left = fields[last.dto.y, 5];
+                            var left = fields[last.dto.y, 5];
                             left.greanColor();
                         }
                     }
 
                     //впрово
                     if (last.dto.rightBarrier == Barrier.None ||
-                        (last.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                        (last.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                        (last.dto.rightBarrier == Barrier.River && party.isPresentMagic(3)))
+                        last.dto.rightBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                        last.dto.rightBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                        last.dto.rightBarrier == Barrier.River && party.isPresentMagic(3))
                     {
                         if (last.dto.x < 5)
                         {
-                            Field right = fields[last.dto.y, last.dto.x + 1];
+                            var right = fields[last.dto.y, last.dto.x + 1];
                             if (right.dto.leftBarrier == Barrier.None ||
-                                (right.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                                (right.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                                (right.dto.leftBarrier == Barrier.River && party.isPresentMagic(3)))
-                            {
+                                right.dto.leftBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                                right.dto.leftBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                                right.dto.leftBarrier == Barrier.River && party.isPresentMagic(3))
                                 right.greanColor();
-                            }
                         }
-                        else if (last.dto.x == 5 || (last.dto.y == 3 || last.dto.y == 5))
+                        else if (last.dto.x == 5 || last.dto.y == 3 || last.dto.y == 5)
                         {
-                            Field right = fields[last.dto.y, 0];
+                            var right = fields[last.dto.y, 0];
                             right.greanColor();
                         }
                     }
 
                     //вверх
                     if (last.dto.topBarrier == Barrier.None ||
-                        (last.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                        (last.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                        (last.dto.topBarrier == Barrier.River && party.isPresentMagic(3)))
-                    {
+                        last.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                        last.dto.topBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                        last.dto.topBarrier == Barrier.River && party.isPresentMagic(3))
                         if (last.dto.y > 0)
                         {
-                            Field top = fields[last.dto.y - 1, last.dto.x];
+                            var top = fields[last.dto.y - 1, last.dto.x];
                             if (top.dto.downBarrier == Barrier.None ||
-                                (top.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                                (top.dto.downBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                                (top.dto.downBarrier == Barrier.River && party.isPresentMagic(3)))
-                            {
+                                top.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                                top.dto.downBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                                top.dto.downBarrier == Barrier.River && party.isPresentMagic(3))
                                 top.greanColor();
-                            }
                         }
-
-                    }
 
                     //вниз
                     if (last.dto.downBarrier == Barrier.None ||
-                        (last.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                        (last.dto.downBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                        (last.dto.downBarrier == Barrier.River && party.isPresentMagic(3)))
-                    {
+                        last.dto.downBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                        last.dto.downBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                        last.dto.downBarrier == Barrier.River && party.isPresentMagic(3))
                         if (last.dto.y < 6)
                         {
-                            Field down = fields[last.dto.y + 1, last.dto.x];
+                            var down = fields[last.dto.y + 1, last.dto.x];
                             if (down.dto.topBarrier == Barrier.None ||
-                                (down.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4)) ||
-                                (down.dto.topBarrier == Barrier.Black && party.isPresentMagic(4)) ||
-                                (down.dto.topBarrier == Barrier.River && party.isPresentMagic(3)))
-                            {
+                                down.dto.topBarrier == Barrier.Wall && party.isPresentMagic(4) ||
+                                down.dto.topBarrier == Barrier.Black && party.isPresentMagic(4) ||
+                                down.dto.topBarrier == Barrier.River && party.isPresentMagic(3))
                                 down.greanColor();
-                            }
                         }
-
-                    }
-
                 }
             }
             else
             {
-
-                if (MainWindow.currentCountLevel > 0 || MainWindow.currentCountMagicPart > 0 || MainWindow.currentCountDeadMonstersFotArtifact > 0)
+                if (currentCountLevel > 0 || currentCountMagicPart > 0 || currentCountDeadMonstersFotArtifact > 0)
                 {
                     diceGrid.IsEnabled = false;
                     selectDiceButton.IsEnabled = false;
                 }
                 else
                 {
-                    if (!deadMonsterFromAbbility)
-                    {
-                        deleteCurrentDic();
-                    }
+                    if (!deadMonsterFromAbbility) deleteCurrentDic();
                 }
 
-                for (int i = 0; i < 6; i++)
-                {
-                    for (int j = 0; j < 7; j++)
-                    {
-                        fields[j, i].clearColor();
-                    }
-                }
+                for (var i = 0; i < 6; i++)
+                for (var j = 0; j < 7; j++)
+                    fields[j, i].clearColor();
             }
-
         }
 
         //отрисовка мировозрени я в окне
@@ -527,12 +437,8 @@ namespace DungeonPapperWPF
         {
             party.GetHeroes().ForEach(hero =>
             {
-                if (hero.outlook == Outlook.Black)
-                {
-                    ((CheckBox)this.FindName(hero.getControlOutlookName())).IsChecked = true;
-                }
+                if (hero.outlook == Outlook.Black) ((CheckBox) FindName(hero.getControlOutlookName())).IsChecked = true;
             });
-
         }
 
         //отрисовка уровня героев
@@ -540,40 +446,31 @@ namespace DungeonPapperWPF
         {
             party.GetHeroes().ForEach(hero =>
             {
-                for (int i = 0; i < hero.level; i++)
-                {
-                    ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
-                }
+                for (var i = 0; i < hero.level; i++)
+                    ((CheckBox) FindName(hero.getPrefixControlLevelName() + (i + 1))).IsChecked = true;
             });
-
         }
 
         //нанесение урона
         public void damage(int damage)
         {
-
-            for (int i = 1; i <= damage; i++)
+            for (var i = 1; i <= damage; i++)
             {
-                PartyPotion partyPotion = party.getFirstPotionWithFreeCell();
+                var partyPotion = party.getFirstPotionWithFreeCell();
                 if (partyPotion != null)
                 {
-                    ((CheckBox)this.FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" + (3 - partyPotion.freeCell))).IsChecked = true;
+                    ((CheckBox) FindName("potion_" + (party.potions.IndexOf(partyPotion) + 1) + "_" +
+                                         (3 - partyPotion.freeCell))).IsChecked = true;
                 }
                 else
                 {
-                    if(1 + party.blood <= 25)
-                    {
-                        ((CheckBox)this.FindName("blood_" + (1 + party.blood))).IsChecked = true;
-                    }
+                    if (1 + party.blood <= 25) ((CheckBox) FindName("blood_" + (1 + party.blood))).IsChecked = true;
                 }
 
                 party.damage(1);
             }
 
-            if (party.isDeadPaty)
-            {
-                cbox_party_dead.IsChecked = true;
-            }
+            if (party.isDeadPaty) cbox_party_dead.IsChecked = true;
 
             MessageBox.Show("здоровье стало: " + (party.hp - party.blood));
         }
@@ -588,9 +485,7 @@ namespace DungeonPapperWPF
             party.GetHeroes().ForEach(hero =>
             {
                 if (hero.level + 1 < 7)
-                {
-                    ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
-                }
+                    ((CheckBox) FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
             });
 
             if (party.hp < 24)
@@ -600,7 +495,6 @@ namespace DungeonPapperWPF
             }
 
             MessageBox.Show("Повышение уровня");
-
         }
 
         //выбор действия поднятия уровня
@@ -619,29 +513,22 @@ namespace DungeonPapperWPF
             {
                 if (hero.getNumberDiceForLevel() == selectDicesIsCurrentRound.Last().number ||
                     selectDicesIsCurrentRound.Last().number == 9 ||
-                    (party.wizard.level > 3 && selectDicesIsCurrentRound.Last().type.ToString() == hero.type.ToString()))
-                {
+                    party.wizard.level > 3 && selectDicesIsCurrentRound.Last().type.ToString() == hero.type.ToString())
                     if (hero.level + 1 < 7)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
-                    }
-                }
+                        ((CheckBox) FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
             });
-
         }
 
         //выбор нового уровня у персонажа
         private void cbox_Level_Checked(object sender, RoutedEventArgs e)
         {
-
             if (currentCountLevel > 0)
             {
-                CheckBox checkBox = (CheckBox)sender;
+                var checkBox = (CheckBox) sender;
                 checkBox.IsChecked = true;
-                string name = checkBox.Name;
+                var name = checkBox.Name;
                 party.GetHeroes().ForEach(hero =>
                 {
-
                     if (name.Contains(hero.type.ToString().ToLower()))
                     {
                         hero.level++;
@@ -651,10 +538,7 @@ namespace DungeonPapperWPF
                             addDiamond(new Diamond("За уровень плута"));
                         }
 
-                        if (hero.level == 4 && hero.type == HeroClassType.Warrior)
-                        {
-                            party.addDamageWithBosses += 1;
-                        }
+                        if (hero.level == 4 && hero.type == HeroClassType.Warrior) party.addDamageWithBosses += 1;
 
                         if (hero.level == 5 && party.isAddMagicFrom5Level)
                         {
@@ -662,81 +546,59 @@ namespace DungeonPapperWPF
                             currentCountMagicPart++;
                             highlightCreateMagic(null);
                         }
+
                         addHp();
                         currentCountLevel--;
                     }
-
                 });
                 party.GetHeroes().ForEach(hero =>
                 {
-
-                    for (int i = 1; i <= 6; i++)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + i)).IsEnabled = false;
-                    }
-
+                    for (var i = 1; i <= 6; i++)
+                        ((CheckBox) FindName(hero.getPrefixControlLevelName() + i)).IsEnabled = false;
                 });
 
                 if (currentCountLevel > 0)
-                {
                     party.GetHeroes().ForEach(hero =>
                     {
-                        if ((hero.level + 1) < 7)
-                        {
-                            ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
-                        }
+                        if (hero.level + 1 < 7)
+                            ((CheckBox) FindName(hero.getPrefixControlLevelName() + (hero.level + 1))).IsEnabled = true;
                     });
-                }
 
                 if (currentCountLevel == 0 && currentCountMagicPart == 0 && currentCountStep == 0)
                 {
-
-                    if (selectDicesIsCurrentRound.Count() == 3)
-                    {
-                        buttonDiceGenereted.IsEnabled = true;
-                    }
+                    if (selectDicesIsCurrentRound.Count() == 3) buttonDiceGenereted.IsEnabled = true;
                     selectDiceButton.IsEnabled = true;
                     diceGrid.IsEnabled = true;
                 }
             }
             else if (currentCountLevelUpByAbbility > 0)
             {
-                CheckBox checkBox = (CheckBox)sender;
+                var checkBox = (CheckBox) sender;
                 checkBox.IsChecked = true;
-                string name = checkBox.Name;
+                var name = checkBox.Name;
                 party.GetHeroes().ForEach(hero =>
                 {
-
                     if (name.Contains(hero.type.ToString().ToLower()))
                     {
                         hero.level++;
                         addHp();
                         currentCountLevelUpByAbbility--;
                     }
-
                 });
 
                 party.GetHeroes().ForEach(hero =>
                 {
-                    for (int i = 1; i <= 6; i++)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + i)).IsEnabled = false;
-                    }
-
+                    for (var i = 1; i <= 6; i++)
+                        ((CheckBox) FindName(hero.getPrefixControlLevelName() + i)).IsEnabled = false;
                 });
 
 
-                if (currentCountLevelUpByAbbility > 0)
-                {
-                    hieghtingLevelUpByAbbility();
-                }
+                if (currentCountLevelUpByAbbility > 0) hieghtingLevelUpByAbbility();
             }
 
-            if (isStart && selectDicesIsCurrentRound.Count>0)
-            {
+            if (isStart && selectDicesIsCurrentRound.Count > 0)
                 if (currentCountLevel == 0)
                 {
-
                     if (levelFromDice)
                     {
                         levelFromDice = false;
@@ -747,7 +609,6 @@ namespace DungeonPapperWPF
                         deleteCurrentDic();
                     }
                 }
-            }
         }
 
         //удаление текущего кубика из пула
@@ -755,16 +616,12 @@ namespace DungeonPapperWPF
         {
             if (isStart)
             {
-
-                for (int i = 0; i < 6; i++)
+                for (var i = 0; i < 6; i++)
                 {
-                    Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                    var rectangle = (Rectangle) FindName("dice" + (i + 1) + "_pic");
 
-                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && ((Dice)rectangle.Tag)!=null && ((Dice)rectangle.Tag).number < 10)
-                    {
-                        rectangle.IsEnabled = true;
-                    }
-
+                    if (!selectDicesIsCurrentRound.Contains(rectangle.Tag as Dice) && (Dice) rectangle.Tag != null &&
+                        ((Dice) rectangle.Tag).number < 10) rectangle.IsEnabled = true;
                 }
 
                 selectDicesIsCurrentRound.Last().rectangle.Stroke = null;
@@ -779,17 +636,10 @@ namespace DungeonPapperWPF
                     {
                         Boss boss = null;
                         if (round == 3)
-                        {
                             boss = quest.bosses[0];
-                        }
                         else if (round == 6)
-                        {
                             boss = quest.bosses[1];
-                        }
-                        else if (round == 8)
-                        {
-                            boss = quest.bosses[2];
-                        }
+                        else if (round == 8) boss = quest.bosses[2];
 
                         BossFightWindows.boss = boss;
                         new BossFightWindows().ShowDialog();
@@ -797,42 +647,30 @@ namespace DungeonPapperWPF
 
                         if (boss.isDead)
                         {
-                            int damageParty = party.getDamageByBoss(boss);
-                            int xp = 0;
+                            var damageParty = party.getDamageByBoss(boss);
+                            var xp = 0;
                             if (damageParty >= boss.lastDamage.heroLevel)
                             {
                                 xp = boss.lastDamage.xp;
 
                                 if (!party.isIgnoreDamageFromBoss)
-                                {
-                                    for (int i = 0; i < boss.lastDamage.damage; i++)
-                                    {
+                                    for (var i = 0; i < boss.lastDamage.damage; i++)
                                         damage(1);
-                                    }
-                                }
                             }
                             else if (damageParty >= boss.middleDamage.heroLevel)
                             {
                                 xp = boss.middleDamage.xp;
 
                                 if (!party.isIgnoreDamageFromBoss)
-                                {
-                                    for (int i = 0; i < boss.middleDamage.damage; i++)
-                                    {
+                                    for (var i = 0; i < boss.middleDamage.damage; i++)
                                         damage(1);
-                                    }
-                                }
                             }
                             else if (damageParty >= boss.firstDamage.heroLevel)
                             {
                                 xp = boss.firstDamage.xp;
                                 if (!party.isIgnoreDamageFromBoss)
-                                {
-                                    for (int i = 0; i < boss.firstDamage.damage; i++)
-                                    {
+                                    for (var i = 0; i < boss.firstDamage.damage; i++)
                                         damage(1);
-                                    }
-                                }
                             }
 
 
@@ -847,19 +685,13 @@ namespace DungeonPapperWPF
                                 party.xpBoss2 = xp;
                                 label_boss_2_xp.Content = xp;
                                 boss_2_rec.Opacity = 0.3;
-
                             }
                             else if (round == 8)
                             {
                                 party.xpBoss3 = xp;
                                 label_boss_3_xp.Content = xp;
                                 boss_3_rec.Opacity = 0.3;
-
                             }
-
-                         
-                           
-
                         }
                         else
                         {
@@ -883,44 +715,39 @@ namespace DungeonPapperWPF
                             }
                         }
 
-                        boss.hideDiamonds.ForEach(d => {
-                            for (int i = 0; i < 6; i++)
+                        boss.hideDiamonds.ForEach(d =>
+                        {
+                            for (var i = 0; i < 6; i++)
+                            for (var j = 0; j < 7; j++)
                             {
-                                for (int j = 0; j < 7; j++)
-                                {
-                                    Field f = fields[j, i];
-                                    if(f.dto.prey!=null && f.dto.prey is Diamond)
+                                var f = fields[j, i];
+                                if (f.dto.prey != null && f.dto.prey is Diamond)
+                                    if (((Diamond) f.dto.prey).name == d.name)
                                     {
-                                        if(((Diamond)f.dto.prey).name == d.name)
-                                        {
-                                            f.dto.prey = null;
-                                            f.preyFieldAction.Fill = Field.opacityMaskKrestBrush;
-                                            f.preyField.Opacity = 1;
-                                        }
+                                        f.dto.prey = null;
+                                        f.preyFieldAction.Fill = Field.opacityMaskKrestBrush;
+                                        f.preyField.Opacity = 1;
                                     }
-                                }
                             }
-
                         });
-                            //todo убрать алмазы
+                        //todo убрать алмазы
                     }
 
                     if (round == 8)
                     {
-
                         var window = new TotalXP(this);
                         window.Owner = this;
                         window.Show();
 
-                        this.Hide();
+                        Hide();
                     }
                     else
                     {
                         buttonDiceGenereted.IsEnabled = true;
 
-                        for (int i = 0; i < 6; i++)
+                        for (var i = 0; i < 6; i++)
                         {
-                            Rectangle rectangle = ((Rectangle) this.FindName("dice" + (i + 1) + "_pic"));
+                            var rectangle = (Rectangle) FindName("dice" + (i + 1) + "_pic");
                             rectangle.Stroke = null;
                             rectangle.Fill = null;
                             rectangle.IsEnabled = false;
@@ -944,262 +771,177 @@ namespace DungeonPapperWPF
         //проверка выполняния миссий
         public void compliteMissions()
         {
-            for (int i = 1; i <= 3; i++)
-            {
-                compliteMission(quest.missions[i - 1], i);
-            }
+            for (var i = 1; i <= 3; i++) compliteMission(quest.missions[i - 1], i);
 
 
-            if (quest.roundMissionComplete1>0)
+            if (quest.roundMissionComplete1 > 0)
             {
                 mission_1_rec.Opacity = 0.3;
                 xp_m_1_label.Content = TotalXP.xpMission(quest.roundMissionComplete1).ToString();
             }
+
             if (quest.roundMissionComplete2 > 0)
             {
                 mission_2_rec.Opacity = 0.3;
                 xp_m_2_label.Content = TotalXP.xpMission(quest.roundMissionComplete2).ToString();
-
             }
+
             if (quest.roundMissionComplete3 > 0)
             {
                 mission_3_rec.Opacity = 0.3;
                 xp_m_3_label.Content = TotalXP.xpMission(quest.roundMissionComplete3).ToString();
-
             }
-
         }
 
         public void compliteMission(int number, int index)
         {
-            int r = -1;
+            var r = -1;
 
-            if(index == 1)
-            {
+            if (index == 1)
                 r = quest.roundMissionComplete1;
-            }
             else if (index == 2)
-            {
                 r = quest.roundMissionComplete2;
-            }
-            else if (index == 3)
-            {
-                r = quest.roundMissionComplete3;
-            }
+            else if (index == 3) r = quest.roundMissionComplete3;
 
             if (r == -1)
             {
                 switch (number)
                 {
                     case 1:
-                        {
-                            if (party.path.FindAll(f => f.dto.one != null || f.dto.two != null || f.dto.three != null).Count() == 3)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.path.FindAll(f => f.dto.one != null || f.dto.two != null || f.dto.three != null)
+                                .Count() == 3) r = round;
+                        break;
+                    }
                     case 2:
-                        {
-                            if (party.GetHeroes().FindAll(f => f.level >= 5).Count() >= 2)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.GetHeroes().FindAll(f => f.level >= 5).Count() >= 2) r = round;
+                        break;
+                    }
                     case 3:
-                        {
-                            int[] columns = new int[6] { 0, 0, 0, 0, 0, 0 };
+                    {
+                        var columns = new int[6] {0, 0, 0, 0, 0, 0};
 
-                            party.path.ForEach(row =>
-                            {
-                                columns[row.dto.x] += 1;
-                            });
+                        party.path.ForEach(row => { columns[row.dto.x] += 1; });
 
-                            int rr = columns.OfType<int>().ToList().FindAll(x => x == 7).Count();
-                            if (rr >= 1)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                        var rr = columns.OfType<int>().ToList().FindAll(x => x == 7).Count();
+                        if (rr >= 1) r = round;
+                        break;
+                    }
                     case 4:
+                    {
+                        var room = 0;
+
+                        party.path.ForEach(row =>
                         {
-                            int room = 0;
+                            if (row.dto.x == 0 && row.dto.y == 0 ||
+                                row.dto.x == 0 && row.dto.y == 6 ||
+                                row.dto.x == 5 && row.dto.y == 0 ||
+                                row.dto.x == 5 && row.dto.y == 6)
+                                room++;
+                        });
 
-                            party.path.ForEach(row =>
-                            {
-                                if ((row.dto.x == 0 && row.dto.y == 0) ||
-                                (row.dto.x == 0 && row.dto.y == 6) ||
-                                (row.dto.x == 5 && row.dto.y == 0) ||
-                                (row.dto.x == 5 && row.dto.y == 6))
-                                {
-                                    room++;
-                                }
-                            });
+                        if (room >= 2) r = round;
 
-                            if (room >=2)
-                            {
-                                r = this.round;
-                            }
-
-                            break;
-                        }
+                        break;
+                    }
                     case 5:
-                        {
-                            int one = party.deadMonsters.FindAll(m=>m.heroClass.level==3).Count();
-                            int two = party.deadMonsters.FindAll(m => m.heroClass.level == 4).Count();
-                            int three = party.deadMonsters.FindAll(m => m.heroClass.level == 5).Count();
+                    {
+                        var one = party.deadMonsters.FindAll(m => m.heroClass.level == 3).Count();
+                        var two = party.deadMonsters.FindAll(m => m.heroClass.level == 4).Count();
+                        var three = party.deadMonsters.FindAll(m => m.heroClass.level == 5).Count();
 
-                            if(one >1 && two>0 && three > 0)
-                            {
-                                r = this.round;
-                            }
-                            
-                            break;
-                        }
+                        if (one > 1 && two > 0 && three > 0) r = round;
+
+                        break;
+                    }
                     case 6:
-                        {
-                            if (party.magics.FindAll(m => m.countPart == 2).Count() >= 4)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.magics.FindAll(m => m.countPart == 2).Count() >= 4) r = round;
+                        break;
+                    }
                     case 7:
-                        {
-                            int[] rows = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
+                    {
+                        var rows = new int[7] {0, 0, 0, 0, 0, 0, 0};
 
-                            party.path.ForEach(row =>
-                            {
-                                rows[row.dto.y] += 1;
-                            });
+                        party.path.ForEach(row => { rows[row.dto.y] += 1; });
 
-                            int rr = rows.OfType<int>().ToList().FindAll(x => x == 6).Count();
-                            if (rr >=1)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                        var rr = rows.OfType<int>().ToList().FindAll(x => x == 6).Count();
+                        if (rr >= 1) r = round;
+                        break;
+                    }
                     case 8:
-                        {
-
-                            if (party.path.Count() >= 15)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.path.Count() >= 15) r = round;
+                        break;
+                    }
                     case 9:
-                        {
-                            if (party.diamonds.Count() >= 4)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.diamonds.Count() >= 4) r = round;
+                        break;
+                    }
                     case 10:
-                        {
-                            if(party.GetHeroes().FindAll(h=>h.level>=4).Count() >= 3)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.GetHeroes().FindAll(h => h.level >= 4).Count() >= 3) r = round;
+                        break;
+                    }
                     case 11:
-                        {
-                            if (party.GetHeroes().FindAll(h => h.level == 6).Count() >= 1)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.GetHeroes().FindAll(h => h.level == 6).Count() >= 1) r = round;
+                        break;
+                    }
                     case 12:
-                        {
-                            if (party.deadMonsters.Count() >= 6)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.deadMonsters.Count() >= 6) r = round;
+                        break;
+                    }
                     case 13:
-                        {
-                            if (party.potions.Count() >= 8)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.potions.Count() >= 8) r = round;
+                        break;
+                    }
                     case 14:
-                        {
-                            if (party.GetHeroes().FindAll(h => h.level >= 3).Count() ==4)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.GetHeroes().FindAll(h => h.level >= 3).Count() == 4) r = round;
+                        break;
+                    }
                     case 15:
-                        {
-                            if(party.hp >= 12)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
+                    {
+                        if (party.hp >= 12) r = round;
+                        break;
+                    }
                     case 16:
+                    {
+                        var f = new List<FieldDto>();
+                        party.path.FindAll(fff => fff.dto.trap).ForEach(ff =>
                         {
-
-                            List<FieldDto> f = new List<FieldDto>();
-                            party.path.FindAll(fff => fff.dto.trap).ForEach(ff =>
-                            {
-                               if( f.FindAll(dto=>dto.x == ff.dto.x && dto.y == ff.dto.y).Count() == 0)
-                                {
-                                    f.Add(ff.dto);
-                                }
-                            });
-                            if (f.Count() >= 5)
-                            {
-                                r = this.round;
-                            }
-                            break;
-                        }
-                    defaut: break;
+                            if (f.FindAll(dto => dto.x == ff.dto.x && dto.y == ff.dto.y).Count() == 0) f.Add(ff.dto);
+                        });
+                        if (f.Count() >= 5) r = round;
+                        break;
+                    }
                 }
 
 
                 if (index == 1)
-                {
-                  quest.roundMissionComplete1 = r;
-                }
+                    quest.roundMissionComplete1 = r;
                 else if (index == 2)
-                {
                     quest.roundMissionComplete2 = r;
-                }
-                else if (index == 3)
-                {
-                    quest.roundMissionComplete3 = r;
-                }
+                else if (index == 3) quest.roundMissionComplete3 = r;
             }
         }
 
         private List<Dice> diceGenereted()
         {
-            int diceScull = 0;
-            int diceKlever = 0;
-            List<Dice> dices = new List<Dice>();
-            for (int i = 0; i < 6; i++)
+            var diceScull = 0;
+            var diceKlever = 0;
+            var dices = new List<Dice>();
+            for (var i = 0; i < 6; i++)
             {
-                Dice genereteDice = Dice.fromNumber(random.Next(12));
-                if (genereteDice.type == DiceType.Scull)
-                {
-                    diceScull++;
-                }
+                var genereteDice = Dice.fromNumber(random.Next(12));
+                if (genereteDice.type == DiceType.Scull) diceScull++;
 
-                if (genereteDice.type == DiceType.Klever)
-                {
-                    diceKlever++;
-                }
+                if (genereteDice.type == DiceType.Klever) diceKlever++;
 
                 if (diceKlever > 2 || diceScull > 2)
                 {
@@ -1207,8 +949,8 @@ namespace DungeonPapperWPF
                     currentCountDice = 0;
                     return diceGenereted();
                 }
-                dices.Add(genereteDice);
 
+                dices.Add(genereteDice);
             }
 
             return dices;
@@ -1221,35 +963,32 @@ namespace DungeonPapperWPF
             {
                 round++;
 
-                this.Title = "Dungeon Paper Раудн: " + round;
+                Title = "Dungeon Paper Раудн: " + round;
                 selectDicesIsCurrentRound.Clear();
                 buttonDiceGenereted.IsEnabled = false;
                 selectDiceButton.IsEnabled = true;
                 diceGrid.IsEnabled = true;
                 currentCountDice = 3;
 
-                List<Dice> dices = diceGenereted();
+                var dices = diceGenereted();
 
-                int damage = 0;
-                for (int i = 0; i < 6; i++)
+                var damage = 0;
+                for (var i = 0; i < 6; i++)
                 {
-                    Dice genereteDice = dices.ElementAt(i);
+                    var genereteDice = dices.ElementAt(i);
 
-                    Rectangle rectangle = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
+                    var rectangle = (Rectangle) FindName("dice" + (i + 1) + "_pic");
                     rectangle.IsEnabled = true;
                     generateDices[i] = genereteDice;
                     generateDices[i].rectangle = rectangle;
-                    ImageBrush brush = new ImageBrush();
+                    var brush = new ImageBrush();
                     brush.ImageSource = generateDices[i].getPath();
                     rectangle.Fill = brush;
                     rectangle.Tag = generateDices[i];
 
                     if (generateDices[i].number > 9)
                     {
-                        if (party.cleric.level < 4)
-                        {
-                            damage++;
-                        }
+                        if (party.cleric.level < 4) damage++;
                         rectangle.IsEnabled = false;
                         rectangle.Stroke = brushRed;
                         rectangle.StrokeThickness = 4;
@@ -1258,59 +997,43 @@ namespace DungeonPapperWPF
 
                 if (party.cleric.level < 4)
                 {
-                    if (party.isIgnoreOneSkull)
-                    {
-                        damage--;
-                    }
+                    if (party.isIgnoreOneSkull) damage--;
                     if (damage > 0)
-                    {
-                        for (int i = 0; i < damage; i++)
-                        {
+                        for (var i = 0; i < damage; i++)
                             this.damage(1);
-                        }
-                    }
                 }
             }
         }
 
-       //получение жизни
+        //получение жизни
         public void addHp()
         {
             party.addHp();
-            ((CheckBox)this.FindName("hp_" + party.hp)).IsChecked = true;
+            ((CheckBox) FindName("hp_" + party.hp)).IsChecked = true;
         }
 
         //наведение на кубик
         private void dice_pic_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
-                Rectangle r = ((Rectangle)this.FindName("dice" + (i + 1) + "_pic"));
-                if (r.Stroke == brushGreen)
-                {
-                    r.Stroke = null;
-                }
+                var r = (Rectangle) FindName("dice" + (i + 1) + "_pic");
+                if (r.Stroke == brushGreen) r.Stroke = null;
             }
 
-            Rectangle rectangle = (Rectangle)sender;
+            var rectangle = (Rectangle) sender;
             rectangle.Stroke = brushGreen;
             rectangle.StrokeThickness = 4;
             currentDice = rectangle.Tag as Dice;
-
         }
 
 
         public bool addPotion(int count)
         {
-            bool isNotDeleteDice = false;
-            for (int i = 1; i <= count; i++)
-            {
+            var isNotDeleteDice = false;
+            for (var i = 1; i <= count; i++)
                 if (i + party.potions.Count() < 13)
-                {
-                    ((CheckBox)this.FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
-
-                }
-            }
+                    ((CheckBox) FindName("potion_" + (i + party.potions.Count()))).IsChecked = true;
 
             if (party.potions.Count() < 4 && party.potions.Count() + count >= 4)
             {
@@ -1324,7 +1047,6 @@ namespace DungeonPapperWPF
                 currentCountMagicPart++;
                 highlightCreateMagic(null);
                 isNotDeleteDice = true;
-
             }
             else if (party.potions.Count() < 12 && party.potions.Count() + count >= 12)
             {
@@ -1332,46 +1054,30 @@ namespace DungeonPapperWPF
                 addDiamond(new Diamond("За 12 зелий"));
             }
 
-            for (int i = 1; i <= count; i++)
-            {
+            for (var i = 1; i <= count; i++)
                 if (1 + party.potions.Count() < 13)
-                {
                     party.addPotion(1);
-
-                }
-            }
             return isNotDeleteDice;
-
         }
 
         public void addDiamond(Diamond diamond)
         {
-
             if (party.diamonds.Count() < 10)
             {
-                ((Rectangle)this.FindName("Diamond_" + (party.diamonds.Count() + 1))).Fill.Opacity = 1;
+                ((Rectangle) FindName("Diamond_" + (party.diamonds.Count() + 1))).Fill.Opacity = 1;
 
                 party.addDiamond(diamond);
 
-                if (party.isAddPotionFromDiamand)
-                {
-                    addPotion(1);
-                }
+                if (party.isAddPotionFromDiamand) addPotion(1);
                 if (party.diamonds.Count() == 2 || party.diamonds.Count() == 10)
                 {
                     currentCountMagicPart++;
                     highlightCreateMagic(null);
                 }
-                if (party.diamonds.Count() == 4 || party.diamonds.Count() == 8)
-                {
-                    addPotion(1);
-                }
-                if (party.diamonds.Count() == 6)
-                {
-                    levelUpFromMove();
-                }
-            }
 
+                if (party.diamonds.Count() == 4 || party.diamonds.Count() == 8) addPotion(1);
+                if (party.diamonds.Count() == 6) levelUpFromMove();
+            }
         }
 
         //выбор кубика
@@ -1379,22 +1085,18 @@ namespace DungeonPapperWPF
         {
             if (currentDice != null)
             {
-
                 diceGrid.IsEnabled = false;
                 selectDiceButton.IsEnabled = false;
                 selectDicesIsCurrentRound.Add(currentDice);
 
-                this.Title = "Dungeon Paper Раудн: " + round + "Кубик номер: " + selectDicesIsCurrentRound.Count();
+                Title = "Dungeon Paper Раудн: " + round + "Кубик номер: " + selectDicesIsCurrentRound.Count();
 
-                ImageBrush brush = new ImageBrush();
+                var brush = new ImageBrush();
                 brush.ImageSource = currentDice.getPath();
 
-                ((Rectangle)this.FindName("dice_" + round + "_" + selectDicesIsCurrentRound.Count())).Fill = brush;
+                ((Rectangle) FindName("dice_" + round + "_" + selectDicesIsCurrentRound.Count())).Fill = brush;
 
-                for (int i = 0; i < 6; i++)
-                {
-                    ((Rectangle)this.FindName("dice" + (i + 1) + "_pic")).IsEnabled = false;
-                }
+                for (var i = 0; i < 6; i++) ((Rectangle) FindName("dice" + (i + 1) + "_pic")).IsEnabled = false;
 
                 //три сапога
                 if (selectDicesIsCurrentRound.Last().number == 0)
@@ -1406,67 +1108,49 @@ namespace DungeonPapperWPF
                 {
                     TwoMoveButton.IsEnabled = true;
 
-                    if (party.potions.Count < 12)
-                    {
-                        ButtonCreatePotion.IsEnabled = true;
-                    }
+                    if (party.potions.Count < 12) ButtonCreatePotion.IsEnabled = true;
 
                     //клевер
                     if (selectDicesIsCurrentRound.Last().number == 9)
                     {
-                        if (party.GetHeroes().Find(h => h.level < 6) != null)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
+                        if (party.GetHeroes().Find(h => h.level < 6) != null) LevelUpButton.IsEnabled = true;
                         ButtonCreateMagic.IsEnabled = true;
                     }
 
                     //проверка выбора кнопки поднять уровень
                     if (selectDicesIsCurrentRound.Last().number > 0 && selectDicesIsCurrentRound.Last().number < 9)
                     {
+                        if ((party.wizard.level > 3 || party.warrior.outlook == Outlook.White) &&
+                            party.warrior.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 1) LevelUpButton.IsEnabled = true;
+                        if ((party.wizard.level > 3 || party.warrior.outlook == Outlook.Black) &&
+                            party.warrior.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 5) LevelUpButton.IsEnabled = true;
 
-                        if ((party.wizard.level > 3 || party.warrior.outlook == Outlook.White) && party.warrior.level < 6 && selectDicesIsCurrentRound.Last().number == 1)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if ((party.wizard.level > 3 || party.warrior.outlook == Outlook.Black) && party.warrior.level < 6 && selectDicesIsCurrentRound.Last().number == 5)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
+                        if ((party.wizard.level > 3 || party.wizard.outlook == Outlook.White) &&
+                            party.wizard.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 2) LevelUpButton.IsEnabled = true;
+                        if ((party.wizard.level > 3 || party.wizard.outlook == Outlook.Black) &&
+                            party.wizard.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 6) LevelUpButton.IsEnabled = true;
 
-                        if ((party.wizard.level > 3 || party.wizard.outlook == Outlook.White) && party.wizard.level < 6 && selectDicesIsCurrentRound.Last().number == 2)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if ((party.wizard.level > 3 || party.wizard.outlook == Outlook.Black) && party.wizard.level < 6 && selectDicesIsCurrentRound.Last().number == 6)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
+                        if ((party.wizard.level > 3 || party.cleric.outlook == Outlook.White) &&
+                            party.cleric.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 3) LevelUpButton.IsEnabled = true;
+                        if ((party.wizard.level > 3 || party.cleric.outlook == Outlook.Black) &&
+                            party.cleric.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 7) LevelUpButton.IsEnabled = true;
 
-                        if ((party.wizard.level > 3 || party.cleric.outlook == Outlook.White) && party.cleric.level < 6 && selectDicesIsCurrentRound.Last().number == 3)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if ((party.wizard.level > 3 || party.cleric.outlook == Outlook.Black) && party.cleric.level < 6 && selectDicesIsCurrentRound.Last().number == 7)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-
-                        if ((party.wizard.level > 3 || party.plut.outlook == Outlook.White) && party.plut.level < 6 && selectDicesIsCurrentRound.Last().number == 4)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-                        if ((party.wizard.level > 3 || party.plut.outlook == Outlook.Black) && party.plut.level < 6 && selectDicesIsCurrentRound.Last().number == 8)
-                        {
-                            LevelUpButton.IsEnabled = true;
-                        }
-
+                        if ((party.wizard.level > 3 || party.plut.outlook == Outlook.White) && party.plut.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 4) LevelUpButton.IsEnabled = true;
+                        if ((party.wizard.level > 3 || party.plut.outlook == Outlook.Black) && party.plut.level < 6 &&
+                            selectDicesIsCurrentRound.Last().number == 8) LevelUpButton.IsEnabled = true;
                     }
 
                     //проверка выбора кнопки ковать предмет
                     if (selectDicesIsCurrentRound.Last().number > 0 && selectDicesIsCurrentRound.Last().number < 9)
                     {
-                        List<PartyMagic> magics = party.magics;
+                        var magics = party.magics;
 
                         if (magics.Count == 0)
                         {
@@ -1474,53 +1158,38 @@ namespace DungeonPapperWPF
                         }
                         else
                         {
-                            if (selectDicesIsCurrentRound.Last().type > DiceType.Move3 && selectDicesIsCurrentRound.Last().type < DiceType.Klever)
+                            if (selectDicesIsCurrentRound.Last().type > DiceType.Move3 &&
+                                selectDicesIsCurrentRound.Last().type < DiceType.Klever)
                             {
                                 PartyMagic findMagic = null;
 
-                                foreach (PartyMagic magic in magics)
-                                {
-                                    if (magic.number == (int)selectDicesIsCurrentRound.Last().type)
+                                foreach (var magic in magics)
+                                    if (magic.number == (int) selectDicesIsCurrentRound.Last().type)
                                     {
                                         findMagic = magic;
                                         break;
                                     }
-                                }
 
                                 if (findMagic == null)
-                                {
                                     ButtonCreateMagic.IsEnabled = true;
-                                }
-                                else if (findMagic.countPart < 2)
-                                {
-                                    ButtonCreateMagic.IsEnabled = true;
-                                }
+                                else if (findMagic.countPart < 2) ButtonCreateMagic.IsEnabled = true;
                             }
 
 
-
-                            for (int i = 5; i < 9; i++)
+                            for (var i = 5; i < 9; i++)
                             {
                                 PartyMagic findMagic = null;
 
-                                foreach (PartyMagic magic in magics)
-                                {
+                                foreach (var magic in magics)
                                     if (magic.number == i)
                                     {
                                         findMagic = magic;
                                         break;
                                     }
-                                }
 
                                 if (findMagic == null)
-                                {
                                     ButtonCreateMagic.IsEnabled = true;
-                                }
-                                else if (findMagic.countPart < 2)
-                                {
-                                    ButtonCreateMagic.IsEnabled = true;
-                                }
-
+                                else if (findMagic.countPart < 2) ButtonCreateMagic.IsEnabled = true;
                             }
                         }
                     }
@@ -1532,17 +1201,14 @@ namespace DungeonPapperWPF
 
         private void ButtonCreatePotion_Click(object sender, RoutedEventArgs e)
         {
-            int count = party.isAddPotionFromCreatePOtionByDice ? 3 : 2;
-            bool isNotDeleteDice = addPotion(count);
-            if (!isNotDeleteDice)
-            {
-                deleteCurrentDic();
-            }
+            var count = party.isAddPotionFromCreatePOtionByDice ? 3 : 2;
+            var isNotDeleteDice = addPotion(count);
+            if (!isNotDeleteDice) deleteCurrentDic();
         }
 
         private void ButtonCreateMagic_Click(object sender, RoutedEventArgs e)
         {
-            Dice dice = selectDicesIsCurrentRound.Last();
+            var dice = selectDicesIsCurrentRound.Last();
             currentCountMagicPart++;
             highlightCreateMagic(dice);
             ButtonCreateMagic.IsEnabled = false;
@@ -1556,39 +1222,30 @@ namespace DungeonPapperWPF
         {
             if (currentCountMagicPart > 0)
             {
-
                 selectDiceButton.IsEnabled = false;
                 diceGrid.IsEnabled = false;
                 LevelUpButton.IsEnabled = false;
                 TwoMoveButton.IsEnabled = false;
-                List<PartyMagic> magics = party.magics;
+                var magics = party.magics;
 
                 if (dice == null)
                 {
                     //подсветить любой предмет
-                    for (int i = 1; i < 9; i++)
+                    for (var i = 1; i < 9; i++)
                     {
                         PartyMagic findMagic = null;
 
-                        foreach (PartyMagic magic in magics)
-                        {
+                        foreach (var magic in magics)
                             if (magic.number == i)
                             {
                                 findMagic = magic;
                                 break;
                             }
-                        }
 
                         if (findMagic == null)
-                        {
-                            ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                        }
+                            ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                         else if (findMagic.countPart < 2)
-                        {
-                            ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
-                        }
-
-
+                            ((CheckBox) FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
                     }
                 }
                 else
@@ -1597,118 +1254,78 @@ namespace DungeonPapperWPF
                     {
                         if (dice.type == DiceType.Klever)
                         {
-                            for (int i = 1; i < 9; i++)
-                            {
-                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                            }
+                            for (var i = 1; i < 9; i++) ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                         }
                         else
                         {
-                            ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
-                            for (int i = 5; i < 9; i++)
-                            {
-                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                            }
+                            ((CheckBox) FindName("magic_" + (int) dice.type + "_" + 1)).IsEnabled = true;
+                            for (var i = 5; i < 9; i++) ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                         }
-
-
                     }
                     else
                     {
-
                         if (dice.type > DiceType.Move3 && dice.type <= DiceType.Klever)
                         {
                             PartyMagic findMagic = null;
 
-                            foreach (PartyMagic magic in magics)
-                            {
-                                if (magic.number == (int)dice.type || dice.type == DiceType.Klever)
+                            foreach (var magic in magics)
+                                if (magic.number == (int) dice.type || dice.type == DiceType.Klever)
                                 {
                                     findMagic = magic;
 
                                     if (findMagic.countPart < 2)
-                                    {
-                                        ((CheckBox)this.FindName("magic_" + findMagic.number + "_" + (1 + findMagic.countPart))).IsEnabled = true;
-                                    }
+                                        ((CheckBox) FindName("magic_" + findMagic.number + "_" +
+                                                             (1 + findMagic.countPart))).IsEnabled = true;
                                 }
-                            }
-                            for (int i = 1; i < 5; i++)
-                            {
+
+                            for (var i = 1; i < 5; i++)
                                 if (dice.type == DiceType.Klever)
                                 {
                                     if (magics.Find(m => m.number == i) == null)
-                                    {
-                                        ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                                    }
+                                        ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                                 }
                                 else
                                 {
                                     if (findMagic == null)
-                                    {
-                                        ((CheckBox)this.FindName("magic_" + (int)dice.type + "_" + 1)).IsEnabled = true;
-
-                                    }
+                                        ((CheckBox) FindName("magic_" + (int) dice.type + "_" + 1)).IsEnabled = true;
                                 }
-                            }
-
                         }
 
 
-                        for (int i = 5; i < 9; i++)
+                        for (var i = 5; i < 9; i++)
                         {
                             PartyMagic findMagic = null;
 
-                            foreach (PartyMagic magic in magics)
-                            {
+                            foreach (var magic in magics)
                                 if (magic.number == i)
                                 {
                                     findMagic = magic;
                                     break;
                                 }
-                            }
 
                             if (findMagic == null)
-                            {
-                                ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                            }
+                                ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                             else if (findMagic.countPart < 2)
-                            {
-                                ((CheckBox)this.FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
-                            }
-
+                                ((CheckBox) FindName("magic_" + i + "_" + (1 + findMagic.countPart))).IsEnabled = true;
                         }
-
                     }
                 }
             }
         }
 
 
-
-
         //подсветка могстров для убийства по артефакту
         private void hieghtingdeadMonsterFromArtifact()
         {
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    fields[j, i].clearColor();
-                }
-            }
+            for (var i = 0; i < 6; i++)
+            for (var j = 0; j < 7; j++)
+                fields[j, i].clearColor();
 
             //подсветить монстра с локаций
             if (currentCountDeadMonstersFotArtifact > 0)
-            {
-
                 foreach (Field field in gridFields.Children)
-                {
                     if (field.dto.monster != null && !field.dto.monster.isDead)
-                    {
                         field.redColor();
-                    }
-                }
-            }
         }
 
         public void deadMonsterFromArtifact(Monster monster)
@@ -1717,31 +1334,23 @@ namespace DungeonPapperWPF
             monster.isDead = true;
             party.deadMonsters.Add(monster);
 
-            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster)
-            {
-                addPotion(1);
-            }
+            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster) addPotion(1);
 
-            ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
+            ((CheckBox) FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
 
             if (currentCountDeadMonstersFotArtifact == 0)
             {
-                {
-                    highlightWhereToGo();
-                }
+                highlightWhereToGo();
             }
 
-            if(currentCountDeadMonstersFotArtifact == 0 && deadMonsterFromAbbility)
-            {
-                deadMonsterFromAbbility = false;
-            }
+            if (currentCountDeadMonstersFotArtifact == 0 && deadMonsterFromAbbility) deadMonsterFromAbbility = false;
         }
 
 
         public void deadMonster(Monster monster)
         {
-            int damage = 0;
-            int level = 0;
+            var damage = 0;
+            var level = 0;
             switch (monster.heroClass.type)
             {
                 case HeroClassType.Warrior:
@@ -1756,34 +1365,30 @@ namespace DungeonPapperWPF
                 case HeroClassType.Plut:
                     level = party.plut.level;
                     break;
+            }
 
-            }
             //урон от монстра
-            damage = level + party.addDamageWithMonsters >= monster.heroClass.level ? 0 : monster.heroClass.level - (level + party.addDamageWithMonsters);
-            for (int i = 1; i <= damage; i++)
-            {
-                this.damage(1);
-            }
+            damage = level + party.addDamageWithMonsters >= monster.heroClass.level
+                ? 0
+                : monster.heroClass.level - (level + party.addDamageWithMonsters);
+            for (var i = 1; i <= damage; i++) this.damage(1);
 
             monster.isDead = true;
             party.deadMonsters.Add(monster);
 
-            ((CheckBox)this.FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
+            ((CheckBox) FindName("Monster_" + party.deadMonsters.Count())).IsChecked = true;
 
-            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster)
-            {
-                addPotion(1);
-            }
+            if (party.deadMonsters.Count % 3 == 0 && party.isAddPotionFromDeadn3Monster) addPotion(1);
         }
 
         private void magic_Checked(object sender, RoutedEventArgs e)
         {
             if (currentCountMagicPart > 0)
             {
-                CheckBox checkBox = (CheckBox)sender;
+                var checkBox = (CheckBox) sender;
                 checkBox.IsChecked = true;
 
-                string name = checkBox.Name.Replace("magic_", "");
+                var name = checkBox.Name.Replace("magic_", "");
 
                 if (name.EndsWith("_1"))
                 {
@@ -1794,20 +1399,13 @@ namespace DungeonPapperWPF
                 {
                     party.magics.ForEach(magic =>
                     {
-
                         if (magic.number == int.Parse(name[0].ToString()))
                         {
                             magic.create();
 
-                            if (magic.number == 6)
-                            {
-                                addPotion(3);
-                            }
+                            if (magic.number == 6) addPotion(3);
 
-                            if (magic.number == 8)
-                            {
-                                levelUpFromMove();
-                            }
+                            if (magic.number == 8) levelUpFromMove();
 
                             if (magic.number == 2)
                             {
@@ -1815,15 +1413,9 @@ namespace DungeonPapperWPF
                                 hieghtingdeadMonsterFromArtifact();
                             }
 
-                            if (magic.number == 1)
-                            {
-                                party.addDamageWithBosses += 3;
-                            }
+                            if (magic.number == 1) party.addDamageWithBosses += 3;
 
-                            if (magic.number == 7)
-                            {
-                                party.addDamageWithMonsters += 1;
-                            }
+                            if (magic.number == 7) party.addDamageWithMonsters += 1;
 
                             currentCountMagicPart--;
                         }
@@ -1831,10 +1423,10 @@ namespace DungeonPapperWPF
                 }
 
 
-                for (int i = 1; i <= 8; i++)
+                for (var i = 1; i <= 8; i++)
                 {
-                    ((CheckBox)this.FindName("magic_" + i + "_1")).IsEnabled = false;
-                    ((CheckBox)this.FindName("magic_" + i + "_2")).IsEnabled = false;
+                    ((CheckBox) FindName("magic_" + i + "_1")).IsEnabled = false;
+                    ((CheckBox) FindName("magic_" + i + "_2")).IsEnabled = false;
                 }
 
                 if (currentCountMagicPart > 0)
@@ -1843,31 +1435,25 @@ namespace DungeonPapperWPF
                 }
                 else
                 {
-
-                    if (selectDicesIsCurrentRound.Count() == 3)
-                    {
-                        buttonDiceGenereted.IsEnabled = true;
-                    }
-                    if ((currentCountLevel == 0 && !magicFromDice && currentCountStep == 0 && currentCountDeadMonstersFotArtifact == 0) ||
-                        (magicFromDice && currentCountDeadMonstersFotArtifact == 0))
+                    if (selectDicesIsCurrentRound.Count() == 3) buttonDiceGenereted.IsEnabled = true;
+                    if (currentCountLevel == 0 && !magicFromDice && currentCountStep == 0 &&
+                        currentCountDeadMonstersFotArtifact == 0 ||
+                        magicFromDice && currentCountDeadMonstersFotArtifact == 0)
                     {
                         selectDiceButton.IsEnabled = true;
                         diceGrid.IsEnabled = true;
                         deleteCurrentDic();
 
-                        if (magicFromDice)
-                        {
-                            magicFromDice = false;
-                        }
-
+                        if (magicFromDice) magicFromDice = false;
                     }
                 }
-            }else if (currentCountMagicsByAbbility > 0)
+            }
+            else if (currentCountMagicsByAbbility > 0)
             {
-                CheckBox checkBox = (CheckBox)sender;
+                var checkBox = (CheckBox) sender;
                 checkBox.IsChecked = true;
 
-                string name = checkBox.Name.Replace("magic_", "");
+                var name = checkBox.Name.Replace("magic_", "");
 
                 if (name.EndsWith("_1"))
                 {
@@ -1875,10 +1461,10 @@ namespace DungeonPapperWPF
                     currentCountMagicsByAbbility--;
                 }
 
-                for (int i = 1; i <= 8; i++)
+                for (var i = 1; i <= 8; i++)
                 {
-                    ((CheckBox)this.FindName("magic_" + i + "_1")).IsEnabled = false;
-                    ((CheckBox)this.FindName("magic_" + i + "_2")).IsEnabled = false;
+                    ((CheckBox) FindName("magic_" + i + "_1")).IsEnabled = false;
+                    ((CheckBox) FindName("magic_" + i + "_2")).IsEnabled = false;
                 }
 
                 hieghtingMagicsByAbbility();
@@ -1956,89 +1542,68 @@ namespace DungeonPapperWPF
         //подсветка алмаза для похищения по абилке
         public void hieghtingDiamondFromArtifact()
         {
-
             foreach (Field field in gridFields.Children)
-            {
                 if (field.dto.prey != null && field.dto.prey is Diamond)
-                {
                     field.yellowColor();
-                }
-            }
-
         }
+
         //подсветить уровни по абилке №6
         public void hieghtingLevelUpByAbbility()
         {
             if (currentCountLevelUpByAbbility > 0)
-            {
                 party.GetHeroes().ForEach(hero =>
                 {
-                    if (hero.level == 1)
-                    {
-                        ((CheckBox)this.FindName(hero.getPrefixControlLevelName() + 2)).IsEnabled = true;
-                    }
+                    if (hero.level == 1) ((CheckBox) FindName(hero.getPrefixControlLevelName() + 2)).IsEnabled = true;
                 });
-            }
         }
 
         public void hieghtingMagicsByAbbility()
         {
             if (currentCountMagicsByAbbility > 0)
-            {
                 //подсветить любой предмет
-                for (int i = 1; i < 9; i++)
+                for (var i = 1; i < 9; i++)
                 {
                     PartyMagic findMagic = null;
 
-                    foreach (PartyMagic magic in party.magics)
-                    {
+                    foreach (var magic in party.magics)
                         if (magic.number == i)
                         {
                             findMagic = magic;
                             break;
                         }
-                    }
 
-                    if (findMagic == null)
-                    {
-                        ((CheckBox)this.FindName("magic_" + i + "_" + 1)).IsEnabled = true;
-                    }
+                    if (findMagic == null) ((CheckBox) FindName("magic_" + i + "_" + 1)).IsEnabled = true;
                 }
-            }
         }
 
 
         private void rec_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             zoomRec.Opacity = 1;
-            zoomRec.Fill = ((Rectangle)sender).Fill;
-            Canvas.SetZIndex(zoomRec, 1);
+            zoomRec.Fill = ((Rectangle) sender).Fill;
+            Panel.SetZIndex(zoomRec, 1);
         }
 
         private void zoomRec_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             zoomRec.Opacity = 1;
             zoomRec.Fill = null;
-            Canvas.SetZIndex(zoomRec, 1000);
+            Panel.SetZIndex(zoomRec, 1000);
         }
 
         private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-
-           
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-
             ScaleTransform.ScaleX = e.NewSize.Height / 765;
             ScaleTransform.ScaleY = e.NewSize.Height / 765;
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ((WindowsStart)parent).parent.Show();
+            ((WindowsStart) parent).parent.Show();
         }
     }
 }

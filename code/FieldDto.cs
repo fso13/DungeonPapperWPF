@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace DungeonPapperWPF
+﻿namespace DungeonPapperWPF
 {
-
     public class FieldDto
     {
         public int x { set; get; }
@@ -19,6 +16,5 @@ namespace DungeonPapperWPF
         public Boss one { set; get; }
         public Boss two { set; get; }
         public Boss three { set; get; }
-
     }
 }

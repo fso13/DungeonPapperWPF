@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DungeonPapperWPF
 {
-
     public partial class Boss
     {
         public int number { get; set; }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DungeonPapperWPF.code;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +7,6 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using DungeonPapperWPF.code;
 
 namespace DungeonPapperWPF.windows
 {
@@ -16,20 +15,22 @@ namespace DungeonPapperWPF.windows
     /// </summary>
     public partial class LaunchWindow : Window
     {
-        static HttpClient client = new HttpClient();
+        private static HttpClient client = new HttpClient();
 
         public LaunchWindow()
         {
-            SplashScreen splashScreen = new SplashScreen("Resources/logo.png");
+            var splashScreen = new SplashScreen("Resources/logo.png");
             splashScreen.Show(false);
             splashScreen.Close(TimeSpan.FromSeconds(5));
             System.Threading.Thread.Sleep(5000);
             InitializeComponent();
 
-            string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             currentVersion = currentVersion.Substring(0, currentVersion.Length - 2);
 
-            this.Title += " v" + currentVersion;
+            Title += " v" + currentVersion;
+            ConfUtil.read();
+
         }
 
         private void NewGameBtn_Click(object sender, RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace DungeonPapperWPF.windows
             window.Owner = this;
             window.Show();
 
-            this.Hide();
+            Hide();
         }
 
         private void SettingsGameBtn_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace DungeonPapperWPF.windows
 
         private void RatingGameBtn_Click(object sender, RoutedEventArgs e)
         {
-           new RatingWindow().Show();
+            new RatingWindow().Show();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -64,7 +65,7 @@ namespace DungeonPapperWPF.windows
 
         private async Task getLastVersion()
         {
-            this.progressBar.Visibility = Visibility.Visible;
+            progressBar.Visibility = Visibility.Visible;
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
@@ -75,37 +76,36 @@ namespace DungeonPapperWPF.windows
 
             var msg = await System.Text.Json.JsonSerializer.DeserializeAsync<Release>(await streamTask);
 
-            string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             currentVersion = currentVersion.Substring(0, currentVersion.Length - 2);
-            string lastVersion = msg.name.Replace("v", "");
+            var lastVersion = msg.name.Replace("v", "");
+            lastVersion = lastVersion.Substring(0, lastVersion.LastIndexOf('.'));
 
-            if (lastVersion.CompareTo(currentVersion) > 0)
+            if (String.Compare(lastVersion, currentVersion, StringComparison.Ordinal) > 0)
             {
-                string messageBoxText = "Хотите скачать новую версию?";
-                string caption = "Доступна новая версия";
-                MessageBoxButton button = MessageBoxButton.YesNoCancel;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                var messageBoxText = "Хотите скачать новую версию?";
+                var caption = "Доступна новая версия";
+                var button = MessageBoxButton.YesNoCancel;
+                var icon = MessageBoxImage.Warning;
                 MessageBoxResult result;
 
                 result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
                 if (result == MessageBoxResult.Yes)
-                {
-                    using (WebClient client = new WebClient())
+                    using (var client = new WebClient())
                     {
                         client.DownloadFile(
                             "https://github.com/fso13/DungeonPapperWPF/releases/latest/download/DungeonPapperWPF.zip",
-                            System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) +
+                            Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) +
                             "//DungeonPapperWPF.zip");
                         MessageBox.Show("Обновление скачанно в текущую папку.");
                     }
-                }
             }
             else
             {
                 MessageBox.Show("У вас последняя версия");
             }
 
-            this.progressBar.Visibility = Visibility.Hidden;
+            progressBar.Visibility = Visibility.Hidden;
         }
 
         public class Release
@@ -115,16 +115,9 @@ namespace DungeonPapperWPF.windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Dictionary<string, string> props = new Dictionary<string, string>();
-
             if (File.Exists("user.conf"))
             {
-                props = ConfUtil.read();
-
-                if (!props.ContainsKey("nick"))
-                {
-                    new NickWindow().Show();
-                }
+                if (!ConfUtil.props.ContainsKey("nick")) new NickWindow().Show();
             }
             else
             {
