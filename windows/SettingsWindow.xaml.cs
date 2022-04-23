@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using DungeonPapperWPF.code;
+﻿using DungeonPapperWPF.code;
+using System.Windows;
 
 namespace DungeonPapperWPF.windows
 {
@@ -11,25 +11,21 @@ namespace DungeonPapperWPF.windows
         public SettingsWindow()
         {
             InitializeComponent();
-            if (ConfUtil.read().ContainsKey("VoiceEnable"))
-            {
-                VoiceEnable.IsChecked = ConfUtil.read()["VoiceEnable"] == "true";
-            }
+            if (ConfUtil.props.ContainsKey("VoiceEnable"))
+                VoiceEnable.IsChecked = ConfUtil.props["VoiceEnable"] == "true";
             else
-            {
                 VoiceEnable.IsChecked = false;
-            }
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            ConfUtil.save("VoiceEnable","true");
+            ConfUtil.save("VoiceEnable", "true");
         }
 
 
         private void VoiceEnable_Unchecked(object sender, RoutedEventArgs e)
         {
-            ConfUtil.save("VoiceEnable",  "false");
+            ConfUtil.save("VoiceEnable", "false");
         }
     }
 }

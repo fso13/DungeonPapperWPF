@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -19,7 +15,7 @@ namespace DungeonPapperWPF.code
 
         public BitmapImage getPath()
         {
-            return new BitmapImage(new Uri(@"Resources\dice_" + number+".png", UriKind.Relative));
+            return new BitmapImage(new Uri(@"Resources\dice_" + number + ".png", UriKind.Relative));
         }
 
         public static Dice fromNumber(int number)
@@ -57,8 +53,6 @@ namespace DungeonPapperWPF.code
         Plut,
         Klever,
         Scull
-
-
     }
 
     public enum DiceColor
@@ -66,7 +60,4 @@ namespace DungeonPapperWPF.code
         White,
         Black
     }
-
-    
-
 }

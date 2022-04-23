@@ -3,90 +3,120 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
-        Title="Новая игра" Height="633" Width="784" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="#FF8E744D" MinWidth="784" MinHeight="633" SizeChanged="Window_SizeChanged" Closing="Window_Closing" WindowState="Maximized">
+        Title="Новая игра" Height="633" Width="784" ResizeMode="CanResize" WindowStartupLocation="CenterScreen"
+        Background="#FF8E744D" MinWidth="784" MinHeight="633" SizeChanged="Window_SizeChanged" Closing="Window_Closing"
+        WindowState="Maximized">
     <Grid x:Name="contentGrid" Background="#FF8E744D">
         <Grid.RenderTransform>
-            <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+            <ScaleTransform x:Name="ScaleTransform" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1" />
         </Grid.RenderTransform>
-        <Rectangle x:Name="zoom" HorizontalAlignment="Left" Height="474" VerticalAlignment="Top" Width="324" MouseRightButtonUp="zoom_MouseRightButtonUp" Margin="230,70,0,0" RadiusX="12.162" RadiusY="12.162"/>
+        <Rectangle x:Name="zoom" HorizontalAlignment="Left" Height="474" VerticalAlignment="Top" Width="324"
+                   MouseRightButtonUp="zoom_MouseRightButtonUp" Margin="230,70,0,0" RadiusX="12.162" RadiusY="12.162" />
 
-        <Button x:Name="startButton" Content="Начать" Margin="438,535,0,0" VerticalAlignment="Top" Padding="1,1,1,1" UseLayoutRounding="False" HorizontalContentAlignment="Center" IsEnabled="False" RenderTransformOrigin="-0.082,-0.749" Height="31" Click="startButton_Click" HorizontalAlignment="Left" Width="251"/>
+        <Button x:Name="startButton" Content="Начать" Margin="438,535,0,0" VerticalAlignment="Top" Padding="1,1,1,1"
+                UseLayoutRounding="False" HorizontalContentAlignment="Center" IsEnabled="False"
+                RenderTransformOrigin="-0.082,-0.749" Height="31" Click="startButton_Click" HorizontalAlignment="Left"
+                Width="251" />
         <Grid Height="567" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="408">
-            <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Width="250" SelectionChanged="cbox_quest_SelectionChanged" Margin="10,10,0,0" Height="22" VerticalAlignment="Top">
-                <ComboBoxItem Content="Квест 1"/>
-                <ComboBoxItem Content="Квест 2"/>
-                <ComboBoxItem Content="Квест 3"/>
-                <ComboBoxItem Content="Квест 4"/>
-                <ComboBoxItem Content="Квест 5"/>
-                <ComboBoxItem Content="Квест 6"/>
-                <ComboBoxItem Content="Квест 7"/>
-                <ComboBoxItem Content="Квест 8"/>
-                <ComboBoxItem Content="Квест 9"/>
-                <ComboBoxItem Content="Квест 10"/>
-                <ComboBoxItem Content="Квест 11"/>
-                <ComboBoxItem Content="Квест 12"/>
+            <ComboBox x:Name="cbox_quest" HorizontalAlignment="Left" Width="250"
+                      SelectionChanged="cbox_quest_SelectionChanged" Margin="10,10,0,0" Height="22"
+                      VerticalAlignment="Top">
+                <ComboBoxItem Content="Квест 1" />
+                <ComboBoxItem Content="Квест 2" />
+                <ComboBoxItem Content="Квест 3" />
+                <ComboBoxItem Content="Квест 4" />
+                <ComboBoxItem Content="Квест 5" />
+                <ComboBoxItem Content="Квест 6" />
+                <ComboBoxItem Content="Квест 7" />
+                <ComboBoxItem Content="Квест 8" />
+                <ComboBoxItem Content="Квест 9" />
+                <ComboBoxItem Content="Квест 10" />
+                <ComboBoxItem Content="Квест 11" />
+                <ComboBoxItem Content="Квест 12" />
             </ComboBox>
-            <Rectangle x:Name="monster_1" Margin="271,35,18,362" RenderTransformOrigin="1.134,-0.078" RadiusX="4" RadiusY="4" MouseRightButtonDown="monster_MouseRightButtonDown">
+            <Rectangle x:Name="monster_1" Margin="271,35,18,362" RenderTransformOrigin="1.134,-0.078" RadiusX="4"
+                       RadiusY="4" MouseRightButtonDown="monster_MouseRightButtonDown">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/monstr1_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/monstr1_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="tbox_legenda" Margin="10,37,148,0" TextWrapping="Wrap" Height="470" VerticalAlignment="Top" Background="White"/>
-            <Rectangle x:Name="monster_2"  MouseRightButtonDown="monster_MouseRightButtonDown" Height="170" Margin="271,210,18,0" VerticalAlignment="Top" RenderTransformOrigin="1.134,-0.078" RadiusX="4.5" RadiusY="4.5">
+            <TextBlock x:Name="tbox_legenda" Margin="10,37,148,0" TextWrapping="Wrap" Height="470"
+                       VerticalAlignment="Top" Background="White" />
+            <Rectangle x:Name="monster_2" MouseRightButtonDown="monster_MouseRightButtonDown" Height="170"
+                       Margin="271,210,18,0" VerticalAlignment="Top" RenderTransformOrigin="1.134,-0.078" RadiusX="4.5"
+                       RadiusY="4.5">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/monstr2_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/monstr2_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="monster_3"  MouseRightButtonDown="monster_MouseRightButtonDown" Margin="271,387,18,10" RenderTransformOrigin="1.134,-0.078" RadiusX="5" RadiusY="5">
+            <Rectangle x:Name="monster_3" MouseRightButtonDown="monster_MouseRightButtonDown" Margin="271,387,18,10"
+                       RenderTransformOrigin="1.134,-0.078" RadiusX="5" RadiusY="5">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/monstr3_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/monstr3_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="slectedQuestButton" Content="Выбрать квест" Margin="10,0,148,10" Height="35" VerticalAlignment="Bottom" Click="slectedQuestButton_Click" IsEnabled="False"/>
+            <Button x:Name="slectedQuestButton" Content="Выбрать квест" Margin="10,0,148,10" Height="35"
+                    VerticalAlignment="Bottom" Click="slectedQuestButton_Click" IsEnabled="False" />
 
         </Grid>
         <Grid Height="368" VerticalAlignment="Top" Margin="438,46,76,0">
-            <Rectangle x:Name="mission_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333">
+            <Rectangle x:Name="mission_1" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333"
+                       RadiusY="6.333">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="mission_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" Margin="85,0,0,0">
+            <Rectangle x:Name="mission_2" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="80" RadiusX="6.333"
+                       RadiusY="6.333" Margin="85,0,0,0">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="mission_3"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="172,0,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333">
+            <Rectangle x:Name="mission_3" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" Margin="172,0,0,0" VerticalAlignment="Top" Width="80"
+                       RadiusX="6.333" RadiusY="6.333">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/mission_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="user_mission_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="0,127,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonUp="user_mission_1_MouseLeftButtonUp">
+            <Rectangle x:Name="user_mission_1" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" Margin="0,127,0,0" VerticalAlignment="Top" Width="80"
+                       RadiusX="6.333" RadiusY="6.333" MouseLeftButtonUp="user_mission_1_MouseLeftButtonUp">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="user_mission_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="85,127,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="user_mission_2_MouseLeftButtonDown">
+            <Rectangle x:Name="user_mission_2" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" Margin="85,127,0,0" VerticalAlignment="Top" Width="80"
+                       RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="user_mission_2_MouseLeftButtonDown">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/user_mission_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="abbility_1"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="0,251,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_1_MouseLeftButtonDown">
+            <Rectangle x:Name="abbility_1" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" Margin="0,251,0,0" VerticalAlignment="Top" Width="80"
+                       RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_1_MouseLeftButtonDown">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="abbility_2"  MouseRightButtonDown="monster_MouseRightButtonDown" HorizontalAlignment="Left" Height="117" Margin="85,251,0,0" VerticalAlignment="Top" Width="80" RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_2_MouseLeftButtonDown">
+            <Rectangle x:Name="abbility_2" MouseRightButtonDown="monster_MouseRightButtonDown"
+                       HorizontalAlignment="Left" Height="117" Margin="85,251,0,0" VerticalAlignment="Top" Width="80"
+                       RadiusX="6.333" RadiusY="6.333" MouseLeftButtonDown="abbility_2_MouseLeftButtonDown">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg"/>
+                    <ImageBrush ImageSource="/Resources/ability_shirt.jpg" />
                 </Rectangle.Fill>
             </Rectangle>
 
         </Grid>
-        <Button x:Name="selectUserMission" Content="Выбрать цель" HorizontalAlignment="Left" Margin="617,215,0,0" VerticalAlignment="Top" Width="88" IsEnabled="False" Click="selectUserMission_Click"/>
-        <Button x:Name="selectAbblity" Content="Выбрать&#xD;&#xA;способность" HorizontalAlignment="Left" Margin="617,333,0,0" VerticalAlignment="Top" Width="87" Height="39" FontStyle="Normal" IsEnabled="False" Click="selectAbblity_Click"/>
+        <Button x:Name="selectUserMission" Content="Выбрать цель" HorizontalAlignment="Left" Margin="617,215,0,0"
+                VerticalAlignment="Top" Width="88" IsEnabled="False" Click="selectUserMission_Click" />
+        <Button x:Name="selectAbblity" Content="Выбрать&#xD;&#xA;способность" HorizontalAlignment="Left"
+                Margin="617,333,0,0" VerticalAlignment="Top" Width="87" Height="39" FontStyle="Normal"
+                IsEnabled="False" Click="selectAbblity_Click" />
 
     </Grid>
 </Window>

@@ -31,33 +31,30 @@ namespace DungeonPapperWPF.code
         public List<Boss> bosses = new List<Boss>();
         public int addDamageWithMonsters = 0;
         public int addDamageWithBosses = 0;
-        public bool isIgnoreTrap;//игнорировать урон от ловушек
-        public bool isIgnoreOneSkull;//игнорировать один череп на кубах
-        public bool isAddMoveFromRiver;//+1 к шагу за переход через реки
-        public bool isAddPotionFromDiamand;//получать зелья за алмазы
-        public bool isIgnoreDamageFromBoss;//игнор урона от боссов
-        public bool isAddMagicFrom5Level;//получать часть предмета за 5 уровень героя
-        public bool isAddPotionFromDeadn3Monster;//получать зелье за каждого третьего убитого монстра
-        public bool isAddMagicFromDeadn3Monster;//получать xfcnm ghtlvtnf за каждого третьего убитого монстра
-        public bool isAddPotionFromCreatePOtionByDice;//получать зелье за варку зелья по кубику
+        public bool isIgnoreTrap; //игнорировать урон от ловушек
+        public bool isIgnoreOneSkull; //игнорировать один череп на кубах
+        public bool isAddMoveFromRiver; //+1 к шагу за переход через реки
+        public bool isAddPotionFromDiamand; //получать зелья за алмазы
+        public bool isIgnoreDamageFromBoss; //игнор урона от боссов
+        public bool isAddMagicFrom5Level; //получать часть предмета за 5 уровень героя
+        public bool isAddPotionFromDeadn3Monster; //получать зелье за каждого третьего убитого монстра
+        public bool isAddMagicFromDeadn3Monster; //получать xfcnm ghtlvtnf за каждого третьего убитого монстра
+        public bool isAddPotionFromCreatePOtionByDice; //получать зелье за варку зелья по кубику
 
         public List<HeroClass> GetHeroes()
         {
-            return new List<HeroClass>() { warrior, wizard, cleric, plut };
+            return new List<HeroClass>() {warrior, wizard, cleric, plut};
         }
 
         public int getDamageByBoss(Boss boss)
         {
-            int damage = 0;
+            var damage = 0;
 
             GetHeroes().ForEach(hero =>
             {
                 damage += hero.level;
-                if(boss.heroClassType == hero.type)
-                {
-                    damage += hero.level;
-                }
-            }) ;
+                if (boss.heroClassType == hero.type) damage += hero.level;
+            });
             damage += addDamageWithBosses;
             return damage;
         }
@@ -66,18 +63,14 @@ namespace DungeonPapperWPF.code
         {
             if (damage > 0)
             {
-                PartyPotion potion = getFirstPotionWithFreeCell();
+                var potion = getFirstPotionWithFreeCell();
 
                 if (potion == null)
                 {
                     if (blood + damage > 25)
-                    {
                         blood = 25;
-                    }
                     else
-                    {
                         blood += damage;
-                    }
                 }
                 else
                 {
@@ -86,10 +79,7 @@ namespace DungeonPapperWPF.code
                     this.damage(damage);
                 }
 
-                if (blood == hp)
-                {
-                    isDeadPaty = true;
-                }
+                if (blood == hp) isDeadPaty = true;
             }
         }
 
@@ -97,18 +87,15 @@ namespace DungeonPapperWPF.code
         {
             hp++;
         }
+
         public void addDiamond(Diamond diamond)
         {
-
             diamonds.Add(diamond);
         }
 
         public void addPotion(int count)
         {
-            for (int i = 0; i < count; i++)
-            {
-                potions.Add(new PartyPotion());
-            }
+            for (var i = 0; i < count; i++) potions.Add(new PartyPotion());
 
             MessageBox.Show("Найдено лечебное зелье, в количестве: " + count);
         }
@@ -120,13 +107,9 @@ namespace DungeonPapperWPF.code
 
         public PartyPotion getFirstPotionWithFreeCell()
         {
-            for (int i = 0; i < potions.Count; i++)
-            {
+            for (var i = 0; i < potions.Count; i++)
                 if (potions.ElementAt(i).freeCell > 0)
-                {
                     return potions.ElementAt(i);
-                }
-            }
 
             return null;
         }
@@ -134,10 +117,9 @@ namespace DungeonPapperWPF.code
 
         public bool isPresentMagic(int number)
         {
-            PartyMagic pm = magics.FirstOrDefault(m => m.number == number && m.countPart == 2);
+            var pm = magics.FirstOrDefault(m => m.number == number && m.countPart == 2);
             return pm != null;
         }
-
     }
 
     public class PartyPotion

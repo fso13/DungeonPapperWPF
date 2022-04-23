@@ -3,24 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DungeonPapperWPF"
         mc:Ignorable="d"
         Title="BossFightWindows" Height="447" Width="579.311" Background="#FF8E744D">
     <Grid>
-        <Rectangle x:Name="boss_rec" HorizontalAlignment="Left" Height="388" Margin="18,23,0,0" Stroke="Black" VerticalAlignment="Top" Width="256" RadiusX="11.688" RadiusY="11.688"/>
-        <Button x:Name="btn_fign" Content="Бой" HorizontalAlignment="Left" Margin="293,23,0,0" VerticalAlignment="Top" Width="250" Click="btn_fign_Click"/>
-        <Button x:Name="btn_ok" Content="Забрать награду" HorizontalAlignment="Left" Margin="292,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False" Click="btn_ok_Click" Visibility="Hidden" >
+        <Rectangle x:Name="boss_rec" HorizontalAlignment="Left" Height="388" Margin="18,23,0,0" Stroke="Black"
+                   VerticalAlignment="Top" Width="256" RadiusX="11.688" RadiusY="11.688" />
+        <Button x:Name="btn_fign" Content="Бой" HorizontalAlignment="Left" Margin="293,23,0,0" VerticalAlignment="Top"
+                Width="250" Click="btn_fign_Click" />
+        <Button x:Name="btn_ok" Content="Забрать награду" HorizontalAlignment="Left" Margin="292,340,0,0"
+                VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False"
+                Click="btn_ok_Click" Visibility="Hidden">
             <Button.Background>
-                <SolidColorBrush Color="#FFDDDDDD" Opacity="1"/>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="1" />
             </Button.Background>
         </Button>
-        <Button x:Name="btn_fail" Content="Сбежать" HorizontalAlignment="Left" Margin="292,365,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False" Click="btn_fail_Click"  Visibility="Hidden">
+        <Button x:Name="btn_fail" Content="Сбежать" HorizontalAlignment="Left" Margin="292,365,0,0"
+                VerticalAlignment="Top" RenderTransformOrigin="0.41,7.185" Width="167" IsEnabled="False"
+                Click="btn_fail_Click" Visibility="Hidden">
             <Button.Background>
-                <SolidColorBrush Color="#FFDDDDDD" Opacity="1"/>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="1" />
             </Button.Background>
         </Button>
-        <Label Content="Сила вашей команды" HorizontalAlignment="Left" Height="55" Margin="293,48,0,0" VerticalAlignment="Top" Width="250" FontSize="24"/>
-        <Label x:Name="label_level_party" Content="0" HorizontalAlignment="Left" Height="55" Margin="293,103,0,0" VerticalAlignment="Top" Width="250" FontSize="24"/>
+        <Label Content="Сила вашей команды" HorizontalAlignment="Left" Height="55" Margin="293,48,0,0"
+               VerticalAlignment="Top" Width="250" FontSize="24" />
+        <Label x:Name="label_level_party" Content="0" HorizontalAlignment="Left" Height="55" Margin="293,103,0,0"
+               VerticalAlignment="Top" Width="250" FontSize="24" />
 
     </Grid>
 </Window>

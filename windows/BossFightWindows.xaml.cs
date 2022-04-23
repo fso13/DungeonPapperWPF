@@ -10,13 +10,13 @@ namespace DungeonPapperWPF
     /// </summary>
     public partial class BossFightWindows : Window
     {
-
         public static Boss boss = null;
+
         public BossFightWindows()
         {
             InitializeComponent();
 
-            ImageBrush imageBrushm1 = new ImageBrush();
+            var imageBrushm1 = new ImageBrush();
             imageBrushm1.ImageSource =
                 new BitmapImage(new Uri(@"Resources\monstr_" + boss.number + ".jpg", UriKind.Relative));
             boss_rec.Fill = imageBrushm1;
@@ -29,20 +29,19 @@ namespace DungeonPapperWPF
             boss.isDead = true;
             MainWindow.party.bosses.Add(boss);
 
-            this.Close();
-
+            Close();
         }
 
         private void btn_fail_Click(object sender, RoutedEventArgs e)
         {
             boss.isDead = false;
             MainWindow.party.bosses.Add(boss);
-            this.Close();
+            Close();
         }
 
         private void btn_fign_Click(object sender, RoutedEventArgs e)
         {
-            int minLifeBoss = boss.firstDamage.heroLevel;
+            var minLifeBoss = boss.firstDamage.heroLevel;
             if (boss.level == 1)
             {
                 if (MainWindow.party.path.Find(f => f.dto.one != null) != null)
@@ -73,7 +72,6 @@ namespace DungeonPapperWPF
             {
                 if (MainWindow.party.path.Find(f => f.dto.two != null) != null)
                 {
-
                     if (minLifeBoss > MainWindow.party.getDamageByBoss(boss))
                     {
                         MessageBox.Show("Вы не можете нанести урон монстру, бегите...");
@@ -124,7 +122,6 @@ namespace DungeonPapperWPF
                     btn_fail.IsEnabled = true;
                     btn_fail.Visibility = Visibility.Visible;
                 }
-
             }
         }
     }

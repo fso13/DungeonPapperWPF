@@ -4,7 +4,6 @@ namespace DungeonPapperWPF
 {
     public interface Prey
     {
-
         Uri getPath();
     }
 
@@ -19,7 +18,7 @@ namespace DungeonPapperWPF
 
         public Uri getPath()
         {
-            return new Uri(@"Resources\Potion_" + count+".png", UriKind.Relative);
+            return new Uri(@"Resources\Potion_" + count + ".png", UriKind.Relative);
         }
     }
 
@@ -65,7 +64,7 @@ namespace DungeonPapperWPF
     {
         public LevelUp()
         {
-            this.count = 1;
+            count = 1;
         }
 
         public LevelUp(int count)
@@ -74,6 +73,7 @@ namespace DungeonPapperWPF
         }
 
         public int count { get; set; } = 1;
+
         public Uri getPath()
         {
             return new Uri(@"Resources\LevelUp.png", UriKind.Relative);
